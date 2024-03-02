@@ -1,0 +1,749 @@
+body {
+    margin: 0; padding: 0;
+    background-color: #000000;
+    font-family: 'Inter', sans-serif;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 32px 0;
+}
+
+.header {
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center items vertically */
+    justify-content: center; /* Create space between items */
+    top: 0;
+    right: 0;
+    width: 100%;
+    z-index: 4;
+    height: 42px;
+    transition: transform 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    gap: 77px;
+    padding-bottom: 70px;
+  }
+
+.header-buttons {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+    padding: 0px;
+}
+
+.header-buttons a {
+    color: #ffffff50;
+    transition: color 0.2s ease; /* Add a transition effect for the color change */
+    border: none;
+    background-color: transparent; /* Remove the fill color */
+    font-size: 22px;
+    font-weight: 400;
+    cursor: pointer; /* Change the cursor to a pointer */
+    border-radius: 25px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 16px;
+    padding-right: 16px;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center items vertically */
+    text-decoration: none; /* no underline */
+}
+
+.header-buttons a:hover {
+    color: white;
+}
+
+.main-section {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 300px;
+}
+
+.top-section {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 100px;
+}
+
+.title-section {
+    display: flex;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 200px;
+    flex-direction: row;
+    padding-top: 65px;
+    background: linear-gradient(to right, #ffffff10, #ffffff10, #99999900);
+    border: none; /* Remove default border */
+    border-radius: 44px;
+    box-shadow: inset 0 11px 0 #ffffff05; /* Add inner shadow */
+    overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
+    border: 1px solid black; /* Remove default border */
+    backdrop-filter: blur(28px); /* Apply the background blur */
+}
+
+.glow-line {
+    width: 2px;
+    height: 280px;
+    background-color: #58E3F2;
+}
+
+.glow-blur {
+    width: 2px;
+    height: 280px;
+    background-color: #58E3F2;
+    filter: blur(14.8px); /* Adjust the radius (3px in this example) */
+}
+
+.large-logo {
+    width: 809px;
+    height: 314px;
+    overflow: hidden;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+}
+
+.title-two {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 71px;
+    max-width: 624px;
+    padding-bottom: 65px;
+    padding-left: 65px;
+}
+
+.title-header {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.title-header h1{
+    color: white;
+    font-size: 55px;
+    font-weight: 200;
+    margin: 0;
+}
+
+.title-header h2{
+    color: #39BBC9;
+    font-size: 26px;
+    font-weight: 200;
+    margin: 0;
+}
+
+.title-info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.title-info p {
+    color: #ffffff76;
+    font-size: 16px;
+    font-weight: 200;
+    margin: 0;
+    line-height: 22px;
+}
+
+.title-buttons {
+    display: flex;
+    align-items: flex-start;
+    list-style: none;
+    padding: 0px;
+    gap: 47px;
+}
+
+.my-portfolio a {
+    color: white;
+    transition: background-color 0.2s ease; /* Add a transition effect for the color change */
+    border: none;
+    border-radius: 13.25px;
+    background-color: #202B35; /* Remove the fill color */
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer; /* Change the cursor to a pointer */
+    height: 62px;
+    width: 225px;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center items vertically */
+    justify-content: center;
+    text-decoration: none; /* no underline */
+}
+
+.my-portfolio a:hover {
+    background-color: #0097A7;
+    color: white;
+}
+
+.contact a {
+    color: white;
+    transition: background-color 0.2s ease; /* Add a transition effect for the color change */
+    border: 2px solid #0097A7;
+    border-radius: 13.25px;
+    background-color: transparent; /* Remove the fill color */
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer; /* Change the cursor to a pointer */
+    height: 62px;
+    width: 225px;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center items vertically */
+    justify-content: center;
+    text-decoration: none; /* no underline */
+    box-sizing: border-box;
+}
+
+.contact a:hover {
+    background-color: #0097A7;
+    color: white;
+}
+
+.title {
+    gap: 40px;
+}
+
+.about-me {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    max-width: 918px;
+}
+
+.about-me h1 {
+    font-size: 35px;
+    font-weight: 200;
+    color: #39BBC9;
+    margin: 0;
+}
+
+.about-me p {
+    font-size: 20px;
+    font-weight: 200;
+    color: #ffffff;
+    line-height: 30px;
+    margin: 0;
+}
+
+.about-me-section {
+    display: flex;
+    flex-direction: row;
+    gap: 224px;
+    padding-left: 65px;
+    padding-right: 65px;
+    padding-top: 65px;
+    padding-bottom: 65px;
+    background: linear-gradient(to right, #ffffff10, #ffffff10, #99999900);
+    border: 1px solid black; /* Remove default border */
+    border-radius: 44px;
+    box-shadow: inset 0 11px 0 #ffffff05; /* Add inner shadow */
+    overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
+    backdrop-filter: blur(28px); /* Apply the background blur */
+}
+
+.social-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 53px;
+    list-style: none;
+    padding: 0px;
+}
+
+.design-one {
+    position: absolute;
+    z-index: -1;
+    top: 1007px;
+    left: -40px;
+}
+
+.design-two {
+    position: absolute;
+    z-index: -1;
+    top: 1754px;
+    right: 201px;
+}
+
+.design-three {
+    position: absolute;
+    z-index: -1;
+    top: 2554px;
+    left: 305px;
+}
+
+.middle-section {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 100px;
+}
+
+.design-process-section {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    background: linear-gradient(to right, #ffffff10, #ffffff10, #99999900);
+    border: none; /* Remove default border */
+    border-radius: 44px;
+    box-shadow: inset 0 11px 0 #ffffff05; /* Add inner shadow */
+    overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
+    border: 1px solid black; /* Remove default border */
+    backdrop-filter: blur(28px); /* Apply the background blur */
+}
+
+.design-process-group {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 65px;
+    padding-top: 65px;
+    padding-left: 65px;
+    gap: 59px;
+    margin-right: -180px;
+}
+
+.design-process-header {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.design-process-header h1{
+    color: white;
+    font-size: 55px;
+    font-weight: 200;
+    margin: 0;
+}
+
+.design-process-header h2{
+    color: #39BBC9;
+    font-size: 26px;
+    font-weight: 200;
+    margin: 0;
+}
+
+.design-process-steps {
+    display: flex;
+    flex-direction: row;
+    margin-top: 220px;
+    gap: -20px;
+}
+
+.large-image {
+    width: 715px;
+    height: 505.87px;
+    display: flex;
+    justify-content: flex-start;
+    margin-left: -400px;
+}
+
+.large-image img {
+    position: relative;
+    top: -150px;
+    right: -160px;
+}
+
+.step {
+    width: 371px;
+    height: 355px; /* Adjust as needed */
+    background-image: url("img/Polygon 292.png");
+    object-fit: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 34px;
+}
+
+.step-two {
+    margin-top: -200px;
+    margin-left: -40px;
+    margin-right: -40px;
+}
+
+.step h1 {
+    padding-top: 60px;
+    color: #39BBC9;
+    font-size: 26px;
+    font-weight: 200;
+    margin: 0;
+}
+
+.step p {
+    color: #B5B5B5;
+    font-size: 18px;
+    font-weight: 200;
+    margin: 0;
+    max-width: 245px;
+    text-align: center;
+}
+
+.services-section {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    justify-content: space-between;
+    flex-direction: row;
+    background: linear-gradient(to right, #ffffff10, #ffffff10, #99999900);
+    border: none; /* Remove default border */
+    border-radius: 44px;
+    box-shadow: inset 0 11px 0 #ffffff05; /* Add inner shadow */
+    overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
+    border: 1px solid black; /* Remove default border */
+    backdrop-filter: blur(28px); /* Apply the background blur */
+}
+
+.service-info h1 {
+    color: #39BBC9;
+    font-size: 26px;
+    font-weight: 200;
+    margin: 0;
+}
+
+.service-info p {
+    color: #B5B5B5;
+    font-size: 16px;
+    font-weight: 200;
+    margin: 0;
+    line-height: 24px;
+}
+
+.service {
+    display: flex;
+    flex-direction: column;
+    gap: 31px;
+    width: 100%;
+    max-width: 302px;
+}
+
+.service-info {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+#service-icon-one {
+    width: 52px;
+    height: 47px;
+}
+
+#service-icon-two {
+    width: 48px;
+    height: 47.99px;
+}
+
+#service-icon-three {
+    width: 48px;
+    height: 49px;
+}
+
+.services-header {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    max-width: 417px;
+}
+
+.services-header h1{
+    color: white;
+    font-size: 55px;
+    font-weight: 200;
+    margin: 0;
+}
+
+.services-header p{
+    color: #B5B5B5;
+    font-size: 16px;
+    font-weight: 200;
+    margin: 0;
+    line-height: 22px;
+}
+
+.service-list {
+    display: flex;
+    flex-direction: row;
+    gap: 82px;
+    margin-bottom: -135px;
+}
+
+.services-group {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 65px;
+    padding-top: 65px;
+    padding-left: 65px;
+    gap: 59px;
+    margin-right: -180px;
+}
+
+.large-image-two {
+    width: 715px;
+    height: 505.87px;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: -280px;
+}
+
+.large-image-two img {
+    position: relative;
+    left: -250px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.contact-header h1 {
+    font-size: 55px;
+    font-weight: 200;
+    color: #ffffff;
+    margin: 0;
+}
+
+.contact-header h2 {
+    font-size: 26px;
+    font-weight: 200;
+    color: #39BBC9;
+    margin: 0;
+}
+
+.contact-info p {
+    font-size: 16px;
+    font-weight: 200;
+    color: #ffffff;
+    line-height: 22px;
+    margin: 0;
+}
+
+.bottom-section {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 100px;
+}
+
+.contact-section {
+    display: flex;
+    flex-direction: row;
+    gap: 224px;
+    padding-left: 65px;
+    padding-right: 65px;
+    padding-top: 65px;
+    padding-bottom: 65px;
+    background: linear-gradient(to right, #ffffff10, #ffffff10, #99999900);
+    border: 1px solid black; /* Remove default border */
+    border-radius: 44px;
+    box-shadow: inset 0 11px 0 #ffffff05; /* Add inner shadow */
+    overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
+    backdrop-filter: blur(28px); /* Apply the background blur */
+}
+
+.contact-div {
+    display: flex;
+    flex-direction: row;
+    gap: 258px;
+    align-items: center;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 58px;
+}
+
+.social-buttons-two {
+    display: flex;
+    flex-direction: row;
+    gap: 33px;
+    list-style: none;
+    padding: 0px;
+}
+
+.social-buttons-two a {
+    color: white;
+    transition: background-color 0.2s ease; /* Add a transition effect for the color change */
+    background-color: transparent; /* Remove the fill color */
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer; /* Change the cursor to a pointer */
+    border-radius: 57px;
+    width: 65px;
+    height: 65px;
+    border: 1px solid;
+    border-color: #ffffff66;
+    display: flex; /* Use flexbox */
+    justify-content: center;
+    align-items: center;
+}
+
+.social-buttons-two a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.contact-button-two {
+    color: white;
+    transition: background-color 0.2s ease; /* Add a transition effect for the color change */
+    border: none;
+    border-radius: 13.25px;
+    background-color: #202B35; /* Remove the fill color */
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer; /* Change the cursor to a pointer */
+    height: 62px;
+    width: 225px;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center items vertically */
+    justify-content: center;
+    text-decoration: none; /* no underline */
+}
+
+.contact-button-two:hover {
+    background-color: #0097A7;
+    color: white;
+}
+
+.selected-tab-bar {
+    width: 82px;
+    height: 2px;
+    background-color: #DBDBDB;
+}
+
+.header-buttons li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.selected-tab a {
+    color: white;
+}
+
+.nav-bar {
+    width: 100%;
+    max-width: 920px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    background: linear-gradient(to right, #58E3F210, #58E3F210, #58E3F200);
+    border: none; /* Remove default border */
+    border-radius: 44px;
+    box-shadow: inset 0 11px 0 #ffffff05; /* Add inner shadow */
+    overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
+    border: 1px solid black; /* Remove default border */
+    backdrop-filter: blur(28px); /* Apply the background blur */
+    gap: 77px;
+}
+
+.nav-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 30px;
+    right: 0;
+    z-index: 4;
+}
+
+.hide {
+    display: none;
+  }
+
+/* Hide the checkbox */
+#hamburger {
+    display: none;
+  }
+
+  /* Style the label as the hamburger icon */
+#hamburger-icon {
+    cursor: pointer;
+    transition: margin-right 0.3s ease;
+  }
+  
+  #hamburger-icon p {
+    display: none;
+  }
+  
+  /* Style the span elements as the three lines */
+  #hamburger-icon span {
+    display: block;
+    width: 47px;
+    height: 2px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    transition: transform 0.3s ease, width 0.5s ease, opacity 0.01s ease;
+  }
+
+  /* Style the menu items */
+#burger-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 103px;
+  }
+  
+  #burger-menu ul li {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  
+  #burger-menu ul li a {
+    color: white;
+    transition: background-color 0.2s ease; /* Add a transition effect for the color change */
+    border: none;
+    background-color: transparent; /* Remove the fill color */
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer; /* Change the cursor to a pointer */
+    border-radius: 40px;
+    height: 60px;
+    padding-left: 18px;
+    padding-right: 18px;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center items vertically */
+    text-decoration: none; /* no underline */
+    gap: 12px;
+  }
+  
+  /* Change the background color on mouse-over */
+  #burger-menu ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  #hamburger-icon span:nth-child(2) {
+    width: 33px; /* Change this to a smaller value */
+    margin-top: 14px;
+  }
+  
+  #hamburger-icon:hover span:nth-child(2) {
+    width: 47px; /* Change this to a larger value */
+  }
+  
+  #hamburger-icon span:nth-child(3) {
+    margin-top: 14px;
+  }
