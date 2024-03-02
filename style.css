@@ -698,7 +698,7 @@ body {
     opacity: 0;
   }
 
-  .close-button {
+  #close-button {
     position: fixed;
     right: 60px;
     top: 60px;
