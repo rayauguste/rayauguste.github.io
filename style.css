@@ -511,6 +511,7 @@ body {
     flex-direction: row;
     gap: 82px;
     margin-bottom: -135px;
+    padding-right: 65px;
 }
 
 .services-group {
