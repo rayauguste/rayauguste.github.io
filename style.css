@@ -75,6 +75,7 @@ body {
 .title-section {
     display: flex;
     width: 100%;
+    max-width: 1920px;
     align-items: flex-end;
     justify-content: space-between;
     gap: 200px;
@@ -320,6 +321,7 @@ body {
 .design-process-section {
     display: flex;
     width: 100%;
+    max-width: 1920px;
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
@@ -423,6 +425,7 @@ body {
 .services-section {
     display: flex;
     width: 100%;
+    max-width: 1920px;
     align-items: center;
     justify-content: flex-end;
     justify-content: space-between;
