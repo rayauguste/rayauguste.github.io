@@ -698,6 +698,52 @@ body {
     opacity: 0;
   }
 
+  .close-button {
+    position: fixed;
+    right: 60px;
+    top: 60px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  #bodyClick {
+    background-color: #00000050;
+    backdrop-filter: blur(28px); /* Apply the background blur */
+  }
+
+.burger-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* Style the nav element as the menu */
+#burger-menu {
+    pointer-events: none;
+    width: 80%;
+    height: 100%;
+    background: transparent;
+    position: fixed;
+    top: 0;
+    z-index: 9;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .grid-div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Push the header and burger-menu to the left when the menu is open */
+.move-left {
+    display: none;
+  }
+
 /* Hide the checkbox */
 #hamburger {
     display: none;
@@ -718,7 +764,7 @@ body {
     display: block;
     width: 47px;
     height: 2px;
-    background-color: #ffffff;
+    background-color: #DBDBDB;
     border-radius: 2px;
     transition: transform 0.3s ease, width 0.5s ease, opacity 0.01s ease;
   }
@@ -728,12 +774,12 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
-    margin-top: 103px;
+    margin-top: 60px;
   }
   
   #burger-menu ul li {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     padding-top: 5px;
     padding-bottom: 5px;
   }
@@ -743,17 +789,41 @@ body {
     transition: background-color 0.2s ease; /* Add a transition effect for the color change */
     border: none;
     background-color: transparent; /* Remove the fill color */
-    font-size: 14px;
+    justify-content: center;
+    font-size: 18px;
     font-weight: 400;
+    pointer-events: all;
     cursor: pointer; /* Change the cursor to a pointer */
     border-radius: 40px;
-    height: 60px;
+    height: 80px;
     padding-left: 18px;
     padding-right: 18px;
     display: flex; /* Use flexbox */
     align-items: center; /* Center items vertically */
     text-decoration: none; /* no underline */
     gap: 12px;
+  }
+
+  #burger-menu .grid-menu-items {
+    display: flex;
+    width: 100%;
+    max-width: 500px;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap; /* This allows the items to wrap onto multiple lines */
+    margin-top: 10px;
+  }
+
+  #burger-menu .grid-menu-items li {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  #burger-menu .grid-menu-items a {
+    padding: 0;
+    width: 100px;
+    height: 100px;
+    justify-content: center;
   }
   
   /* Change the background color on mouse-over */
