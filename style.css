@@ -425,7 +425,7 @@ body {
 .services-section {
     display: flex;
     width: 100%;
-    max-width: 1920px;
+    max-width: 1720px;
     align-items: center;
     justify-content: flex-end;
     justify-content: space-between;
