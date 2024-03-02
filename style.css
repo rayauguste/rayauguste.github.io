@@ -30,6 +30,7 @@ body {
     gap: 36px;
     list-style: none;
     padding: 0px;
+    margin: 0;
 }
 
 .header-buttons a {
@@ -118,6 +119,7 @@ body {
     align-items: center;
     gap: 71px;
     max-width: 624px;
+    width: 100%;
     padding-bottom: 65px;
     padding-left: 65px;
 }
@@ -146,6 +148,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 24px;
+    width: 100%;
 }
 
 .title-info p {
@@ -162,6 +165,8 @@ body {
     list-style: none;
     padding: 0px;
     gap: 47px;
+    margin: 0;
+    flex-wrap: wrap;
 }
 
 .my-portfolio a {
@@ -255,15 +260,38 @@ body {
 .social-buttons {
     display: flex;
     flex-direction: column;
-    gap: 53px;
+    gap: 20px;
     list-style: none;
     padding: 0px;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+.social-buttons a {
+    color: white;
+    transition: background-color 0.2s ease; /* Add a transition effect for the color change */
+    background-color: transparent; /* Remove the fill color */
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer; /* Change the cursor to a pointer */
+    border-radius: 57px;
+    width: 65px;
+    height: 65px;
+    border: 1px solid;
+    border-color: #ffffff66;
+    display: flex; /* Use flexbox */
+    justify-content: center;
+    align-items: center;
+}
+
+.social-buttons a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .design-one {
     position: absolute;
     z-index: -1;
-    top: 1007px;
+    top: 1107px;
     left: -40px;
 }
 
@@ -545,8 +573,8 @@ body {
 
 .contact-section {
     display: flex;
-    flex-direction: row;
-    gap: 224px;
+    flex-direction: column;
+    gap: 58px;
     padding-left: 65px;
     padding-right: 65px;
     padding-top: 65px;
@@ -566,18 +594,15 @@ body {
     align-items: center;
 }
 
-.contacts {
-    display: flex;
-    flex-direction: column;
-    gap: 58px;
-}
-
 .social-buttons-two {
     display: flex;
     flex-direction: row;
     gap: 33px;
     list-style: none;
     padding: 0px;
+    margin: 0;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .social-buttons-two a {
@@ -666,10 +691,11 @@ body {
     bottom: 30px;
     right: 0;
     z-index: 4;
+    transition: opacity 0.3s;
 }
 
 .hide {
-    display: none;
+    opacity: 0;
   }
 
 /* Hide the checkbox */
@@ -746,4 +772,65 @@ body {
   
   #hamburger-icon span:nth-child(3) {
     margin-top: 14px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .contact-div {
+        flex-direction: column;
+        gap: 80px;
+    }
+
+    .bottom-section {
+        align-items: center;
+    }
+
+    .top-section {
+        align-items: center;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    .header-buttons {
+      display: none;
+    }
+
+    .nav-section {
+        display: none;
+    }
+
+    .about-me-section {
+        flex-direction: column;
+        gap: 100px;
+    }
+
+    .social-buttons {
+        flex-direction: row;
+    }
+
+    .large-logo {
+        display: none;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .glow-line {
+        display: none;
+    }
+
+    .title-two {
+        padding-left: 65px;
+        padding-right: 65px;
+    }
+
+    .title-section {
+        justify-content: center;
+    }
+
+    .title-info {
+        text-align: center;
+    }
+
+    .contact-info {
+        text-align: center;
+    }
   }
