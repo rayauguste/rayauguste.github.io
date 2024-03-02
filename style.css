@@ -286,7 +286,8 @@ body {
 }
 
 .social-buttons a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #39BBC9;
+    border-color: #ffffff;
 }
 
 .design-one {
@@ -627,7 +628,8 @@ body {
 }
 
 .social-buttons-two a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #39BBC9;
+    border-color: #ffffff;
 }
 
 .contact-button-two {
@@ -684,6 +686,7 @@ body {
     border: 1px solid black; /* Remove default border */
     backdrop-filter: blur(28px); /* Apply the background blur */
     gap: 77px;
+    pointer-events: fill;
 }
 
 .nav-section {
@@ -696,6 +699,7 @@ body {
     right: 0;
     z-index: 4;
     transition: opacity 0.3s;
+    pointer-events: none;
 }
 
 .hide {
