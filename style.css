@@ -266,6 +266,7 @@ body {
     padding: 0px;
     margin: 0;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .social-buttons a {
@@ -708,7 +709,7 @@ body {
 
   #close-button {
     position: fixed;
-    right: 60px;
+    right: 2%;
     top: 60px;
     border: none;
     background-color: transparent;
@@ -872,10 +873,6 @@ body {
       display: none;
     }
 
-    .nav-section {
-        display: none;
-    }
-
     .about-me-section {
         flex-direction: column;
         gap: 100px;
@@ -904,11 +901,19 @@ body {
         justify-content: center;
     }
 
+    .about-me-section {
+        justify-content: center;
+    }
+
     .title-info {
         text-align: center;
     }
 
     .contact-info {
+        text-align: center;
+    }
+
+    .about-me {
         text-align: center;
     }
   }

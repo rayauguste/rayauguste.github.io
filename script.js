@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-
 //Click off burger menu
 document.addEventListener('DOMContentLoaded', function() {
   var elements = [document.querySelector('#burger-menu'), document.querySelector('#close-button')];
