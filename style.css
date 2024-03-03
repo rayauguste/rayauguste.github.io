@@ -1046,19 +1046,17 @@ body {
     .design-process-steps {
         margin-top: 0;
     }
-  }
 
-  @media screen and (max-width: 1600px) {
-     .service-list {
+    .large-image-two {
+        display: none;
+    }
+
+    .service-list {
         padding-top: 0;
         padding-left: 65px;
         padding-bottom: 65px;
         justify-content: center;
         gap: 82px;
-    }
-
-    .large-image-two {
-        display: none;
     }
 
     .services-header h1 {
@@ -1094,7 +1092,7 @@ body {
     .design-three {
         display: none;
     }
-    
+
     .header-buttons {
         display: none;
       }
