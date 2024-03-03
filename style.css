@@ -1094,6 +1094,10 @@ body {
     .design-three {
         display: none;
     }
+    
+    .header-buttons {
+        display: none;
+      }
   }
 
   @media screen and (max-width: 1000px) {
@@ -1118,10 +1122,6 @@ body {
   }
 
   @media screen and (max-width: 900px) {
-    .header-buttons {
-      display: none;
-    }
-
     .about-me-section {
         flex-direction: column;
         gap: 100px;
