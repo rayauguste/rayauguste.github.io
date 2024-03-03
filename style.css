@@ -636,9 +636,9 @@ body {
 .contact-button-two {
     color: white;
     transition: background-color 0.2s ease; /* Add a transition effect for the color change */
-    border: none;
+    border: 2px solid #0097A7;
     border-radius: 13.25px;
-    background-color: #202B35; /* Remove the fill color */
+    background-color: transparent; /* Remove the fill color */
     font-size: 18px;
     font-weight: 400;
     cursor: pointer; /* Change the cursor to a pointer */
@@ -648,6 +648,7 @@ body {
     align-items: center; /* Center items vertically */
     justify-content: center;
     text-decoration: none; /* no underline */
+    box-sizing: border-box;
 }
 
 .contact-button-two:hover {
@@ -667,8 +668,8 @@ body {
 .design-categories {
     width: 80%;
     display: flex;
-    justify-content: space-between;
     flex-direction: row;
+    justify-content: center;
     gap: 40px;
 }
 
@@ -676,13 +677,13 @@ body {
     height: 400px;
     display: flex;
     width: 100%;
-    max-width: 1920px;
+    max-width: 380px;;
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
     background: linear-gradient(to right, #ffffff10, #ffffff10, #99999900);
     border: none; /* Remove default border */
-    border-radius: 44px;
+    border-radius: 10px;
     box-shadow: inset 0 11px 0 #ffffff05; /* Add inner shadow */
     overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
     border: 1px solid black; /* Remove default border */
@@ -694,6 +695,7 @@ body {
     align-items: center;
     flex-direction: column;
     width: 100%;
+    max-width: 380px;
     gap: 30px;
 }
 
@@ -705,7 +707,7 @@ body {
 }
 
 .cat-one {
-    border-radius: 75px 44px 44px 75px;
+    border-radius: 75px 10px 10px 75px;
     background: linear-gradient(to left, #ffffff10, #ffffff10, #99999900);
 }
 
@@ -714,8 +716,31 @@ body {
 }
 
 .cat-three {
-    border-radius: 44px 75px 75px 44px;
+    border-radius: 10px 75px 75px 10px;
     background: linear-gradient(to right, #ffffff10, #ffffff10, #99999900);
+}
+
+.design-list-section {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 300px;
+}
+
+.design-list {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.large-design {
+    display: flex;
+    justify-content: center;
+}
+
+.large-design img {
+    width: 689px;
+    height: 412px;
 }
 
 .design-back-button {
@@ -758,7 +783,7 @@ body {
 }
 
 .nav-bar {
-    width: 100%;
+    width: 80%;
     max-width: 920px;
     height: 120px;
     display: flex;

@@ -94,3 +94,71 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+function generateImagesOnLoad() {
+  // Check if the page is designlist.html
+  if (window.location.pathname.endsWith('designlist.html')) {
+      // Get the variable value from localStorage
+      var variable = localStorage.getItem('variable');
+      // Call the function to generate images based on the variable
+      generateImages(variable);
+  }
+}
+
+function changeVariableAndNavigate(variable) {
+  // Store the variable value in localStorage
+  localStorage.setItem('variable', variable);
+  // Open the link to another HTML page
+  window.location.href = "designlist.html";
+}
+
+function generateImages(variable) {
+  var imageList = [];
+  // Game UI Image List
+var gameImageList = [
+  'img/Frame 3425.png',
+  'img/Frame 3425.png',
+  'img/Frame 3425.png',
+  'img/Frame 3425.png'
+];
+
+// Web UI Image List
+var webImageList = [
+  'img/Frame 3427.png',
+  'img/Frame 3427.png',
+  'img/Frame 3427.png',
+  'img/Frame 3427.png'
+];
+
+// App UI Image List
+var appImageList = [
+  'img/Frame 3428.png',
+  'img/Frame 3428.png',
+  'img/Frame 3428.png',
+  'img/Frame 3428.png'
+];
+  if (variable === 'game') {
+      imageList = gameImageList;
+  } else if (variable === 'web') {
+      imageList = webImageList;
+  } else if (variable === 'app') {
+      imageList = appImageList;
+  }
+
+  // Generate div elements with images
+  var designListSection = document.querySelector('.design-list');
+  designListSection.innerHTML = ''; // Clear existing content
+  for (var i = 0; i < imageList.length; i++) {
+      var imageDiv = document.createElement('div');
+      imageDiv.classList.add('large-design'); // Add 'large-design' class to the div
+      var image = document.createElement('img');
+      image.src = imageList[i];
+      image.alt = 'Image ' + (i + 1);
+      image.draggable = false; // Disable image dragging
+      imageDiv.appendChild(image);
+      designListSection.appendChild(imageDiv);
+  }
+}
+
+// Call the generateImagesOnLoad function when the page finishes loading
+document.addEventListener('DOMContentLoaded', generateImagesOnLoad);
