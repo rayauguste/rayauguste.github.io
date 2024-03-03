@@ -2,12 +2,15 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener("scroll", function() {
       var navSection = document.querySelector(".nav-section");
       var navBar = document.querySelector(".nav-bar");
+      var backUp = document.querySelector(".back-up");
       if (window.scrollY > 250) {
           navSection.classList.remove("hide");
           navBar.classList.remove("hide-two"); // Remove "hide" class from nav-bar
+          backUp.classList.remove("hide");
       } else {
           navSection.classList.add("hide");
           navBar.classList.add("hide-two"); // Add "hide" class to nav-bar
+          backUp.classList.add("hide");
       }
   });
 });
@@ -169,3 +172,8 @@ function generateImages(variable) {
 
 // Call the generateImagesOnLoad function when the page finishes loading
 document.addEventListener('DOMContentLoaded', generateImagesOnLoad);
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}

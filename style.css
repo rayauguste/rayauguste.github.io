@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+  }
+
 body {
     margin: 0; padding: 0;
     background-color: #000000;
@@ -112,6 +116,7 @@ body {
 .title {
     display: flex;
     flex-direction: column;
+    gap: 40px;
 }
 
 .title-two {
@@ -167,7 +172,6 @@ body {
     padding: 0px;
     gap: 47px;
     margin: 0;
-    flex-wrap: wrap;
 }
 
 .my-portfolio a {
@@ -213,10 +217,6 @@ body {
 .contact a:hover {
     background-color: #0097A7;
     color: white;
-}
-
-.title {
-    gap: 40px;
 }
 
 .about-me {
@@ -371,6 +371,7 @@ body {
     flex-direction: row;
     margin-top: 220px;
     gap: -20px;
+    flex-wrap: wrap;
 }
 
 .large-image {
@@ -512,8 +513,10 @@ body {
     display: flex;
     flex-direction: row;
     gap: 82px;
-    margin-bottom: -135px;
+    padding-top: 135px;
     padding-right: 65px;
+    padding-bottom: 65px;
+    flex-wrap: wrap;
 }
 
 .services-group {
@@ -661,7 +664,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 120px;
+    gap: 80px;
     margin-bottom: 300px;
 }
 
@@ -674,7 +677,7 @@ body {
 }
 
 .category {
-    height: 400px;
+    height: 340px;
     display: flex;
     width: 100%;
     max-width: 380px;;
@@ -700,10 +703,12 @@ body {
 }
 
 .cat-info p {
-    font-size: 26px;
+    font-size: 18px;
     font-weight: 200;
     color: #B5B5B5;
     margin: 0;
+    line-height: 24px;
+    text-align: center;
 }
 
 .cat-one {
@@ -817,6 +822,33 @@ body {
 .hide {
     opacity: 0;
   }
+
+  .back-up {
+    color: white;
+    transition: background-color 0.2s ease, opacity 0.3s ease; /* Add a transition effect for the color change */
+    border: 2px solid #0097A7;
+    border-radius: 44px;
+    background-color: transparent; /* Remove the fill color */
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer; /* Change the cursor to a pointer */
+    width: 132px;
+    height: 125px;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center items vertically */
+    justify-content: center;
+    text-decoration: none; /* no underline */
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    z-index: 4;
+}
+
+.back-up:hover {
+    background-color: #0097A7;
+    color: white;
+}
 
   .hide-two {
     pointer-events: none;
@@ -968,6 +1000,26 @@ body {
     margin-top: 14px;
   }
 
+  @media screen and (max-width: 1400px) {
+    .step-two {
+        margin: 0;
+    }
+
+    .dots-images {
+        display: none;
+    }
+
+    .large-image {
+        display: none;
+    }
+
+    .design-process-steps {
+        justify-content: center;
+        gap: 20px;
+        padding-bottom: 65px;
+    }
+  }
+
   @media screen and (max-width: 1000px) {
     .contact-div {
         flex-direction: column;
@@ -980,6 +1032,21 @@ body {
 
     .top-section {
         align-items: center;
+    }
+
+    .design-process-section {
+        flex-direction: column;
+        gap: 10px;
+        
+    }
+
+    .design-process-group {
+        padding-left: 0;
+        margin-right: 0;
+    }
+
+    .design-process-steps {
+        margin-top: 0;
     }
   }
 
@@ -1000,9 +1067,11 @@ body {
     .large-logo {
         display: none;
     }
-  }
 
-  @media screen and (max-width: 500px) {
+    .title-buttons {
+        align-items: center;
+    }
+
     .glow-line {
         display: none;
     }
@@ -1030,5 +1099,27 @@ body {
 
     .about-me {
         text-align: center;
+    }
+
+    .design-process-header h1 {
+        text-align: center;
+    }
+
+    .design-process-header h2 {
+        text-align: center;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    .title-buttons {
+        flex-direction: column;
+    }
+
+    .title-header h1 {
+        font-size: 40px;
+    }
+
+    .title-header h2 {
+        font-size: 20px;
     }
   }
