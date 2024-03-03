@@ -512,7 +512,7 @@ body {
 .service-list {
     display: flex;
     flex-direction: row;
-    gap: 82px;
+    gap: 42px;
     padding-top: 135px;
     padding-right: 65px;
     padding-bottom: 65px;
@@ -1000,11 +1000,7 @@ body {
     margin-top: 14px;
   }
 
-  @media screen and (max-width: 1400px) {
-    .step-two {
-        margin: 0;
-    }
-
+  @media screen and (max-width: 1830px) {
     .dots-images {
         display: none;
     }
@@ -1013,10 +1009,76 @@ body {
         display: none;
     }
 
+    .design-process-section {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .design-process-header h1 {
+        text-align: center;
+    }
+
+    .design-process-header h2 {
+        text-align: center;
+    }
+
+    .design-process-group {
+        padding-left: 65px;
+        padding-right: 65px;
+        margin-right: 0;
+    }
+
+    .services-section {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .step-two {
+        margin: 0;
+    }
+
     .design-process-steps {
         justify-content: center;
         gap: 20px;
         padding-bottom: 65px;
+    }
+
+    .design-process-steps {
+        margin-top: 0;
+    }
+  }
+
+  @media screen and (max-width: 1600px) {
+     .service-list {
+        padding-top: 0;
+        padding-left: 65px;
+        padding-bottom: 65px;
+        justify-content: center;
+        gap: 82px;
+    }
+
+    .large-image-two {
+        display: none;
+    }
+
+    .services-header h1 {
+        text-align: center;
+    }
+
+    .services-header p {
+        text-align: center;
+    }
+
+    .services-group {
+        padding-left: 65px;
+        padding-right: 65px;
+        margin-right: 0;
+    }
+  }
+
+  @media screen and (max-width: 1400px) {
+    .design-process-steps {
+        margin-top: 0;
     }
   }
 
@@ -1048,42 +1110,10 @@ body {
         align-items: center;
     }
 
-    .design-process-section {
-        flex-direction: column;
-        gap: 10px;
-        
-    }
-
-    .services-section {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .service-list {
-        padding-top: 0;
-        padding-left: 65px;
-        padding-bottom: 65px;
-        justify-content: center;
-    }
-
     .design-process-group {
         padding-left: 65px;
         padding-right: 65px;
         margin-right: 0;
-    }
-
-    .services-group {
-        padding-left: 65px;
-        padding-right: 65px;
-        margin-right: 0;
-    }
-
-    .design-process-steps {
-        margin-top: 0;
-    }
-
-    .large-image-two {
-        display: none;
     }
   }
 
@@ -1135,22 +1165,6 @@ body {
     }
 
     .about-me {
-        text-align: center;
-    }
-
-    .design-process-header h1 {
-        text-align: center;
-    }
-
-    .design-process-header h2 {
-        text-align: center;
-    }
-
-    .services-header h1 {
-        text-align: center;
-    }
-
-    .services-header p {
         text-align: center;
     }
   }
