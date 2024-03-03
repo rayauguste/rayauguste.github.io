@@ -1,13 +1,16 @@
 document.addEventListener('DOMContentLoaded', function() {
-    window.addEventListener("scroll", function() {
+  window.addEventListener("scroll", function() {
       var navSection = document.querySelector(".nav-section");
+      var navBar = document.querySelector(".nav-bar");
       if (window.scrollY > 250) {
-        navSection.classList.remove("hide");
+          navSection.classList.remove("hide");
+          navBar.classList.remove("hide-two"); // Remove "hide" class from nav-bar
       } else {
-        navSection.classList.add("hide");
+          navSection.classList.add("hide");
+          navBar.classList.add("hide-two"); // Add "hide" class to nav-bar
       }
-    });
   });
+});
 
   //burger menu check box
   document.addEventListener('DOMContentLoaded', function() {

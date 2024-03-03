@@ -655,6 +655,92 @@ body {
     color: white;
 }
 
+.design-section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 120px;
+    margin-bottom: 300px;
+}
+
+.design-categories {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.category {
+    height: 400px;
+    display: flex;
+    width: 100%;
+    max-width: 1920px;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    background: linear-gradient(to right, #ffffff10, #ffffff10, #99999900);
+    border: none; /* Remove default border */
+    border-radius: 44px;
+    box-shadow: inset 0 11px 0 #ffffff05; /* Add inner shadow */
+    overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
+    border: 1px solid black; /* Remove default border */
+    backdrop-filter: blur(28px); /* Apply the background blur */
+}
+
+.cat-info {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+}
+
+.cat-info p {
+    font-size: 26px;
+    font-weight: 200;
+    color: #B5B5B5;
+    margin: 0;
+}
+
+.cat-one {
+    border-radius: 75px 44px 44px 75px;
+    background: linear-gradient(to left, #ffffff10, #ffffff10, #99999900);
+}
+
+.cat-two {
+    background: linear-gradient(to right, #ffffff10, #ffffff10, #ffffff10);
+}
+
+.cat-three {
+    border-radius: 44px 75px 75px 44px;
+    background: linear-gradient(to right, #ffffff10, #ffffff10, #99999900);
+}
+
+.design-back-button {
+    color: white;
+    transition: background-color 0.2s ease; /* Add a transition effect for the color change */
+    border: 2px solid #0097A7;
+    border-radius: 13.25px;
+    background-color: transparent; /* Remove the fill color */
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer; /* Change the cursor to a pointer */
+    height: 62px;
+    width: 225px;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center items vertically */
+    justify-content: center;
+    text-decoration: none; /* no underline */
+    box-sizing: border-box;
+}
+
+.design-back-button:hover {
+    background-color: #0097A7;
+    color: white;
+}
+
 .selected-tab-bar {
     width: 82px;
     height: 2px;
@@ -705,6 +791,10 @@ body {
 
 .hide {
     opacity: 0;
+  }
+
+  .hide-two {
+    pointer-events: none;
   }
 
   #close-button {
