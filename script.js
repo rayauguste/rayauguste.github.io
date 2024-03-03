@@ -100,6 +100,10 @@ function generateImagesOnLoad() {
   if (window.location.pathname.endsWith('designlist.html')) {
       // Get the variable value from localStorage
       var variable = localStorage.getItem('variable');
+      if (!variable) {
+          // Set a default value if the variable is not set
+          variable = 'game';
+      }
       // Call the function to generate images based on the variable
       generateImages(variable);
   }
@@ -115,28 +119,29 @@ function changeVariableAndNavigate(variable) {
 function generateImages(variable) {
   var imageList = [];
   // Game UI Image List
-var gameImageList = [
-  'img/Frame 3425.png',
-  'img/Frame 3425.png',
-  'img/Frame 3425.png',
-  'img/Frame 3425.png'
-];
+  var gameImageList = [
+    'img/Frame 3425.png',
+    'img/Frame 3425.png',
+    'img/Frame 3425.png',
+    'img/Frame 3425.png'
+  ];
 
-// Web UI Image List
-var webImageList = [
-  'img/Frame 3427.png',
-  'img/Frame 3427.png',
-  'img/Frame 3427.png',
-  'img/Frame 3427.png'
-];
+  // Web UI Image List
+  var webImageList = [
+    'img/Frame 3427.png',
+    'img/Frame 3427.png',
+    'img/Frame 3427.png',
+    'img/Frame 3427.png'
+  ];
 
-// App UI Image List
-var appImageList = [
-  'img/Frame 3428.png',
-  'img/Frame 3428.png',
-  'img/Frame 3428.png',
-  'img/Frame 3428.png'
-];
+  // App UI Image List
+  var appImageList = [
+    'img/Frame 3428.png',
+    'img/Frame 3428.png',
+    'img/Frame 3428.png',
+    'img/Frame 3428.png'
+  ];
+
   if (variable === 'game') {
       imageList = gameImageList;
   } else if (variable === 'web') {
@@ -154,6 +159,8 @@ var appImageList = [
       var image = document.createElement('img');
       image.src = imageList[i];
       image.alt = 'Image ' + (i + 1);
+      image.style.width = '100%'; // Set image width to fill the parent div
+      image.style.height = 'auto'; // Maintain aspect ratio
       image.draggable = false; // Disable image dragging
       imageDiv.appendChild(image);
       designListSection.appendChild(imageDiv);
