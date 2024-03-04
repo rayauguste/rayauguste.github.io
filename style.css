@@ -685,7 +685,7 @@ body {
     width: 100%;
     max-width: 380px;;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: row;
     background: linear-gradient(to right, #ffffff10, #ffffff10, #99999900);
     border: none; /* Remove default border */
