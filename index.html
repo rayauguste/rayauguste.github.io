@@ -38,7 +38,19 @@
       <img draggable="false" src="img/RayLogo.png" alt="logo" />
     </div>
     <div class="header">
-      <img draggable="false" src="img/SearchIcon.png" alt="search-icon" />
+      <div id="search-container" class="active">
+        <button id="search-button" onclick="toggleSearch()">
+          <img draggable="false" src="img/SearchIcon.png" alt="search-icon" />
+        </button>
+        <input
+          type="text"
+          id="search-input"
+          class="active"
+          placeholder="Search something"
+          oninput="search()"
+        />
+      </div>
+
       <ul class="header-buttons">
         <li class="home-button selected-tab">
           <a href="index.html"> Home </a>

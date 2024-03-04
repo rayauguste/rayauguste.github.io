@@ -274,7 +274,90 @@ document.addEventListener('DOMContentLoaded', function() {
   setRandomImages(designThree);
 });
 
+function toggleSearch() {
+  var searchInput = document.getElementById("search-input");
+  var searchButton = document.getElementById("search-button");
+
+  if (!searchInput.classList.contains("active")) {
+    // If search input is not active, make it active
+    searchInput.classList.add("active");
+    searchButton.classList.add("active");
+    searchInput.focus(); // Focus on input when it becomes visible
+  } else {
+    // If search input is active, remove its active class
+    searchInput.classList.remove("active");
+    searchButton.classList.remove("active");
+    search(); // Perform search when hiding the input
+  }
+}
+
+function search() {
+  var searchTerm = document
+    .getElementById("search-input")
+    .value.toLowerCase();
+  var designs = document.querySelectorAll(".design"); // Replace '.design' with the selector for your UI designs
+
+  designs.forEach(function (design) {
+    var designName = design.textContent.toLowerCase();
+    if (designName.includes(searchTerm)) {
+      design.style.display = "block"; // Show matching designs
+    } else {
+      design.style.display = "none"; // Hide non-matching designs
+    }
+  });
+}
+
+// Add event listener to the document to detect clicks
+document.addEventListener("click", function (event) {
+  var searchContainer = document.getElementById("search-container");
+  var searchInput = document.getElementById("search-input");
+  var searchButton = document.getElementById("search-button");
+
+  // Check if the clicked element is outside the search container
+  if (!searchContainer.contains(event.target)) {
+    searchInput.classList.add("active"); // Hide search input
+    searchContainer.classList.add("active"); // Hide search input
+    searchButton.classList.remove("active"); // Show search button
+    search(); // Perform search
+  }
+});
+
+function toggleSearch() {
+  var searchInput = document.getElementById("search-input");
+  var searchButton = document.getElementById("search-button");
+  var searchContainer = document.getElementById("search-container");
+
+  if (!searchInput.classList.contains("active")) {
+    searchInput.classList.add("active");
+    searchContainer.classList.add("active")
+    searchButton.classList.remove("active");
+    searchInput.focus(); // Focus on input when it becomes visible
+  } else {
+    searchInput.classList.remove("active");
+    searchContainer.classList.remove("active")
+    searchButton.classList.add("active");
+    search(); // Perform search when hiding the input
+  }
+}
 
 
+document.addEventListener('DOMContentLoaded', function() {
+  var searchInput = document.getElementById("search-input");
+  var searchButton = document.getElementById("search-button");
+  var searchContainer = document.getElementById("search-container");
+  
+  searchInput.addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+          search(); // Perform search
+          hideSearch(); // Hide search box
+          this.value = ""; // Empty the search box
+      }
+  });
 
+  function hideSearch() {
+      searchInput.classList.add("active"); // Hide search input
+      searchContainer.classList.add("active")
+      searchButton.classList.remove("active"); // Show search button
+  }
+});
 
