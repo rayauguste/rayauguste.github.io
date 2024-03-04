@@ -296,6 +296,7 @@ body {
     z-index: -1;
     top: 1107px;
     left: -40px;
+    transition: opacity 1s ease;
 }
 
 .design-two {
@@ -303,6 +304,7 @@ body {
     z-index: -1;
     top: 1754px;
     right: 201px;
+    transition: opacity 1s ease;
 }
 
 .design-three {
@@ -310,6 +312,7 @@ body {
     z-index: -1;
     top: 2554px;
     left: 305px;
+    transition: opacity 1s ease;
 }
 
 .middle-section {

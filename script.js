@@ -124,25 +124,42 @@ function generateImages(variable) {
   // Game UI Image List
   var gameImageList = [
     'img/Frame 3425.png',
-    'img/Frame 3425.png',
-    'img/Frame 3425.png',
-    'img/Frame 3425.png'
+    'img/Frame 3427.png',
+    'img/Frame 3428.png',
+    'img/Frame 3429.png',
+    'img/Frame 3430.png',
+    'img/Frame 3431.png',
+    'img/Frame 3432.png',
+    'img/Frame 3433.png',
+    'img/Frame 3434.png'
   ];
 
   // Web UI Image List
   var webImageList = [
-    'img/Frame 3427.png',
-    'img/Frame 3427.png',
-    'img/Frame 3427.png',
-    'img/Frame 3427.png'
+    'img/Frame 3435.png',
+    'img/Frame 3436.png',
+    'img/Frame 3437.png',
+    'img/Frame 3439.png',
+    'img/Frame 3440.png',
+    'img/Frame 3441.png',
+    'img/Frame 3442.png',
+    'img/Frame 3443.png',
+    'img/Frame 3444.png',
+    'img/Frame 3445.png',
+    'img/Frame 3446.png'
   ];
 
   // App UI Image List
   var appImageList = [
-    'img/Frame 3428.png',
-    'img/Frame 3428.png',
-    'img/Frame 3428.png',
-    'img/Frame 3428.png'
+    'img/Frame 3455.png',
+    'img/Frame 3450.png',
+    'img/Frame 3457.png',
+    'img/Frame 3454.png',
+    'img/Frame 3447.png',
+    'img/Frame 3449.png',
+    'img/Frame 3453.png',
+    'img/Frame 3451.png',
+    'img/Frame 3448.png'
   ];
 
   if (variable === 'game') {
@@ -177,3 +194,87 @@ document.addEventListener('DOMContentLoaded', generateImagesOnLoad);
 function topFunction() {
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Array of image paths
+  var imageList = [
+    'img/Frame 3425.png',
+    'img/Frame 3427.png',
+    'img/Frame 3428.png',
+    'img/Frame 3429.png',
+    'img/Frame 3430.png',
+    'img/Frame 3431.png',
+    'img/Frame 3432.png',
+    'img/Frame 3433.png',
+    'img/Frame 3434.png',
+    'img/Frame 3435.png',
+    'img/Frame 3436.png',
+    'img/Frame 3437.png',
+    'img/Frame 3439.png',
+    'img/Frame 3440.png',
+    'img/Frame 3441.png',
+    'img/Frame 3442.png',
+    'img/Frame 3443.png',
+    'img/Frame 3444.png',
+    'img/Frame 3445.png',
+    'img/Frame 3446.png',
+    'img/Frame 3455.png',
+    'img/Frame 3450.png',
+    'img/Frame 3457.png',
+    'img/Frame 3454.png',
+    'img/Frame 3447.png',
+    'img/Frame 3449.png',
+    'img/Frame 3453.png',
+    'img/Frame 3451.png',
+    'img/Frame 3448.png'
+  ];
+
+  // Function to randomly select an image path from the array
+  function getRandomImage() {
+    var randomIndex = Math.floor(Math.random() * imageList.length);
+    return imageList[randomIndex];
+  }
+
+  // Function to set random images for each img element
+  function setRandomImages(designElement) {
+    // Set initial opacity to 0 for transition
+    designElement.style.opacity = 0;
+    designElement.src = getRandomImage();
+
+    // Immediately transition opacity to 1
+    setTimeout(function() {
+      designElement.style.opacity = 1;
+    }, 100);
+
+    // Wait for a random time before changing the image
+    setInterval(function() {
+      // Set opacity to 0 for smooth transition
+      designElement.style.opacity = 0;
+
+      // Wait for another small delay before changing the image
+      setTimeout(function() {
+        designElement.src = getRandomImage();
+
+        // Set opacity back to 1 after changing the image
+        setTimeout(function() {
+          designElement.style.opacity = 1;
+        }, 1000); // Delay of 1 second for transition effect
+      }, 1000); // Delay of 1 second before changing the image
+    }, Math.random() * 7000 + 6000); // Random time between 3 and 10 seconds
+  }
+
+  // Select each design element and set random images initially
+  var designOne = document.querySelector('.design-one');
+  var designTwo = document.querySelector('.design-two');
+  var designThree = document.querySelector('.design-three');
+  
+  // Set random images for each design element
+  setRandomImages(designOne);
+  setRandomImages(designTwo);
+  setRandomImages(designThree);
+});
+
+
+
+
+
