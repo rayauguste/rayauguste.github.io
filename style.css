@@ -679,6 +679,7 @@ body {
     flex-direction: row;
     justify-content: center;
     gap: 40px;
+    flex-wrap: wrap;
 }
 
 .category {
@@ -1105,6 +1106,16 @@ body {
     }
   }
 
+  @media screen and (max-width: 1530px) {
+    .cat-two {
+        border-radius: 10px 75px 75px 10px;
+      }
+
+      .cat-three {
+        border-radius: 10px 10px 75px 75px;
+      }
+  }
+
   @media screen and (max-width: 1400px) {
     .design-process-steps {
         margin-top: 0;
@@ -1152,6 +1163,10 @@ body {
     .contact-info {
         text-align: center;
     }
+
+    .category {
+        border-radius: 75px 75px 75px 75px;
+      }
   }
 
   @media screen and (max-width: 900px) {
