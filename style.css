@@ -1117,6 +1117,10 @@ body {
         padding-right: 65px;
         margin-right: 0;
     }
+
+    .contact-info {
+        text-align: center;
+    }
   }
 
   @media screen and (max-width: 900px) {
@@ -1158,9 +1162,7 @@ body {
         text-align: center;
     }
 
-    .contact-info {
-        text-align: center;
-    }
+    
 
     .about-me {
         text-align: center;
