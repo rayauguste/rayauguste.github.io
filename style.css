@@ -271,7 +271,7 @@ body {
 
 .social-buttons a {
     color: white;
-    transition: background-color 0.2s ease; /* Add a transition effect for the color change */
+    transition: background-color 0.2s ease, transform 0.5s ease; /* Add a transition effect for the color change */
     background-color: transparent; /* Remove the fill color */
     font-size: 15px;
     font-weight: 600;
@@ -289,6 +289,7 @@ body {
 .social-buttons a:hover {
     background-color: #39BBC9;
     border-color: #ffffff;
+    transform: rotate(-30deg); /* Rotate the image by 30 degrees on hover */
 }
 
 .design-one {
@@ -619,7 +620,7 @@ body {
 
 .social-buttons-two a {
     color: white;
-    transition: background-color 0.2s ease; /* Add a transition effect for the color change */
+    transition: background-color 0.2s ease, transform 0.5s ease; /* Add a transition effect for the color change */
     background-color: transparent; /* Remove the fill color */
     font-size: 15px;
     font-weight: 600;
@@ -637,6 +638,7 @@ body {
 .social-buttons-two a:hover {
     background-color: #39BBC9;
     border-color: #ffffff;
+    transform: rotate(-30deg); /* Rotate the image by 30 degrees on hover */
 }
 
 .contact-button-two {
@@ -687,9 +689,11 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: row;
+    transition: background-color 0.5s ease, border-color 0.5s ease; /* Add a transition effect for the color change */
     background: linear-gradient(to right, #ffffff10, #ffffff10, #99999900);
     border: none; /* Remove default border */
     border-radius: 10px;
+    cursor: pointer;
     box-shadow: inset 0 11px 0 #ffffff05; /* Add inner shadow */
     overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
     border: 1px solid black; /* Remove default border */
@@ -726,6 +730,30 @@ body {
 .cat-three {
     border-radius: 10px 75px 75px 10px;
     background: linear-gradient(to right, #ffffff10, #ffffff10, #99999900);
+}
+
+.cat-one:hover {
+    background: linear-gradient(to left, #58E3F210, #58E3F210, #58E3F200);
+}
+
+.cat-two:hover {
+    background: linear-gradient(to right, #58E3F210, #58E3F210, #58E3F210);
+}
+
+.cat-three:hover {
+    background: linear-gradient(to right, #58E3F210, #58E3F210, #58E3F200);
+}
+
+.category img {
+    transition: transform 0.5s ease; /* Add a transition effect for the color change */
+}
+
+.category:hover img {
+    transform: translateY(-30px) rotate(-30deg); /* Translate and rotate the image on hover */
+}
+
+.category:hover {
+    border: 1px solid white; /* Remove default border */
 }
 
 .design-list-section {
