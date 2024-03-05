@@ -287,25 +287,10 @@ function toggleSearch() {
     // If search input is active, remove its active class
     searchInput.classList.remove("active");
     searchButton.classList.remove("active");
-    search(); // Perform search when hiding the input
   }
 }
 
-function search() {
-  var searchTerm = document
-    .querySelector(".search-input")
-    .value.toLowerCase();
-  var designs = document.querySelectorAll(".design"); // Replace '.design' with the selector for your UI designs
 
-  designs.forEach(function (design) {
-    var designName = design.textContent.toLowerCase();
-    if (designName.includes(searchTerm)) {
-      design.style.display = "block"; // Show matching designs
-    } else {
-      design.style.display = "none"; // Hide non-matching designs
-    }
-  });
-}
 
 // Add event listener to the document to detect clicks
 document.addEventListener("click", function (event) {
@@ -318,7 +303,6 @@ document.addEventListener("click", function (event) {
     searchInput.classList.add("active"); // Hide search input
     searchContainer.classList.add("active"); // Hide search input
     searchButton.classList.remove("active"); // Show search button
-    search(); // Perform search
   }
 });
 
@@ -336,7 +320,6 @@ function toggleSearch() {
     searchInput.classList.remove("active");
     searchContainer.classList.remove("active")
     searchButton.classList.add("active");
-    search(); // Perform search when hiding the input
   }
 }
 
@@ -351,6 +334,20 @@ document.addEventListener('DOMContentLoaded', function() {
           this.value = ""; // Empty the search box
       }
   });
+
+  function search() {
+    var searchTerm = document.querySelector(".search-input").value.toLowerCase();
+    var sections = document.querySelectorAll(".section"); // Target sections with class ".section"
+  
+    sections.forEach(function(section) {
+      var sectionContent = section.textContent.toLowerCase();
+      if (sectionContent.includes(searchTerm)) {
+        // Scroll to the section's parent element (container)
+        section.parentElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+      }
+    });
+  }
 
   function hideSearch() {
       var searchInput = document.querySelector(".search-input");
@@ -381,24 +378,7 @@ function toggleSearchTwo() {
     // If search input is active, remove its active class
     searchInput.classList.remove("active");
     searchButton.classList.remove("active");
-    search(); // Perform search when hiding the input
   }
-}
-
-function search() {
-  var searchTerm = document
-    .querySelector(".search-input-two")
-    .value.toLowerCase();
-  var designs = document.querySelectorAll(".design"); // Replace '.design' with the selector for your UI designs
-
-  designs.forEach(function (design) {
-    var designName = design.textContent.toLowerCase();
-    if (designName.includes(searchTerm)) {
-      design.style.display = "block"; // Show matching designs
-    } else {
-      design.style.display = "none"; // Hide non-matching designs
-    }
-  });
 }
 
 // Add event listener to the document to detect clicks
@@ -412,7 +392,6 @@ document.addEventListener("click", function (event) {
     searchInput.classList.add("active"); // Hide search input
     searchContainer.classList.add("active"); // Hide search input
     searchButton.classList.remove("active"); // Show search button
-    search(); // Perform search
   }
 });
 
@@ -430,7 +409,6 @@ function toggleSearchTwo() {
     searchInput.classList.remove("active");
     searchContainer.classList.remove("active")
     searchButton.classList.add("active");
-    search(); // Perform search when hiding the input
   }
 }
 
@@ -440,11 +418,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
   searchInput.addEventListener("keypress", function(event) {
       if (event.key === "Enter") {
-          search(); // Perform search
+          searchTwo(); // Perform search
           hideSearch(); // Hide search box
           this.value = ""; // Empty the search box
       }
   });
+
+  function searchTwo() {
+    var searchTerm = document.querySelector(".search-input-two").value.toLowerCase();
+    var sections = document.querySelectorAll(".section"); // Target sections with class ".section"
+  
+    sections.forEach(function(section) {
+      var sectionContent = section.textContent.toLowerCase();
+      if (sectionContent.includes(searchTerm)) {
+        // Scroll to the section's parent element (container)
+        section.parentElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+      }
+    });
+  }
 
   function hideSearch() {
       var searchInput = document.querySelector(".search-input-two");
