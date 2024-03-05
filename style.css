@@ -886,9 +886,6 @@ body {
   .search-button.active img {
     display: none;
   }
-  
-
-
 
   .search-input-two {
     transition: all 0.5s ease;
@@ -943,12 +940,6 @@ body {
   .search-button-two.active img {
     display: none;
   }
-
-
-
-
-
-
 
 .nav-bar {
     height: 120px;
@@ -1095,8 +1086,6 @@ body {
     border-radius: 2px;
     transition: transform 0.3s ease, width 0.5s ease, opacity 0.01s ease;
   }
-
-  
 
   /* Style the menu items */
 #burger-menu ul {

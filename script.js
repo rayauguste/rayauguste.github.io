@@ -290,8 +290,6 @@ function toggleSearch() {
   }
 }
 
-
-
 // Add event listener to the document to detect clicks
 document.addEventListener("click", function (event) {
   var searchContainer = document.querySelector(".search-container");
@@ -322,7 +320,6 @@ function toggleSearch() {
     searchButton.classList.add("active");
   }
 }
-
 
 document.addEventListener('DOMContentLoaded', function() {
   var searchInput = document.querySelector(".search-input");
@@ -359,9 +356,6 @@ document.addEventListener('DOMContentLoaded', function() {
       searchButton.classList.remove("active"); // Show search button
   }
 });
-
-
-
 
 
 
@@ -412,7 +406,6 @@ function toggleSearchTwo() {
   }
 }
 
-
 document.addEventListener('DOMContentLoaded', function() {
   var searchInput = document.querySelector(".search-input-two");
 
@@ -448,3 +441,112 @@ document.addEventListener('DOMContentLoaded', function() {
       searchButton.classList.remove("active"); // Show search button
   }
 });
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  // ——————————————————————————————————————————————————
+  // TextScramble
+  // ——————————————————————————————————————————————————
+
+  class TextScramble {
+    constructor(el) {
+      this.el = el;
+      this.chars = "!<>-_\\/[]{}—=+*^?#________";
+      this.update = this.update.bind(this);
+    }
+    setText(newText) {
+      const oldText = this.el.innerText;
+      const length = Math.max(oldText.length, newText.length);
+      const promise = new Promise((resolve) => (this.resolve = resolve));
+      this.queue = [];
+      for (let i = 0; i < length; i++) {
+        const from = oldText[i] || "";
+        const to = newText[i] || "";
+        const start = Math.floor(Math.random() * 70);
+        const end = start + Math.floor(Math.random() * 70);
+        this.queue.push({ from, to, start, end });
+      }
+      cancelAnimationFrame(this.frameRequest);
+      this.frame = 0;
+      this.update();
+      return promise;
+    }
+    update() {
+      let output = "";
+      let complete = 0;
+      for (let i = 0, n = this.queue.length; i < n; i++) {
+        let { from, to, start, end, char } = this.queue[i];
+        if (this.frame >= end) {
+          complete++;
+          output += to;
+        } else if (this.frame >= start) {
+          if (!char || Math.random() < 0.28) {
+            char = this.randomChar();
+            this.queue[i].char = char;
+          }
+          output += `<span class="dud">${char}</span>`;
+        } else {
+          output += from;
+        }
+      }
+      this.el.innerHTML = output;
+      if (complete === this.queue.length) {
+        this.resolve();
+      } else {
+        this.frameRequest = requestAnimationFrame(this.update);
+        this.frame++;
+      }
+    }
+    randomChar() {
+      return this.chars[Math.floor(Math.random() * this.chars.length)];
+    }
+  }
+
+  // ——————————————————————————————————————————————————
+  // Example
+  // ——————————————————————————————————————————————————
+
+  const phrases = {
+    "title-header-h1": ["Hi, I'm Ray Auguste"],
+    "about-me-h1": ["About Me"],
+    "design-process-h1": ["Design Process"],
+    "services-header-h1": ["What Services Do I Offer"],
+    "contact-header-h1": ["Get in Touch"]
+  };
+
+  const observedElements = {};
+
+  function observeAndScramble(className, phrases) {
+    const elements = document.querySelectorAll("." + className);
+    elements.forEach((element, index) => {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (!observedElements[entry.target]) {
+              const fx = new TextScramble(entry.target);
+              fx.setText(phrases[index]);
+              observedElements[entry.target] = true;
+            }
+          } else {
+            // Reset the state when element is out of view
+            observedElements[entry.target] = false;
+          }
+        });
+      });
+      observer.observe(element);
+    });
+  }
+
+  // Call the function with class names and their respective phrases
+  observeAndScramble("title-header-h1", phrases["title-header-h1"]);
+  observeAndScramble("about-me-h1", phrases["about-me-h1"]);
+  observeAndScramble("design-process-h1", phrases["design-process-h1"]);
+  observeAndScramble("services-header-h1", phrases["services-header-h1"]);
+  observeAndScramble("contact-header-h1", phrases["contact-header-h1"]);
+});
+
+
+
+
+
