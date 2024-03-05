@@ -59,6 +59,20 @@ body {
     color: white;
 }
 
+.back-button {
+    display: flex;
+    height: 34px;
+    justify-content: center;
+    align-items: center;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.back-button img {
+    width: 16px;
+    height: 30px;
+}
+
 .main-section {
     display: flex;
     flex-direction: column;
