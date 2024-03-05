@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function generateImagesOnLoad() {
   // Check if the page is designlist.html
-  if (window.location.pathname.endsWith('designlist.html')) {
+  if (window.location.pathname.endsWith('designlist')) {
       // Get the variable value from localStorage
       var variable = localStorage.getItem('variable');
       if (!variable) {
@@ -116,7 +116,7 @@ function changeVariableAndNavigate(variable) {
   // Store the variable value in localStorage
   localStorage.setItem('variable', variable);
   // Open the link to another HTML page
-  window.location.href = "designlist.html";
+  window.location.href = "designlist";
 }
 
 function generateImages(variable) {
