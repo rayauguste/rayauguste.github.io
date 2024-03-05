@@ -819,7 +819,7 @@ body {
     color: white;
 }
 
-#search-input {
+.search-input {
     transition: all 0.5s ease;
     opacity: 1;
     width: 100%;  
@@ -833,16 +833,18 @@ body {
     padding-right: 25px;
     box-sizing: border-box;
     margin: 0;
+    padding: 0;
+    padding-left: 20px;
     background-color: #ffffff20;
     color: #B5B5B5;
   }
   
-  #search-input.active {
+  .search-input.active {
     opacity: 0;
     width: 0%;
   }
   
-  #search-button {
+  .search-button {
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -851,27 +853,90 @@ body {
     padding: 0;
   }
   
-  #search-button.active {
+  .search-button.active {
     opacity: 0;
   }
 
-  #search-container {
-    width: 400px;
+  .search-container {
+    width: 300px;
     transition: all 0.5s ease;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  #search-container.active {
-    width: 20px;
+  .search-container.active {
+    width: 0px;
+  }
+
+  .search-button.active img {
+    display: none;
   }
   
 
 
+
+  .search-input-two {
+    transition: all 0.5s ease;
+    opacity: 1;
+    width: 100%;  
+    height: 52px;
+    border: 1px solid #39BBC9;
+    border-radius: 38px;
+    font-size: 18px;
+    font-weight: 200;
+    outline: none;
+    padding-left: 25px;
+    padding-right: 25px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    padding-left: 20px;
+    background-color: #000000;
+    color: #B5B5B5;
+  }
+  
+  .search-input-two.active {
+    opacity: 0;
+    width: 0%;
+  }
+  
+  .search-button-two {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 1;
+    transition: all 0.5s ease;
+    padding: 0;
+  }
+  
+  .search-button-two.active {
+    opacity: 0;
+  }
+
+  .search-container-two {
+    width: 300px;
+    transition: all 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .search-container-two.active {
+    width: 0px;
+  }
+
+  .search-button-two.active img {
+    display: none;
+  }
+
+
+
+
+
+
+
 .nav-bar {
-    width: 80%;
-    max-width: 920px;
     height: 120px;
     display: flex;
     align-items: center;
@@ -886,6 +951,7 @@ body {
     backdrop-filter: blur(28px); /* Apply the background blur */
     gap: 77px;
     pointer-events: fill;
+    padding: 0 65px;
 }
 
 .nav-section {

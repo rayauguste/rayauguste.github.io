@@ -34,18 +34,17 @@
     />
   </head>
   <body>
-    <div class="logo">
+    <a href="index.html" class="logo">
       <img draggable="false" src="img/RayLogo.png" alt="logo" />
-    </div>
+    </a>
     <div class="header">
-      <div id="search-container" class="active">
-        <button id="search-button" onclick="toggleSearch()">
+      <div class="search-container active">
+        <button class="search-button" onclick="toggleSearch()">
           <img draggable="false" src="img/SearchIcon.png" alt="search-icon" />
         </button>
         <input
           type="text"
-          id="search-input"
-          class="active"
+          class="search-input active"
           placeholder="Search something"
           oninput="search()"
         />
@@ -58,9 +57,6 @@
         </li>
         <li class="designs-button">
           <a href="designs.html"> Designs </a>
-        </li>
-        <li class="about-me-button">
-          <a href=""> About me </a>
         </li>
         <li class="contact-button">
           <a href="mailto: raekwon322@gmail.com"> Contact </a>
@@ -79,7 +75,17 @@
     </div>
     <div class="nav-section hide">
       <div class="nav-bar hide-two">
-        <img draggable="false" src="img/SearchIcon.png" alt="search-icon" />
+        <div class="search-container-two active">
+          <button class="search-button-two" onclick="toggleSearchTwo()">
+            <img draggable="false" src="img/SearchIcon.png" alt="search-icon" />
+          </button>
+          <input
+            type="text"
+            class="search-input-two active"
+            placeholder="Search something"
+            oninput="search()"
+          />
+        </div>
         <ul class="header-buttons">
           <li class="home-button selected-tab">
             <a href="index.html"> Home </a>
@@ -87,9 +93,6 @@
           </li>
           <li class="designs-button">
             <a href="designs.html"> Designs </a>
-          </li>
-          <li class="about-me-button">
-            <a href=""> About me </a>
           </li>
           <li class="contact-button">
             <a href="mailto: raekwon322@gmail.com"> Contact </a>
