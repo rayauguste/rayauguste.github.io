@@ -1272,6 +1272,14 @@ body {
       .cat-three {
         border-radius: 10px 10px 75px 75px;
       }
+    
+    .cat-info-two:hover {
+        transform: perspective(1000px) rotateY(-25deg); /* Apply perspective and rotation */
+    }
+    
+    .cat-info-three:hover {
+        transform: perspective(1000px) rotateX(25deg); /* Apply perspective and rotation */
+    }
   }
 
   @media screen and (max-width: 1400px) {
@@ -1325,6 +1333,18 @@ body {
     .category {
         border-radius: 75px 75px 75px 75px;
       }
+
+      .cat-info-one:hover {
+        transform: perspective(1000px) rotateX(25deg); /* Apply perspective and rotation */
+    }
+    
+    .cat-info-two:hover {
+        transform: perspective(1000px) rotateX(25deg); /* Apply perspective and rotation */
+    }
+    
+    .cat-info-three:hover {
+        transform: perspective(1000px) rotateX(25deg); /* Apply perspective and rotation */
+    }
   }
 
   @media screen and (max-width: 900px) {
