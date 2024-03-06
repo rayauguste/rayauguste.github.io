@@ -198,27 +198,26 @@ function topFunction() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Get all elements with the class '.large-design'
   const designElements = document.querySelectorAll('.large-design');
 
-  // Create Intersection Observer for each element
   designElements.forEach(designElement => {
       const observer = new IntersectionObserver(entries => {
-          if (entries[0].isIntersecting) {
-              // If the element is intersecting, rotate it back to 0 degrees
+          const isIntersecting = entries[0].isIntersecting;
+
+          if (isIntersecting) {
               designElement.style.transform = 'perspective(1000px) rotateX(0deg)';
-              // Unobserve the element
               observer.unobserve(designElement);
           } else {
-              // If the element is not intersecting, rotate it to 25 degrees
               designElement.style.transform = 'perspective(1000px) rotateX(25deg)';
           }
-      });
+      }, { threshold: [0, 1] });
 
-      // Start observing each element
       observer.observe(designElement);
   });
 });
+
+
+
 
 
 
