@@ -755,18 +755,39 @@ body {
     transition: transform 0.5s ease;
 }
 
+.cat-info-one {
+    transition: transform 0.5s ease;
+}
+
+.cat-info-two {
+    transition: transform 0.5s ease;
+}
+
+.cat-info-three {
+    transition: transform 0.5s ease;
+}
+
 .cat-one:hover {
     background: linear-gradient(to left, #58E3F210, #58E3F210, #58E3F200);
-    transform: perspective(1000px) rotateY(25deg); /* Apply perspective and rotation */
 }
 
 .cat-two:hover {
     background: linear-gradient(to right, #58E3F210, #58E3F210, #58E3F210);
-    transform: perspective(1000px) rotateX(25deg); /* Apply perspective and rotation */
 }
 
 .cat-three:hover {
     background: linear-gradient(to right, #58E3F210, #58E3F210, #58E3F200);
+}
+
+.cat-info-one:hover {
+    transform: perspective(1000px) rotateY(25deg); /* Apply perspective and rotation */
+}
+
+.cat-info-two:hover {
+    transform: perspective(1000px) rotateX(25deg); /* Apply perspective and rotation */
+}
+
+.cat-info-three:hover {
     transform: perspective(1000px) rotateY(-25deg); /* Apply perspective and rotation */
 }
 
