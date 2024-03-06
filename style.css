@@ -741,18 +741,15 @@ body {
 .cat-one {
     border-radius: 75px 10px 10px 75px;
     background: linear-gradient(to left, #ffffff10, #ffffff10, #99999900);
-    transition: transform 0.5s ease;
 }
 
 .cat-two {
     background: linear-gradient(to right, #ffffff10, #ffffff10, #ffffff10);
-    transition: transform 0.5s ease;
 }
 
 .cat-three {
     border-radius: 10px 75px 75px 10px;
     background: linear-gradient(to right, #ffffff10, #ffffff10, #99999900);
-    transition: transform 0.5s ease;
 }
 
 .cat-info-one {
