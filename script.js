@@ -206,15 +206,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
           if (isIntersecting) {
               designElement.style.transform = 'perspective(1000px) rotateX(0deg)';
-              observer.unobserve(designElement);
           } else {
               designElement.style.transform = 'perspective(1000px) rotateX(25deg)';
           }
-      }, { threshold: [0, 1] });
+      }, { threshold: [0] });
 
       observer.observe(designElement);
   });
 });
+
+
 
 
 
