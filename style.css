@@ -923,8 +923,6 @@ body {
     font-size: 18px;
     font-weight: 200;
     outline: none;
-    padding-left: 25px;
-    padding-right: 25px;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -945,10 +943,12 @@ body {
     opacity: 1;
     transition: all 0.5s ease;
     padding: 0;
+    padding-left: 60px;
   }
   
   .search-button-two.active {
     opacity: 0;
+    padding-left: 0px;
   }
 
   .search-container-two {
