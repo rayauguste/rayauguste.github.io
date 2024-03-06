@@ -195,6 +195,35 @@ function topFunction() {
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Get all elements with the class '.large-design'
+  const designElements = document.querySelectorAll('.large-design');
+
+  // Create Intersection Observer for each element
+  designElements.forEach(designElement => {
+      const observer = new IntersectionObserver(entries => {
+          if (entries[0].isIntersecting) {
+              // If the element is intersecting, rotate it back to 0 degrees
+              designElement.style.transform = 'perspective(1000px) rotateX(0deg)';
+              // Unobserve the element
+              observer.unobserve(designElement);
+          } else {
+              // If the element is not intersecting, rotate it to 25 degrees
+              designElement.style.transform = 'perspective(1000px) rotateX(25deg)';
+          }
+      });
+
+      // Start observing each element
+      observer.observe(designElement);
+  });
+});
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', function() {
   // Array of image paths
   var imageList = [
@@ -359,6 +388,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+
 function toggleSearchTwo() {
   var searchInput = document.querySelector(".search-input-two");
   var searchButton = document.querySelector(".search-button-two");
@@ -441,6 +471,7 @@ document.addEventListener('DOMContentLoaded', function() {
       searchButton.classList.remove("active"); // Show search button
   }
 });
+
 
 
 
