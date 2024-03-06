@@ -547,6 +547,40 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+document.addEventListener('DOMContentLoaded', function() {
+  const titleSections = document.querySelectorAll('.title-section, .about-me-section, .design-process-section, .services-section, .contact-section');
+  
+  titleSections.forEach(titleSection => {
+      let isHovering = false; // Flag to track if the mouse is hovering over the div
 
+      titleSection.addEventListener('mouseenter', () => {
+          isHovering = true;
+      });
 
+      titleSection.addEventListener('mouseleave', () => {
+          isHovering = false;
+          titleSection.style.transition = 'transform 0.5s ease'; // Apply transition
+          titleSection.style.transform = `perspective(1000px) rotateY(0deg)`; // Rotate back to 0 degrees
+      });
+
+      document.addEventListener('mousemove', (event) => {
+          if (isHovering) {
+              const mouseX = event.pageX - titleSection.offsetLeft; // X-coordinate of the cursor relative to the div
+              const divWidth = titleSection.offsetWidth;
+              const halfWidth = divWidth / 2;
+
+              // Calculate the percentage of cursor position relative to the width of the div
+              const cursorPercentage = (mouseX - halfWidth) / halfWidth;
+
+              // Calculate the rotation angle based on the cursor position
+              const maxRotation = 5; // Maximum rotation angle
+              const rotationAngle = cursorPercentage * maxRotation * -1;
+
+              // Apply the rotation
+              titleSection.style.transition = ''; // Remove transition for immediate response
+              titleSection.style.transform = `perspective(1000px) rotateY(${rotationAngle}deg)`;
+          }
+      });
+  });
+});
 
