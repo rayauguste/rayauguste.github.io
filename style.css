@@ -148,6 +148,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 14px;
+    max-width: 535px;
 }
 
 .title-header h1{
@@ -369,6 +370,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 14px;
+    max-width: 405px;
 }
 
 .design-process-header h1{
@@ -510,7 +512,7 @@ body {
     flex-direction: column;
     gap: 14px;
     width: 100%;
-    max-width: 417px;
+    max-width: 410px;
 }
 
 .services-header h1{
