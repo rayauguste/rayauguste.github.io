@@ -1420,6 +1420,14 @@ body {
         font-size: 40px;
     }
 
+    .contact-header h1 {
+        font-size: 40px;
+    }
+
+    .contact-header h2 {
+        font-size: 20px;
+    }
+
     .back-up {
         display: none;
     }

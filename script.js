@@ -217,14 +217,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
-
-
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', function() {
   // Array of image paths
   var imageList = [
