@@ -1008,7 +1008,6 @@ body {
   }
 
   .back-up {
-    color: white;
     transition: background 0.5s ease, border-color 0.5s ease; /* Add a transition effect for the color change */
     background: linear-gradient(to right, #ffffff10, #ffffff10, #99999900);
     border-radius: 44px;
@@ -1022,7 +1021,6 @@ body {
     display: flex; /* Use flexbox */
     align-items: center; /* Center items vertically */
     justify-content: center;
-    text-decoration: none; /* no underline */
     box-sizing: border-box;
     position: fixed;
     bottom: 30px;
