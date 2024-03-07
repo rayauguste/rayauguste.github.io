@@ -191,7 +191,7 @@ body {
 
 .my-portfolio a {
     color: white;
-    transition: background-color 0.2s ease; /* Add a transition effect for the color change */
+    transition: background-color 0.5s ease; /* Add a transition effect for the color change */
     border: none;
     border-radius: 13.25px;
     background-color: #202B35; /* Remove the fill color */
@@ -207,14 +207,14 @@ body {
 }
 
 .my-portfolio a:hover {
-    background-color: #0097A7;
+    background-color: #39BBC9;
     color: white;
 }
 
 .contact a {
     color: white;
-    transition: background-color 0.2s ease; /* Add a transition effect for the color change */
-    border: 2px solid #0097A7;
+    transition: background-color 0.5s ease; /* Add a transition effect for the color change */
+    border: 2px solid #39BBC9;
     border-radius: 13.25px;
     background-color: transparent; /* Remove the fill color */
     font-size: 18px;
@@ -230,7 +230,7 @@ body {
 }
 
 .contact a:hover {
-    background-color: #0097A7;
+    background-color: #39BBC9;
     color: white;
 }
 
@@ -287,7 +287,7 @@ body {
 
 .social-buttons a {
     color: white;
-    transition: background-color 0.2s ease, transform 0.5s ease; /* Add a transition effect for the color change */
+    transition: background-color 0.5s ease, transform 0.5s ease; /* Add a transition effect for the color change */
     background-color: transparent; /* Remove the fill color */
     font-size: 15px;
     font-weight: 600;
@@ -638,7 +638,7 @@ body {
 
 .social-buttons-two a {
     color: white;
-    transition: background-color 0.2s ease, transform 0.5s ease; /* Add a transition effect for the color change */
+    transition: background-color 0.5s ease, transform 0.5s ease; /* Add a transition effect for the color change */
     background-color: transparent; /* Remove the fill color */
     font-size: 15px;
     font-weight: 600;
@@ -661,8 +661,8 @@ body {
 
 .contact-button-two {
     color: white;
-    transition: background-color 0.2s ease; /* Add a transition effect for the color change */
-    border: 2px solid #0097A7;
+    transition: background-color 0.5s ease; /* Add a transition effect for the color change */
+    border: 2px solid #39BBC9;
     border-radius: 13.25px;
     background-color: transparent; /* Remove the fill color */
     font-size: 18px;
@@ -678,7 +678,7 @@ body {
 }
 
 .contact-button-two:hover {
-    background-color: #0097A7;
+    background-color: #39BBC9;
     color: white;
 }
 
@@ -814,7 +814,7 @@ body {
 .design-back-button {
     color: white;
     transition: background-color 0.2s ease; /* Add a transition effect for the color change */
-    border: 2px solid #0097A7;
+    border: 2px solid #39BBC9;
     border-radius: 13.25px;
     background-color: transparent; /* Remove the fill color */
     font-size: 18px;
@@ -830,7 +830,7 @@ body {
 }
 
 .design-back-button:hover {
-    background-color: #0097A7;
+    background-color: #39BBC9;
     color: white;
 }
 
@@ -1138,7 +1138,7 @@ body {
   
   #burger-menu ul li a {
     color: white;
-    transition: background-color 0.2s ease; /* Add a transition effect for the color change */
+    transition: background-color 0.5s ease; /* Add a transition effect for the color change */
     border: none;
     background-color: transparent; /* Remove the fill color */
     justify-content: center;
