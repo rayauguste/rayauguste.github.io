@@ -24,7 +24,6 @@ body {
     width: 100%;
     z-index: 4;
     height: 42px;
-    transition: transform 0.5s cubic-bezier(0.685, 0.0473, 0.346, 1);
     gap: 77px;
     padding-bottom: 70px;
   }
@@ -71,6 +70,11 @@ body {
 .back-button img {
     width: 16px;
     height: 30px;
+    transition: transform 0.5s ease; /* Add a transition effect for the color change */
+}
+
+.back-button:hover img {
+    transform: translateX(-30px); /* Translate and rotate the image on hover */
 }
 
 .main-section {
@@ -813,7 +817,7 @@ body {
 
 .design-back-button {
     color: white;
-    transition: background-color 0.2s ease; /* Add a transition effect for the color change */
+    transition: background-color 0.5s ease; /* Add a transition effect for the color change */
     border: 2px solid #39BBC9;
     border-radius: 13.25px;
     background-color: transparent; /* Remove the fill color */
@@ -903,6 +907,14 @@ body {
   .search-button.active img {
     display: none;
   }
+
+  .search-button img {
+    transition: transform 0.5s ease; /* Add a transition effect for the color change */
+}
+
+.search-button:hover img {
+    transform: translateX(-30px) rotate(45deg); /* Translate and rotate the image on hover */
+}
 
   .search-input-two {
     transition: all 0.5s ease;
