@@ -17,41 +17,45 @@ document.addEventListener('DOMContentLoaded', function() {
 
   //burger menu check box
   document.addEventListener('DOMContentLoaded', function() {
-    var hamburger = document.getElementById('hamburger');
+    var hamburgers = document.querySelectorAll('.hamburger');
     var element = document.querySelector('#burger-menu');
     var closeButton = document.getElementById('close-button');
-    var bodyClick = null; // declare a variable to store the div element
   
-    // Check if all necessary elements exist
-    if (hamburger && element && closeButton) {
-      hamburger.addEventListener('change', function() {
-        console.log('Checkbox state changed');
-        // Toggle the 'move-left' class based on the state of the checkbox
-        if (hamburger.checked) {
-          element.classList.remove('move-left');
-          closeButton.classList.remove('move-left'); // Remove 'move-left' from close button
-        } else {
-          element.classList.add('move-left');
-          closeButton.classList.add('move-left'); // Add 'move-left' to close button
-        }
+    hamburgers.forEach(function(hamburger) {
+      var bodyClick = null;
   
-        // Check if the hamburger is checked and if the bodyClick exists
-        if (hamburger.checked) {
-          // create a new div element and assign an id
-          bodyClick = document.createElement('div');
-          bodyClick.id = 'bodyClick';
-          // apply the CSS style using style.cssText
-          bodyClick.style.cssText = "height: 100%; width: 100%; position: fixed; top: 0; left: auto; right: 0; z-index: 5;";
-          // append the div element to the document body
-          document.body.appendChild(bodyClick);
-        } else if (!hamburger.checked && bodyClick) {
-          // remove the div element from the document body
-          document.body.removeChild(bodyClick);
-          // set the variable to null
-          bodyClick = null;
-        }
-      });
-    }
+      if (hamburger && element && closeButton) {
+        hamburger.addEventListener('change', function() {
+          console.log('Checkbox state changed');
+          var isChecked = this.checked;
+  
+          // Toggle the 'move-left' class based on the state of the checkbox
+          if (isChecked) {
+            element.classList.remove('move-left');
+            closeButton.classList.remove('move-left'); // Remove 'move-left' from close button
+          } else {
+            element.classList.add('move-left');
+            closeButton.classList.add('move-left'); // Add 'move-left' to close button
+          }
+  
+          // Check if the hamburger is checked and if the bodyClick exists
+          if (isChecked) {
+            // create a new div element and assign an id
+            bodyClick = document.createElement('div');
+            bodyClick.id = 'bodyClick';
+            // apply the CSS style using style.cssText
+            bodyClick.style.cssText = "height: 100%; width: 100%; position: fixed; top: 0; left: auto; right: 0; z-index: 5;";
+            // append the div element to the document body
+            document.body.appendChild(bodyClick);
+          } else if (!isChecked && bodyClick) {
+            // remove the div element from the document body
+            document.body.removeChild(bodyClick);
+            // set the variable to null
+            bodyClick = null;
+          }
+        });
+      }
+    });
   });
   
 //Click off burger menu
@@ -60,18 +64,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.addEventListener("click", function(event) {
     if (event.target.id === "bodyClick") {
-      // Uncheck the checkbox
-      document.getElementById("hamburger").checked = false;
+      // Uncheck the checkbox for all elements with class .hamburger
+      document.querySelectorAll('.hamburger').forEach(function(hamburger) {
+        hamburger.checked = false;
+      });
       // Remove the class "move-left" from the elements
       elements.forEach(function(element) {
         element.classList.add("move-left");
       });
-      // get the current div element by its id
+      // Remove the bodyClick element
       var bodyClick = document.getElementById("bodyClick");
-      // remove the div element from the document body
-      document.body.removeChild(bodyClick);
-      // set the variable to null
-      bodyClick = null;
+      if (bodyClick) {
+        document.body.removeChild(bodyClick);
+      }
     }
   });
 });
@@ -79,11 +84,14 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
   var closeButton = document.getElementById('close-button');
   var elements = [document.querySelector('#burger-menu'), document.querySelector('#close-button')];
+  var hamburgerElements = document.querySelectorAll('.hamburger');
 
   if (closeButton) {
     closeButton.addEventListener('click', function() {
-      // Uncheck the checkbox
-      document.getElementById("hamburger").checked = false;
+      // Uncheck the checkboxes for all elements with class .hamburger
+      hamburgerElements.forEach(function(hamburger) {
+        hamburger.checked = false;
+      });
       // Remove the class "move-left" from the elements
       elements.forEach(function(element) {
         element.classList.add("move-left");
@@ -259,24 +267,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Function to set random images for each img element
   function setRandomImages(designElement) {
+    // Check if designElement is valid
+    if (!designElement || !(designElement instanceof HTMLElement)) {
+      return; // Exit the function silently if designElement is invalid
+    }
+  
     // Set initial opacity to 0 for transition
     designElement.style.opacity = 0;
     designElement.src = getRandomImage();
-
+  
     // Immediately transition opacity to 1
     setTimeout(function() {
       designElement.style.opacity = 1;
     }, 100);
-
+  
     // Wait for a random time before changing the image
     setInterval(function() {
       // Set opacity to 0 for smooth transition
       designElement.style.opacity = 0;
-
+  
       // Wait for another small delay before changing the image
       setTimeout(function() {
         designElement.src = getRandomImage();
-
+  
         // Set opacity back to 1 after changing the image
         setTimeout(function() {
           designElement.style.opacity = 1;
@@ -284,6 +297,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }, 1000); // Delay of 1 second before changing the image
     }, Math.random() * 7000 + 6000); // Random time between 3 and 10 seconds
   }
+  
 
   // Select each design element and set random images initially
   var designOne = document.querySelector('.design-one');
@@ -314,17 +328,38 @@ function toggleSearch() {
 
 // Add event listener to the document to detect clicks
 document.addEventListener("click", function (event) {
+  // Get search container
   var searchContainer = document.querySelector(".search-container");
+  // Check if searchContainer is valid
+  if (!searchContainer || !(searchContainer instanceof HTMLElement)) {
+    return; // Exit the function silently if searchContainer is invalid
+  }
+
+  // Get search input
   var searchInput = document.querySelector(".search-input");
+  // Check if searchInput is valid
+  if (!searchInput || !(searchInput instanceof HTMLElement)) {
+    return; // Exit the function silently if searchInput is invalid
+  }
+
+  // Get search button
   var searchButton = document.querySelector(".search-button");
+  // Check if searchButton is valid
+  if (!searchButton || !(searchButton instanceof HTMLElement)) {
+    return; // Exit the function silently if searchButton is invalid
+  }
 
   // Check if the clicked element is outside the search container
   if (!searchContainer.contains(event.target)) {
-    searchInput.classList.add("active"); // Hide search input
-    searchContainer.classList.add("active"); // Hide search input
-    searchButton.classList.remove("active"); // Show search button
+    // Hide search input
+    searchInput.classList.add("active");
+    // Hide search container
+    searchContainer.classList.add("active");
+    // Show search button
+    searchButton.classList.remove("active");
   }
 });
+
 
 function toggleSearch() {
   var searchInput = document.querySelector(".search-input");
@@ -346,13 +381,16 @@ function toggleSearch() {
 document.addEventListener('DOMContentLoaded', function() {
   var searchInput = document.querySelector(".search-input");
 
+  // Check if searchInput is valid
+if (searchInput && searchInput instanceof HTMLElement) {
   searchInput.addEventListener("keypress", function(event) {
-      if (event.key === "Enter") {
-          search(); // Perform search
-          hideSearch(); // Hide search box
-          this.value = ""; // Empty the search box
-      }
+    if (event.key === "Enter") {
+      search(); // Perform search
+      hideSearch(); // Hide search box
+      this.value = ""; // Empty the search box
+    }
   });
+}
 
   function search() {
     var searchTerm = document.querySelector(".search-input").value.toLowerCase();
@@ -400,17 +438,38 @@ function toggleSearchTwo() {
 
 // Add event listener to the document to detect clicks
 document.addEventListener("click", function (event) {
+  // Get search container
   var searchContainer = document.querySelector(".search-container-two");
+  // Check if searchContainer is valid
+  if (!searchContainer || !(searchContainer instanceof HTMLElement)) {
+    return; // Exit the function silently if searchContainer is invalid
+  }
+
+  // Get search input
   var searchInput = document.querySelector(".search-input-two");
+  // Check if searchInput is valid
+  if (!searchInput || !(searchInput instanceof HTMLElement)) {
+    return; // Exit the function silently if searchInput is invalid
+  }
+
+  // Get search button
   var searchButton = document.querySelector(".search-button-two");
+  // Check if searchButton is valid
+  if (!searchButton || !(searchButton instanceof HTMLElement)) {
+    return; // Exit the function silently if searchButton is invalid
+  }
 
   // Check if the clicked element is outside the search container
   if (!searchContainer.contains(event.target)) {
-    searchInput.classList.add("active"); // Hide search input
-    searchContainer.classList.add("active"); // Hide search input
-    searchButton.classList.remove("active"); // Show search button
+    // Hide search input
+    searchInput.classList.add("active");
+    // Hide search container
+    searchContainer.classList.add("active");
+    // Show search button
+    searchButton.classList.remove("active");
   }
 });
+
 
 function toggleSearchTwo() {
   var searchInput = document.querySelector(".search-input-two");
@@ -432,13 +491,16 @@ function toggleSearchTwo() {
 document.addEventListener('DOMContentLoaded', function() {
   var searchInput = document.querySelector(".search-input-two");
 
+  // Check if searchInput is valid
+if (searchInput && searchInput instanceof HTMLElement) {
   searchInput.addEventListener("keypress", function(event) {
-      if (event.key === "Enter") {
-          searchTwo(); // Perform search
-          hideSearch(); // Hide search box
-          this.value = ""; // Empty the search box
-      }
+    if (event.key === "Enter") {
+      searchTwo(); // Perform search
+      hideSearch(); // Hide search box
+      this.value = ""; // Empty the search box
+    }
   });
+}
 
   function searchTwo() {
     var searchTerm = document.querySelector(".search-input-two").value.toLowerCase();

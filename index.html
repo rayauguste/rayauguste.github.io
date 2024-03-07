@@ -53,9 +53,11 @@
         <input
           type="text"
           class="search-input active"
+          id="search-input"
           placeholder="Search something"
           oninput="search()"
         />
+        <label for="search-input" class="search-label"><p>Search</p></label>
       </div>
 
       <ul class="header-buttons">
@@ -71,7 +73,7 @@
         </li>
       </ul>
       <!-- Checkbox to track the state of the menu -->
-      <input type="checkbox" id="hamburger" />
+      <input type="checkbox" id="hamburger" class="hamburger" />
       <!-- Label to act as the hamburger icon -->
       <label for="hamburger" id="hamburger-icon">
         <!-- You can use CSS, an image, or a font icon to create the three lines -->
@@ -90,9 +92,13 @@
           <input
             type="text"
             class="search-input-two active"
+            id="search-input-two"
             placeholder="Search something"
             oninput="search()"
           />
+          <label for="search-input-two" class="search-label"
+            ><p>Search</p></label
+          >
         </div>
         <ul class="header-buttons">
           <li class="home-button selected-tab">
@@ -107,9 +113,9 @@
           </li>
         </ul>
         <!-- Checkbox to track the state of the menu -->
-        <input type="checkbox" id="hamburger" />
+        <input type="checkbox" id="hamburger-two" class="hamburger" />
         <!-- Label to act as the hamburger icon -->
-        <label for="hamburger" id="hamburger-icon">
+        <label for="hamburger-two" id="hamburger-icon">
           <!-- You can use CSS, an image, or a font icon to create the three lines -->
           <span></span>
           <span></span>
