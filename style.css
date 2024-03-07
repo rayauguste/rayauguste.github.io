@@ -1093,6 +1093,11 @@ body {
     display: none;
   }
 
+  /* Hide the checkbox */
+#hamburger-two {
+    display: none;
+  }
+
   /* Style the label as the hamburger icon */
 #hamburger-icon {
     cursor: pointer;
@@ -1100,6 +1105,10 @@ body {
   }
   
   #hamburger-icon p {
+    display: none;
+  }
+
+  .search-label p {
     display: none;
   }
   
