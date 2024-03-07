@@ -290,11 +290,8 @@ body {
 }
 
 .social-buttons a {
-    color: white;
     transition: background-color 0.5s ease, transform 0.5s ease; /* Add a transition effect for the color change */
     background-color: transparent; /* Remove the fill color */
-    font-size: 15px;
-    font-weight: 600;
     cursor: pointer; /* Change the cursor to a pointer */
     border-radius: 57px;
     width: 65px;
@@ -641,11 +638,8 @@ body {
 }
 
 .social-buttons-two a {
-    color: white;
     transition: background-color 0.5s ease, transform 0.5s ease; /* Add a transition effect for the color change */
     background-color: transparent; /* Remove the fill color */
-    font-size: 15px;
-    font-weight: 600;
     cursor: pointer; /* Change the cursor to a pointer */
     border-radius: 57px;
     width: 65px;
