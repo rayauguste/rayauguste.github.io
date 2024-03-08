@@ -203,8 +203,7 @@ function topFunction() {
   window.scrollTo({top: 0, behavior: 'smooth'});
 }
 
-
-
+//Scroll designs 3D card animations
 document.addEventListener('DOMContentLoaded', function() {
   const designElements = document.querySelectorAll('.large-design');
 
@@ -223,8 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-
-
+//Random background images overtime
 document.addEventListener('DOMContentLoaded', function() {
   // Array of image paths
   var imageList = [
@@ -310,22 +308,6 @@ document.addEventListener('DOMContentLoaded', function() {
   setRandomImages(designThree);
 });
 
-function toggleSearch() {
-  var searchInput = document.querySelector(".search-input");
-  var searchButton = document.querySelector(".search-button");
-
-  if (!searchInput.classList.contains("active")) {
-    // If search input is not active, make it active
-    searchInput.classList.add("active");
-    searchButton.classList.add("active");
-    searchInput.focus(); // Focus on input when it becomes visible
-  } else {
-    // If search input is active, remove its active class
-    searchInput.classList.remove("active");
-    searchButton.classList.remove("active");
-  }
-}
-
 // Add event listener to the document to detect clicks
 document.addEventListener("click", function (event) {
   // Get search container
@@ -360,7 +342,6 @@ document.addEventListener("click", function (event) {
   }
 });
 
-
 function toggleSearch() {
   var searchInput = document.querySelector(".search-input");
   var searchButton = document.querySelector(".search-button");
@@ -370,14 +351,15 @@ function toggleSearch() {
     searchInput.classList.add("active");
     searchContainer.classList.add("active")
     searchButton.classList.remove("active");
-    searchInput.focus(); // Focus on input when it becomes visible
   } else {
     searchInput.classList.remove("active");
     searchContainer.classList.remove("active")
     searchButton.classList.add("active");
+    searchInput.focus(); // Focus on input when it becomes visible
   }
 }
 
+//On enter search
 document.addEventListener('DOMContentLoaded', function() {
   var searchInput = document.querySelector(".search-input");
 
@@ -418,25 +400,6 @@ function search() {
   }
 });
 
-
-
-
-function toggleSearchTwo() {
-  var searchInput = document.querySelector(".search-input-two");
-  var searchButton = document.querySelector(".search-button-two");
-
-  if (!searchInput.classList.contains("active")) {
-    // If search input is not active, make it active
-    searchInput.classList.add("active");
-    searchButton.classList.add("active");
-    searchInput.focus(); // Focus on input when it becomes visible
-  } else {
-    // If search input is active, remove its active class
-    searchInput.classList.remove("active");
-    searchButton.classList.remove("active");
-  }
-}
-
 // Add event listener to the document to detect clicks
 document.addEventListener("click", function (event) {
   // Get search container
@@ -471,7 +434,6 @@ document.addEventListener("click", function (event) {
   }
 });
 
-
 function toggleSearchTwo() {
   var searchInput = document.querySelector(".search-input-two");
   var searchButton = document.querySelector(".search-button-two");
@@ -481,14 +443,15 @@ function toggleSearchTwo() {
     searchInput.classList.add("active");
     searchContainer.classList.add("active")
     searchButton.classList.remove("active");
-    searchInput.focus(); // Focus on input when it becomes visible
   } else {
     searchInput.classList.remove("active");
     searchContainer.classList.remove("active")
     searchButton.classList.add("active");
+    searchInput.focus(); // Focus on input when it becomes visible
   }
 }
 
+//On enter search
 document.addEventListener('DOMContentLoaded', function() {
   var searchInput = document.querySelector(".search-input-two");
 
@@ -527,8 +490,6 @@ function searchTwo() {
       searchButton.classList.remove("active"); // Show search button
   }
 });
-
-
 
 // Glitch text
 document.addEventListener('DOMContentLoaded', function() {
