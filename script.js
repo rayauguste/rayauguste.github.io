@@ -392,19 +392,20 @@ if (searchInput && searchInput instanceof HTMLElement) {
   });
 }
 
-  function search() {
-    var searchTerm = document.querySelector(".search-input").value.toLowerCase();
-    var sections = document.querySelectorAll(".section"); // Target sections with class ".section"
-  
-    sections.forEach(function(section) {
-      var sectionContent = section.textContent.toLowerCase();
-      if (sectionContent.includes(searchTerm)) {
-        // Scroll to the section's parent element (container)
-        section.parentElement.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
-      }
-    });
-  }
+function search() {
+  var searchTerm = document.querySelector(".search-input").value.toLowerCase();
+  var sections = document.querySelectorAll(".section"); // Target sections with class ".section"
+
+  sections.forEach(function(section) {
+    var sectionContent = section.textContent.toLowerCase();
+    if (sectionContent.includes(searchTerm)) {
+      // Scroll to the section containing the word
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+    }
+  });
+}
+
 
   function hideSearch() {
       var searchInput = document.querySelector(".search-input");
@@ -502,19 +503,19 @@ if (searchInput && searchInput instanceof HTMLElement) {
   });
 }
 
-  function searchTwo() {
-    var searchTerm = document.querySelector(".search-input-two").value.toLowerCase();
-    var sections = document.querySelectorAll(".section"); // Target sections with class ".section"
-  
-    sections.forEach(function(section) {
-      var sectionContent = section.textContent.toLowerCase();
-      if (sectionContent.includes(searchTerm)) {
-        // Scroll to the section's parent element (container)
-        section.parentElement.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
-      }
-    });
-  }
+function searchTwo() {
+  var searchTerm = document.querySelector(".search-input-two").value.toLowerCase();
+  var sections = document.querySelectorAll(".section"); // Target sections with class ".section"
+
+  sections.forEach(function(section) {
+    var sectionContent = section.textContent.toLowerCase();
+    if (sectionContent.includes(searchTerm)) {
+      // Scroll to the section containing the word
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+    }
+  });
+}
 
   function hideSearch() {
       var searchInput = document.querySelector(".search-input-two");
@@ -529,7 +530,7 @@ if (searchInput && searchInput instanceof HTMLElement) {
 
 
 
-
+// Glitch text
 document.addEventListener('DOMContentLoaded', function() {
   // ——————————————————————————————————————————————————
   // TextScramble
@@ -632,7 +633,7 @@ document.addEventListener('DOMContentLoaded', function() {
   observeAndScramble("contact-header-h1", phrases["contact-header-h1"]);
 });
 
-
+//3D Card flip effect
 document.addEventListener('DOMContentLoaded', function() {
   const titleSections = document.querySelectorAll('.title-section, .about-me-section, .design-process-section, .services-section, .contact-section');
   
