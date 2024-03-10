@@ -572,6 +572,13 @@ body {
     max-width: 500px;
 }
 
+.contact-header {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 535px;
+}
+
 .contact-header h1 {
     font-size: 50px;
     font-weight: 200;
