@@ -130,46 +130,26 @@ function changeVariableAndNavigate(variable) {
 function generateImages(variable) {
   var imageList = [];
   // Game UI Image List
-  var gameImageList = [
-    'img/Frame 3425.png',
-    'img/Frame 3427.png',
-    'img/Frame 3428.png',
-    'img/Frame 3429.png',
-    'img/Frame 3430.png',
-    'img/Frame 3431.png',
-    'img/Frame 3432.png',
-    'img/Frame 3433.png',
-    'img/Frame 3434.png',
-    'img/Frame 3476.png'
-  ];
+  const fs = require('fs');
+const path = require('path');
 
-  // Web UI Image List
-  var webImageList = [
-    'img/Frame 3435.png',
-    'img/Frame 3436.png',
-    'img/Frame 3437.png',
-    'img/Frame 3439.png',
-    'img/Frame 3440.png',
-    'img/Frame 3441.png',
-    'img/Frame 3442.png',
-    'img/Frame 3443.png',
-    'img/Frame 3444.png',
-    'img/Frame 3445.png',
-    'img/Frame 3446.png'
-  ];
+// Function to get all image files from a folder
+function getImageFiles(folderPath) {
+  return fs.readdirSync(folderPath).filter(file => {
+    return path.extname(file).toLowerCase() === '.png';
+  });
+}
 
-  // App UI Image List
-  var appImageList = [
-    'img/Frame 3455.png',
-    'img/Frame 3450.png',
-    'img/Frame 3457.png',
-    'img/Frame 3454.png',
-    'img/Frame 3447.png',
-    'img/Frame 3449.png',
-    'img/Frame 3453.png',
-    'img/Frame 3451.png',
-    'img/Frame 3448.png'
-  ];
+// Paths to the image folders
+const gameUIPath = 'img/GameUI';
+const webUIPath = 'img/WebUI';
+const appUIPath = 'img/AppUI';
+
+// Update image lists
+var gameImageList = getImageFiles(gameUIPath);
+var webImageList = getImageFiles(webUIPath);
+var appImageList = getImageFiles(appUIPath);
+
 
   if (variable === 'game') {
       imageList = gameImageList;
@@ -225,39 +205,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //Random background images overtime
 document.addEventListener('DOMContentLoaded', function() {
-  // Array of image paths
-  var imageList = [
-    'img/Frame 3425.png',
-    'img/Frame 3427.png',
-    'img/Frame 3428.png',
-    'img/Frame 3429.png',
-    'img/Frame 3430.png',
-    'img/Frame 3431.png',
-    'img/Frame 3432.png',
-    'img/Frame 3433.png',
-    'img/Frame 3434.png',
-    'img/Frame 3435.png',
-    'img/Frame 3436.png',
-    'img/Frame 3437.png',
-    'img/Frame 3439.png',
-    'img/Frame 3440.png',
-    'img/Frame 3441.png',
-    'img/Frame 3442.png',
-    'img/Frame 3443.png',
-    'img/Frame 3444.png',
-    'img/Frame 3445.png',
-    'img/Frame 3446.png',
-    'img/Frame 3455.png',
-    'img/Frame 3450.png',
-    'img/Frame 3457.png',
-    'img/Frame 3454.png',
-    'img/Frame 3447.png',
-    'img/Frame 3449.png',
-    'img/Frame 3453.png',
-    'img/Frame 3451.png',
-    'img/Frame 3448.png',
-    'img/Frame 3476.png'
-  ];
+  const fs = require('fs');
+const path = require('path');
+
+// Define the subcategories
+const subcategories = ['GameUI', 'WebUI', 'AppUI'];
+
+// Initialize an empty array to store image paths
+const imageList = [];
+
+// Iterate through each subcategory
+subcategories.forEach(subcategory => {
+    const subcategoryPath = path.join('img', subcategory);
+    if (fs.existsSync(subcategoryPath)) {
+        // Get all image files within the subcategory folder
+        const imageFiles = fs.readdirSync(subcategoryPath)
+            .filter(filename => filename.toLowerCase().endsWith('.png') || filename.toLowerCase().endsWith('.jpg') || filename.toLowerCase().endsWith('.jpeg'))
+            .map(filename => path.join(subcategoryPath, filename));
+        imageList.push(...imageFiles);
+    }
+});
 
   // Function to randomly select an image path from the array
   function getRandomImage() {
