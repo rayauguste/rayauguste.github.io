@@ -139,7 +139,8 @@ function generateImages(variable) {
     'img/Frame 3431.png',
     'img/Frame 3432.png',
     'img/Frame 3433.png',
-    'img/Frame 3434.png'
+    'img/Frame 3434.png',
+    'img/Frame 3476.png'
   ];
 
   // Web UI Image List
@@ -254,7 +255,8 @@ document.addEventListener('DOMContentLoaded', function() {
     'img/Frame 3449.png',
     'img/Frame 3453.png',
     'img/Frame 3451.png',
-    'img/Frame 3448.png'
+    'img/Frame 3448.png',
+    'img/Frame 3476.png'
   ];
 
   // Function to randomly select an image path from the array
