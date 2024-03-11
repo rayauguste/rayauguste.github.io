@@ -226,37 +226,38 @@ document.addEventListener('DOMContentLoaded', function() {
 //Random background images overtime
 document.addEventListener('DOMContentLoaded', function() {
   // Array of image paths
-  const gulp = require('gulp');
-const fs = require('fs');
-const path = require('path');
-
-// Function to generate image list
-function generateImageList(done) {
-  const imageFolders = ['GameUI', 'WebUI', 'AppUI'];
-  const basePath = 'img/';
-  let imageList = [];
-
-  imageFolders.forEach(folder => {
-    const folderPath = path.join(basePath, folder);
-    const images = fs.readdirSync(folderPath)
-      .filter(file => /\.(png|jpg|jpeg)$/i.test(file))
-      .map(file => `${folderPath}/${file}`);
-    imageList = imageList.concat(images);
-  });
-
-  // Write the image list to a JSON file
-  fs.writeFileSync('imageList.json', JSON.stringify(imageList));
-  done();
-}
-
-// Watch task to update image list when new images are added
-gulp.task('watch', () => {
-  gulp.watch('img/**/*', generateImageList);
-});
-
-// Default task
-gulp.task('default', generateImageList);
-
+  var imageList = [
+    'img/GameUI/Frame 3425.png',
+    'img/GameUI/Frame 3427.png',
+    'img/GameUI/Frame 3428.png',
+    'img/GameUI/Frame 3429.png',
+    'img/GameUI/Frame 3430.png',
+    'img/GameUI/Frame 3431.png',
+    'img/GameUI/Frame 3432.png',
+    'img/GameUI/Frame 3433.png',
+    'img/GameUI/Frame 3434.png',
+    'img/GameUI/Frame 3476.png',
+    'img/WebUI/Frame 3435.png',
+    'img/WebUI/Frame 3436.png',
+    'img/WebUI/Frame 3437.png',
+    'img/WebUI/Frame 3439.png',
+    'img/WebUI/Frame 3440.png',
+    'img/WebUI/Frame 3441.png',
+    'img/WebUI/Frame 3442.png',
+    'img/WebUI/Frame 3443.png',
+    'img/WebUI/Frame 3444.png',
+    'img/WebUI/Frame 3445.png',
+    'img/WebUI/Frame 3446.png',
+    'img/AppUI/Frame 3455.png',
+    'img/AppUI/Frame 3450.png',
+    'img/AppUI/Frame 3457.png',
+    'img/AppUI/Frame 3454.png',
+    'img/AppUI/Frame 3447.png',
+    'img/AppUI/Frame 3449.png',
+    'img/AppUI/Frame 3453.png',
+    'img/AppUI/Frame 3451.png',
+    'img/AppUI/Frame 3448.png'
+  ];
 
   // Function to randomly select an image path from the array
   function getRandomImage() {
