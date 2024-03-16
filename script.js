@@ -657,7 +657,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Update element position
     if (activeDraggable.classList.contains('design-two')) {
-      activeDraggable.style.transition = 'none'; // Disable transition
+      activeDraggable.style.transition = 'opacity 1s ease'; // Disable transition
       activeDraggable.style.right = (window.innerWidth - posX - activeDraggable.offsetWidth) + 'px';
     } else {
       activeDraggable.style.transition = 'opacity 1s ease'; // Disable transition
@@ -751,4 +751,3 @@ document.addEventListener('DOMContentLoaded', function() {
     resetPosition(draggable);
   });
 });
-
