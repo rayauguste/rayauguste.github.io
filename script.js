@@ -662,7 +662,7 @@ document.addEventListener('DOMContentLoaded', function() {
       activeDraggable.style.transition = 'none'; // Disable transition
       activeDraggable.style.right = (window.innerWidth - posX - activeDraggable.offsetWidth) + 'px';
     } else {
-      activeDraggable.style.transition = 'none'; // Disable transition
+      activeDraggable.style.transition = 'opacity 1s ease'; // Disable transition
       activeDraggable.style.left = posX + 'px';
     }
     activeDraggable.style.top = posY + 'px';
@@ -713,7 +713,7 @@ document.addEventListener('DOMContentLoaded', function() {
       timers.set(className, setTimeout(() => {
         resetPosition(draggable);
         timers.delete(className); // Remove timer after reset
-      }, 3000)); // Reset after 3 seconds
+      }, 5000)); // Reset after 3 seconds
     }
   }
 

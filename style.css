@@ -7,6 +7,7 @@ body {
     background-color: #000000;
     font-family: 'Inter', sans-serif;
     pointer-events: none;
+    overflow-x: hidden;
 }
 
 .logo {
@@ -14,6 +15,9 @@ body {
     justify-content: center;
     width: 100%;
     padding: 32px 0;
+}
+
+.logo a {
     pointer-events: all;
 }
 
@@ -28,7 +32,6 @@ body {
     height: 42px;
     gap: 77px;
     padding-bottom: 70px;
-    pointer-events: all;
   }
 
 .header-buttons {
@@ -55,6 +58,7 @@ body {
     display: flex; /* Use flexbox */
     align-items: center; /* Center items vertically */
     text-decoration: none; /* no underline */
+    pointer-events: all;
 }
 
 .header-buttons a:hover {
@@ -888,6 +892,7 @@ body {
     padding-left: 20px;
     background-color: #ffffff20;
     color: #B5B5B5;
+    pointer-events: all;
   }
   
   .search-input.active {
@@ -902,6 +907,7 @@ body {
     opacity: 1;
     transition: all 0.5s ease;
     padding: 0;
+    pointer-events: all;
   }
   
   .search-button.active {
@@ -1076,11 +1082,13 @@ body {
     background-color: transparent;
     cursor: pointer;
     z-index: 10;
+    pointer-events: all;
   }
 
   #bodyClick {
     background-color: #00000050;
     backdrop-filter: blur(28px); /* Apply the background blur */
+    pointer-events: all;
   }
 
 .burger-section {
@@ -1144,6 +1152,7 @@ body {
 #hamburger-icon {
     cursor: pointer;
     transition: margin-right 0.3s ease;
+    pointer-events: all;
   }
   
   #hamburger-icon p {
