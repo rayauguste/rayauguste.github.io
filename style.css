@@ -831,15 +831,15 @@ body {
     transition: transform 0.5s ease;
 }
 
-.large-design:hover {
-    transform: perspective(1000px) rotateX(25deg) scale(1.15); /* Scale up on hover */
-    transition: transform 0.5s ease; /* Apply transition */
-}
-
-
 .large-design img {
     width: 689px;
     height: 412px;
+    transition: width 0.5s ease, height 0.5s ease;
+}
+
+.large-design:hover img {
+    width: 826.8px;
+    height: 494.4px;
 }
 
 .design-back-button {
