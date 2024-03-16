@@ -334,7 +334,7 @@ body {
     position: absolute;
     z-index: -1;
     top: 1754px;
-    right: 201px;
+    right: -201px;
     transition: opacity 1s ease, right 1s ease, top 1s ease;
     cursor: move;
     pointer-events: all;
@@ -360,7 +360,7 @@ body {
 
 .design-process-section {
     display: flex;
-    width: 100%;
+    gap: 50px;
     max-width: 1920px;
     align-items: center;
     justify-content: space-between;
@@ -410,7 +410,6 @@ body {
     display: flex;
     flex-direction: row;
     margin-top: 220px;
-    gap: -20px;
     flex-wrap: wrap;
 }
 
@@ -429,8 +428,8 @@ body {
 }
 
 .step {
-    width: 371px;
-    height: 355px; /* Adjust as needed */
+    width: 330.24px;
+    height: 316px; /* Adjust as needed */
     background-image: url("img/Polygon 292.png");
     object-fit: cover;
     background-position: center;
@@ -439,7 +438,7 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 34px;
+    gap: 24px;
 }
 
 .step-two {
@@ -449,7 +448,7 @@ body {
 }
 
 .step h1 {
-    padding-top: 60px;
+    padding-top: 50px;
     color: #39BBC9;
     font-size: 26px;
     font-weight: 200;

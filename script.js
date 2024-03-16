@@ -645,7 +645,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let activeDraggable = null;
   const defaultLocations = {
     'design-one': { top: 1107, left: -40 },
-    'design-two': { top: 1754, right: 201 },
+    'design-two': { top: 1754, right: -201 },
     'design-three': { top: 2554, left: 305 }
   };
   const timers = new Map(); // Store timers for each draggable element
