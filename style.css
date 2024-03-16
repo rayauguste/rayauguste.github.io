@@ -831,6 +831,12 @@ body {
     transition: transform 0.5s ease;
 }
 
+.large-design:hover {
+    transform: perspective(1000px) rotateX(25deg) scale(1.15); /* Scale up on hover */
+    transition: transform 0.5s ease; /* Apply transition */
+}
+
+
 .large-design img {
     width: 689px;
     height: 412px;
