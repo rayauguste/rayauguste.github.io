@@ -72,6 +72,7 @@ body {
     align-items: center;
     padding-left: 16px;
     padding-right: 16px;
+    pointer-events: all;
 }
 
 .back-button img {
@@ -816,6 +817,7 @@ body {
     justify-content: center;
     width: 100%;
     margin-bottom: 300px;
+    pointer-events: all;
 }
 
 .design-list {
