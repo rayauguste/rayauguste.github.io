@@ -31,7 +31,8 @@ body {
     z-index: 4;
     height: 42px;
     gap: 77px;
-    padding-bottom: 70px;
+    margin-bottom: 70px;
+    pointer-events: all;
   }
 
 .header-buttons {
@@ -58,7 +59,6 @@ body {
     display: flex; /* Use flexbox */
     align-items: center; /* Center items vertically */
     text-decoration: none; /* no underline */
-    pointer-events: all;
 }
 
 .header-buttons a:hover {
