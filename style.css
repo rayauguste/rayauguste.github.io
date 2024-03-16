@@ -839,7 +839,7 @@ body {
     transition: width 0.5s ease, height 0.5s ease;
 }
 
-.large-design:hover img {
+.large-design img:hover {
     width: 826.8px;
     height: 494.4px;
 }
