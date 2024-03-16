@@ -1305,10 +1305,8 @@ body {
         justify-content: center;
         gap: 20px;
         padding-bottom: 65px;
-    }
-
-    .design-process-steps {
         margin-top: 0;
+        padding: 0 65px;
     }
 
     .large-image-two {
@@ -1525,5 +1523,9 @@ body {
 
     .back-up {
         display: none;
+    }
+
+    .design-process-steps {
+        padding: 0;
     }
   }
