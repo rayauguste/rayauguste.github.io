@@ -637,3 +637,120 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Initialize variables to store mouse position and the active draggable element
+  let offsetX, offsetY;
+  let active = false;
+  let activeDraggable = null;
+  const defaultLocations = {
+    'design-one': { top: 1107, left: -40 },
+    'design-two': { top: 1754, right: 201 },
+    'design-three': { top: 2554, left: 305 }
+  };
+  const timers = new Map(); // Store timers for each draggable element
+
+  // Mouse move event on window
+  window.addEventListener('mousemove', (e) => {
+    if (!active || !activeDraggable) return;
+    // Calculate new element position considering scroll
+    const posX = e.pageX - offsetX;
+    const posY = e.pageY - offsetY;
+
+    // Update element position
+    if (activeDraggable.classList.contains('design-two')) {
+      activeDraggable.style.transition = 'none'; // Disable transition
+      activeDraggable.style.right = (window.innerWidth - posX - activeDraggable.offsetWidth) + 'px';
+    } else {
+      activeDraggable.style.transition = 'none'; // Disable transition
+      activeDraggable.style.left = posX + 'px';
+    }
+    activeDraggable.style.top = posY + 'px';
+  });
+
+  // Mouse up event on window
+  window.addEventListener('mouseup', (e) => {
+    // Stop dragging
+    active = false;
+    if (activeDraggable) {
+      activeDraggable.style.transition = ''; // Re-enable transition
+      startResetTimer(activeDraggable); // Start reset timer when dragging stops
+    }
+  });
+
+  // Get all draggable elements
+  const draggables = document.querySelectorAll('.design-one, .design-two, .design-three');
+
+  // Iterate over each draggable element and add event listeners
+  draggables.forEach(draggable => {
+    // Mouse down event
+    draggable.addEventListener('mousedown', (e) => {
+      // Prevent default browser drag behavior
+      e.preventDefault();
+      
+      active = true;
+      activeDraggable = draggable;
+      // Store the offset between mouse position and element position
+      const rect = activeDraggable.getBoundingClientRect();
+      offsetX = e.pageX - rect.left - window.scrollX;
+      offsetY = e.pageY - rect.top - window.scrollY;
+
+      // Stop the reset timer when dragging starts
+      stopResetTimer(activeDraggable);
+    });
+
+    // Mouse up event
+    draggable.addEventListener('mouseup', (e) => {
+      // Start the reset timer when dragging stops
+      startResetTimer(activeDraggable);
+    });
+  });
+
+  // Function to start the reset timer for a draggable element
+  function startResetTimer(draggable) {
+    const className = draggable.classList[0]; // Get the first class name
+    if (!timers.has(className)) {
+      timers.set(className, setTimeout(() => {
+        resetPosition(draggable);
+        timers.delete(className); // Remove timer after reset
+      }, 3000)); // Reset after 3 seconds
+    }
+  }
+
+  // Function to stop the reset timer for a draggable element
+  function stopResetTimer(draggable) {
+    const className = draggable.classList[0]; // Get the first class name
+    if (timers.has(className)) {
+      clearTimeout(timers.get(className));
+      timers.delete(className);
+    }
+  }
+
+  // Function to reset position of a draggable element
+  function resetPosition(draggable) {
+    const className = draggable.classList[0]; // Get the first class name
+    const defaultLocation = defaultLocations[className];
+    if (defaultLocation) {
+      const { top, left, right } = defaultLocation;
+      draggable.style.transition = ''; // Re-enable transition
+      draggable.style.position = 'absolute';
+      draggable.style.top = top + 'px';
+      if (className === 'design-two') {
+        draggable.style.left = ''; // Clear left value
+        draggable.style.right = right + 'px'; // Set right value directly
+      } else {
+        draggable.style.left = left + 'px';
+        draggable.style.right = ''; // Clear right value for other classes
+      }
+      draggable.style.opacity = 1; // Reset opacity
+    } else {
+      console.error(`Default location for the draggable element is undefined.`);
+    }
+  }
+
+  // Reset position of all draggable elements on initial load
+  draggables.forEach(draggable => {
+    resetPosition(draggable);
+  });
+});
+

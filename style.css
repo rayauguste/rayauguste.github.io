@@ -6,6 +6,7 @@ body {
     margin: 0; padding: 0;
     background-color: #000000;
     font-family: 'Inter', sans-serif;
+    pointer-events: none;
 }
 
 .logo {
@@ -13,6 +14,7 @@ body {
     justify-content: center;
     width: 100%;
     padding: 32px 0;
+    pointer-events: all;
 }
 
 .header {
@@ -26,6 +28,7 @@ body {
     height: 42px;
     gap: 77px;
     padding-bottom: 70px;
+    pointer-events: all;
   }
 
 .header-buttons {
@@ -84,6 +87,7 @@ body {
     width: 100%;
     align-items: center;
     margin-bottom: 300px;
+    pointer-events: none;
 }
 
 .top-section {
@@ -110,6 +114,7 @@ body {
     border: 1px solid black; /* Remove default border */
     backdrop-filter: blur(28px); /* Apply the background blur */
     transition: transform 0.1s ease;
+    pointer-events: all;
 }
 
 .glow-line {
@@ -276,6 +281,7 @@ body {
     border: 1px solid black; /* Remove default border */
     backdrop-filter: blur(28px); /* Apply the background blur */
     transition: transform 0.1s ease;
+    pointer-events: all;
 }
 
 .social-buttons {
@@ -314,7 +320,9 @@ body {
     z-index: -1;
     top: 1107px;
     left: -40px;
-    transition: opacity 1s ease;
+    transition: opacity 1s ease, left 1s ease, top 1s ease;
+    cursor: move;
+    pointer-events: all;
 }
 
 .design-two {
@@ -322,7 +330,9 @@ body {
     z-index: -1;
     top: 1754px;
     right: 201px;
-    transition: opacity 1s ease;
+    transition: opacity 1s ease, right 1s ease, top 1s ease;
+    cursor: move;
+    pointer-events: all;
 }
 
 .design-three {
@@ -330,7 +340,9 @@ body {
     z-index: -1;
     top: 2554px;
     left: 305px;
-    transition: opacity 1s ease;
+    transition: opacity 1s ease, left 1s ease, top 1s ease;
+    cursor: move;
+    pointer-events: all;
 }
 
 .middle-section {
@@ -355,6 +367,7 @@ body {
     border: 1px solid black; /* Remove default border */
     backdrop-filter: blur(28px); /* Apply the background blur */
     transition: transform 0.1s ease;
+    pointer-events: all;
 }
 
 .design-process-group {
@@ -462,6 +475,7 @@ body {
     border: 1px solid black; /* Remove default border */
     backdrop-filter: blur(28px); /* Apply the background blur */
     transition: transform 0.1s ease;
+    pointer-events: all;
 }
 
 .service-info h1 {
@@ -624,6 +638,7 @@ body {
     overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
     backdrop-filter: blur(28px); /* Apply the background blur */
     transition: transform 0.1s ease;
+    pointer-events: all;
 }
 
 .contact-div {
@@ -1033,6 +1048,7 @@ body {
     bottom: 30px;
     left: 30px;
     z-index: 4;
+    pointer-events: all;
 }
 
 .back-up:hover {
