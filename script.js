@@ -190,8 +190,6 @@ function generateImages(variable) {
       var image = document.createElement('img');
       image.src = imageList[i];
       image.alt = 'Image ' + (i + 1);
-      image.style.width = '100%'; // Set image width to fill the parent div
-      image.style.height = 'auto'; // Maintain aspect ratio
       image.draggable = false; // Disable image dragging
       imageDiv.appendChild(image);
       designListSection.appendChild(imageDiv);
