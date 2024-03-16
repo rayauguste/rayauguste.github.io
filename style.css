@@ -1473,6 +1473,22 @@ body {
     .title-header {
         align-items: center;
     }
+
+    .service {
+        align-items: center;
+    }
+
+    .service-info {
+        align-items: center;
+    }
+
+    .service-info h1 {
+        text-align: center;
+    }
+
+    .service-info p {
+        text-align: center;
+    }
   }
 
   @media screen and (max-width: 700px) {
