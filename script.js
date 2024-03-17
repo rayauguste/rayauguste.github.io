@@ -606,9 +606,8 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Function to check if the section has translation 0 in X-axis
   function isSectionTranslatedX(section) {
-    const style = getComputedStyle(section);
-    const transformMatrix = new DOMMatrix(style.getPropertyValue('transform'));
-    return transformMatrix.m41 === 0; // Check if the translation in X-axis is 0
+    const transitionDuration = parseFloat(getComputedStyle(section).getPropertyValue('transition-duration')) * 1000; // Convert transition duration from seconds to milliseconds
+    return transitionDuration >= 100; // Check if the transition duration is at least 0.5 seconds
   }
 
   titleSections.forEach(titleSection => {
@@ -648,7 +647,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
-
 
 //Drag gallery cards
 document.addEventListener('DOMContentLoaded', function() {
@@ -799,8 +797,6 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(section);
   });
 });
-
-
 
 //fix bug where the screen is aligned to the right
 document.addEventListener('DOMContentLoaded', function() {
