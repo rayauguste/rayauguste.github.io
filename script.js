@@ -607,7 +607,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Function to check if the section has translation 0 in X-axis
   function isSectionTranslatedX(section) {
     const transitionDuration = parseFloat(getComputedStyle(section).getPropertyValue('transition-duration')) * 1000; // Convert transition duration from seconds to milliseconds
-    return transitionDuration >= 100; // Check if the transition duration is at least 0.5 seconds
+    return transitionDuration >= 500; // Check if the transition duration is at least 0.5 seconds
   }
 
   titleSections.forEach(titleSection => {
