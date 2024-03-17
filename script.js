@@ -572,25 +572,28 @@ document.addEventListener('DOMContentLoaded', function() {
   const observedElements = {};
 
   function observeAndScramble(className, phrases) {
-    const elements = document.querySelectorAll("." + className);
-    elements.forEach((element, index) => {
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-            if (!observedElements[entry.target]) {
-              const fx = new TextScramble(entry.target);
-              fx.setText(phrases[index]);
+  const elements = document.querySelectorAll("." + className);
+  elements.forEach((element, index) => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+          if (!observedElements[entry.target]) {
+            const fx = new TextScramble(entry.target);
+            fx.setText(phrases[index]).then(() => {
               observedElements[entry.target] = true;
-            }
-          } else {
-            // Reset the state when element is out of view or not sufficiently visible
-            observedElements[entry.target] = false;
+              observer.unobserve(entry.target); // Stop observing the element after animation
+            });
           }
-        });
-      }, { threshold: 0.5 }); // Set threshold to trigger when at least 50% of the element is visible
-      observer.observe(element);
-    });
-  }
+        } else {
+          // Reset the state when element is out of view or not sufficiently visible
+          observedElements[entry.target] = false;
+        }
+      });
+    }, { threshold: 0.5 }); // Set threshold to trigger when at least 50% of the element is visible
+    observer.observe(element);
+  });
+}
+
 
   // Call the function with class names and their respective phrases
   observeAndScramble("title-header-h1", phrases["title-header-h1"]);
