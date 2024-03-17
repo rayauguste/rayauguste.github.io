@@ -604,40 +604,53 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
   const titleSections = document.querySelectorAll('.title-section, .about-me-section, .design-process-section, .services-section, .contact-section');
   
+  // Function to check if the section has translation 0 in X-axis
+  function isSectionTranslatedX(section) {
+    const style = getComputedStyle(section);
+    const transformMatrix = new DOMMatrix(style.getPropertyValue('transform'));
+    return transformMatrix.m41 === 0; // Check if the translation in X-axis is 0
+  }
+
   titleSections.forEach(titleSection => {
-      let isHovering = false; // Flag to track if the mouse is hovering over the div
+    let isHovering = false; // Flag to track if the mouse is hovering over the div
 
-      titleSection.addEventListener('mouseenter', () => {
-          isHovering = true;
-      });
+    titleSection.addEventListener('mouseenter', () => {
+      if (isSectionTranslatedX(titleSection)) {
+        isHovering = true;
+      }
+    });
 
-      titleSection.addEventListener('mouseleave', () => {
-          isHovering = false;
-          titleSection.style.transition = 'transform 0.5s ease'; // Apply transition
-          titleSection.style.transform = `perspective(1000px) rotateY(0deg)`; // Rotate back to 0 degrees
-      });
+    titleSection.addEventListener('mouseleave', () => {
+      if (isSectionTranslatedX(titleSection)) {
+        isHovering = false;
+        titleSection.style.transition = 'transform 0.5s ease'; // Apply transition
+        titleSection.style.transform = `perspective(1000px) rotateY(0deg)`; // Rotate back to 0 degrees
+      }
+    });
 
-      document.addEventListener('mousemove', (event) => {
-          if (isHovering) {
-              const mouseX = event.pageX - titleSection.offsetLeft; // X-coordinate of the cursor relative to the div
-              const divWidth = titleSection.offsetWidth;
-              const halfWidth = divWidth / 2;
+    document.addEventListener('mousemove', (event) => {
+      if (isHovering && isSectionTranslatedX(titleSection)) {
+        const mouseX = event.pageX - titleSection.offsetLeft; // X-coordinate of the cursor relative to the div
+        const divWidth = titleSection.offsetWidth;
+        const halfWidth = divWidth / 2;
 
-              // Calculate the percentage of cursor position relative to the width of the div
-              const cursorPercentage = (mouseX - halfWidth) / halfWidth;
+        // Calculate the percentage of cursor position relative to the width of the div
+        const cursorPercentage = (mouseX - halfWidth) / halfWidth;
 
-              // Calculate the rotation angle based on the cursor position
-              const maxRotation = 5; // Maximum rotation angle
-              const rotationAngle = cursorPercentage * maxRotation * -1;
+        // Calculate the rotation angle based on the cursor position
+        const maxRotation = 5; // Maximum rotation angle
+        const rotationAngle = cursorPercentage * maxRotation * -1;
 
-              // Apply the rotation
-              titleSection.style.transition = ''; // Remove transition for immediate response
-              titleSection.style.transform = `perspective(1000px) rotateY(${rotationAngle}deg)`;
-          }
-      });
+        // Apply the rotation
+        titleSection.style.transition = 'transform 0.1s ease'; // Remove transition for immediate response
+        titleSection.style.transform = `perspective(1000px) rotateY(${rotationAngle}deg)`;
+      }
+    });
   });
 });
 
+
+//Drag gallery cards
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize variables to store mouse position and the active draggable element
   let offsetX, offsetY;
@@ -752,4 +765,49 @@ document.addEventListener('DOMContentLoaded', function() {
   draggables.forEach(draggable => {
     resetPosition(draggable);
   });
+});
+
+//Slide sections
+document.addEventListener('DOMContentLoaded', function() {
+  const sections = document.querySelectorAll('.title-section, .about-me-section, .design-process-section, .services-section, .contact-section');
+
+  // Define options for the IntersectionObserver
+  const options = {
+    root: null, // Use the viewport as the root
+    rootMargin: '0px', // No margin
+    threshold: 0 // Trigger when any part of the section is visible
+  };
+
+  // Callback function for the IntersectionObserver
+  function handleIntersection(entries, observer) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target); // Stop observing the section
+      }
+    });
+  }
+
+  // Create a new IntersectionObserver
+  const observer = new IntersectionObserver(handleIntersection, options);
+
+  // Observe each section immediately
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+});
+
+
+//fix bug where the screen is aligned to the right
+document.addEventListener('DOMContentLoaded', function() {
+  // Scroll the page to the left
+  window.scrollTo({left: 0, behavior: 'smooth'});
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Set a delay of 1000 milliseconds (1 second) before scrolling
+  setTimeout(function() {
+      // Scroll the page to the left
+      window.scrollTo({left: 0, behavior: 'smooth'});
+  }, 1000); // Adjust the delay time (in milliseconds) as needed
 });
