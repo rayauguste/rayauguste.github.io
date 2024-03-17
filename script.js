@@ -499,109 +499,96 @@ function searchTwo() {
 
 // Glitch text
 document.addEventListener('DOMContentLoaded', function() {
-  // ——————————————————————————————————————————————————
-  // TextScramble
-  // ——————————————————————————————————————————————————
-
-  class TextScramble {
-    constructor(el) {
-      this.el = el;
-      this.chars = "!<>-_\\/[]{}—=+*^?#________";
-      this.update = this.update.bind(this);
-    }
-    setText(newText) {
-      const oldText = this.el.innerText;
-      const length = Math.max(oldText.length, newText.length);
-      const promise = new Promise((resolve) => (this.resolve = resolve));
-      this.queue = [];
-      for (let i = 0; i < length; i++) {
-        const from = oldText[i] || "";
-        const to = newText[i] || "";
-        const start = Math.floor(Math.random() *100);
-        const end = start + Math.floor(Math.random() * 100);
-        this.queue.push({ from, to, start, end });
-      }
-      cancelAnimationFrame(this.frameRequest);
-      this.frame = 0;
-      this.update();
-      return promise;
-    }
-    update() {
-      let output = "";
-      let complete = 0;
-      for (let i = 0, n = this.queue.length; i < n; i++) {
-        let { from, to, start, end, char } = this.queue[i];
-        if (this.frame >= end) {
-          complete++;
-          output += to;
-        } else if (this.frame >= start) {
-          if (!char || Math.random() < 0.28) {
-            char = this.randomChar();
-            this.queue[i].char = char;
-          }
-          output += `<span class="dud">${char}</span>`;
-        } else {
-          output += from;
+    // Glitch text
+    class TextScramble {
+        constructor(el) {
+            this.el = el;
+            this.chars = "!<>-_\\/[]{}—=+*^?#________";
+            this.update = this.update.bind(this);
         }
-      }
-      this.el.innerHTML = output;
-      if (complete === this.queue.length) {
-        this.resolve();
-      } else {
-        this.frameRequest = requestAnimationFrame(this.update);
-        this.frame++;
-      }
-    }
-    randomChar() {
-      return this.chars[Math.floor(Math.random() * this.chars.length)];
-    }
-  }
-
-  // ——————————————————————————————————————————————————
-  // Example
-  // ——————————————————————————————————————————————————
-
-  const phrases = {
-    "title-header-h1": ["Hi, I'm Ray Auguste"],
-    "about-me-h1": ["About Me"],
-    "design-process-h1": ["Design Process"],
-    "services-header-h1": ["What Services Do I Offer"],
-    "contact-header-h1": ["Get in Touch"]
-  };
-
-  const observedElements = {};
-
-  function observeAndScramble(className, phrases) {
-  const elements = document.querySelectorAll("." + className);
-  elements.forEach((element, index) => {
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-          if (!observedElements[entry.target]) {
-            const fx = new TextScramble(entry.target);
-            fx.setText(phrases[index]).then(() => {
-              observedElements[entry.target] = true;
-              observer.unobserve(entry.target); // Stop observing the element after animation
-            });
-          }
-        } else {
-          // Reset the state when element is out of view or not sufficiently visible
-          observedElements[entry.target] = false;
+        setText(newText) {
+            const oldText = this.el.innerText;
+            const length = Math.max(oldText.length, newText.length);
+            const promise = new Promise((resolve) => (this.resolve = resolve));
+            this.queue = [];
+            for (let i = 0; i < length; i++) {
+                const from = oldText[i] || "";
+                const to = newText[i] || "";
+                const start = Math.floor(Math.random() * 100);
+                const end = start + Math.floor(Math.random() * 100);
+                this.queue.push({ from, to, start, end });
+            }
+            cancelAnimationFrame(this.frameRequest);
+            this.frame = 0;
+            this.update();
+            return promise;
         }
+        update() {
+            let output = "";
+            let complete = 0;
+            for (let i = 0, n = this.queue.length; i < n; i++) {
+                let { from, to, start, end, char } = this.queue[i];
+                if (this.frame >= end) {
+                    complete++;
+                    output += to;
+                } else if (this.frame >= start) {
+                    if (!char || Math.random() < 0.28) {
+                        char = this.randomChar();
+                        this.queue[i].char = char;
+                    }
+                    output += `<span class="dud">${char}</span>`;
+                } else {
+                    output += from;
+                }
+            }
+            this.el.innerHTML = output;
+            if (complete === this.queue.length) {
+                this.resolve();
+            } else {
+                this.frameRequest = requestAnimationFrame(this.update);
+                this.frame++;
+            }
+        }
+        randomChar() {
+            return this.chars[Math.floor(Math.random() * this.chars.length)];
+        }
+    }
+
+    // Example
+    const phrases = {
+        "title-header-h1": ["Hi, I'm Ray Auguste"],
+        "contact-header-h1": ["Get in Touch"]
+    };
+
+    function observeAndScramble(className, phrases) {
+      const elements = document.querySelectorAll("." + className);
+      elements.forEach((element, index) => {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+              if (!observedElements[entry.target]) {
+                const fx = new TextScramble(entry.target);
+                fx.setText(phrases[index]);
+                observedElements[entry.target] = true;
+              }
+            } else {
+              // Reset the state when element is out of view or not sufficiently visible
+              observedElements[entry.target] = false;
+            }
+          });
+        }, { threshold: 0.5 }); // Set threshold to trigger when at least 50% of the element is visible
+        observer.observe(element);
       });
-    }, { threshold: 0.5 }); // Set threshold to trigger when at least 50% of the element is visible
-    observer.observe(element);
-  });
-}
+    }
 
+    // Initialize observed elements map
+    const observedElements = {};
 
-  // Call the function with class names and their respective phrases
-  observeAndScramble("title-header-h1", phrases["title-header-h1"]);
-  observeAndScramble("about-me-h1", phrases["about-me-h1"]);
-  observeAndScramble("design-process-h1", phrases["design-process-h1"]);
-  observeAndScramble("services-header-h1", phrases["services-header-h1"]);
-  observeAndScramble("contact-header-h1", phrases["contact-header-h1"]);
+    // Call the function with class names and their respective phrases
+    observeAndScramble("title-header-h1", phrases["title-header-h1"]);
+    observeAndScramble("contact-header-h1", phrases["contact-header-h1"]);
 });
+
 
 //3D Card flip effect
 document.addEventListener('DOMContentLoaded', function() {
