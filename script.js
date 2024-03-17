@@ -775,15 +775,18 @@ document.addEventListener('DOMContentLoaded', function() {
   const options = {
     root: null, // Use the viewport as the root
     rootMargin: '0px', // No margin
-    threshold: 0 // Trigger when any part of the section is visible
+    threshold: 0.5 // Trigger when at least 50% of the section is visible
   };
 
   // Callback function for the IntersectionObserver
   function handleIntersection(entries, observer) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        observer.unobserve(entry.target); // Stop observing the section
+        // Check if at least 50% of the section is visible
+        if (entry.intersectionRatio >= 0.5) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target); // Stop observing the section
+        }
       }
     });
   }
@@ -796,6 +799,7 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(section);
   });
 });
+
 
 
 //fix bug where the screen is aligned to the right
