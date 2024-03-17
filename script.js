@@ -809,5 +809,5 @@ document.addEventListener('DOMContentLoaded', function() {
   setTimeout(function() {
       // Scroll the page to the left
       window.scrollTo({left: 0, behavior: 'smooth'});
-  }, 1000); // Adjust the delay time (in milliseconds) as needed
+  }, 500); // Adjust the delay time (in milliseconds) as needed
 });
