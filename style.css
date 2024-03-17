@@ -118,9 +118,10 @@ body {
     overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
     border: 1px solid black; /* Remove default border */
     backdrop-filter: blur(28px); /* Apply the background blur */
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, opacity 0.5s ease;
     pointer-events: all;
     transform: translateX(-500px); /* Initially translate each section */
+    opacity: 0;
 }
 
 .glow-line {
@@ -286,9 +287,10 @@ body {
     overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
     border: 1px solid black; /* Remove default border */
     backdrop-filter: blur(28px); /* Apply the background blur */
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, opacity 0.5s ease;
     pointer-events: all;
     transform: translateX(500px); /* Initially translate each section */
+    opacity: 0;
 }
 
 .social-buttons {
@@ -373,9 +375,10 @@ body {
     overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
     border: 1px solid black; /* Remove default border */
     backdrop-filter: blur(28px); /* Apply the background blur */
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, opacity 0.5s ease;
     pointer-events: all;
     transform: translateX(-500px); /* Initially translate each section */
+    opacity: 0;
 }
 
 .design-process-group {
@@ -483,9 +486,10 @@ body {
     overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
     border: 1px solid black; /* Remove default border */
     backdrop-filter: blur(28px); /* Apply the background blur */
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, opacity 0.5s ease;
     pointer-events: all;
     transform: translateX(500px); /* Initially translate each section */
+    opacity: 0;
 }
 
 .service-info h1 {
@@ -647,9 +651,10 @@ body {
     box-shadow: inset 0 11px 0 #ffffff05; /* Add inner shadow */
     overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
     backdrop-filter: blur(28px); /* Apply the background blur */
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, opacity 0.5s ease;
     pointer-events: all;
     transform: translateX(-500px); /* Initially translate each section */
+    opacity: 0;
 }
 
 .contact-div {
@@ -1087,6 +1092,7 @@ body {
 
 .in-view {
     transform: translateX(0px); /* Initially translate each section */
+    opacity: 1;
 }
 
   .hide-two {
