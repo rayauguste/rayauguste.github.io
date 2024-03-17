@@ -517,8 +517,8 @@ document.addEventListener('DOMContentLoaded', function() {
       for (let i = 0; i < length; i++) {
         const from = oldText[i] || "";
         const to = newText[i] || "";
-        const start = Math.floor(Math.random() *60);
-        const end = start + Math.floor(Math.random() * 60);
+        const start = Math.floor(Math.random() *100);
+        const end = start + Math.floor(Math.random() * 100);
         this.queue.push({ from, to, start, end });
       }
       cancelAnimationFrame(this.frameRequest);
@@ -576,18 +576,18 @@ document.addEventListener('DOMContentLoaded', function() {
     elements.forEach((element, index) => {
       const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
             if (!observedElements[entry.target]) {
               const fx = new TextScramble(entry.target);
               fx.setText(phrases[index]);
               observedElements[entry.target] = true;
             }
           } else {
-            // Reset the state when element is out of view
+            // Reset the state when element is out of view or not sufficiently visible
             observedElements[entry.target] = false;
           }
         });
-      });
+      }, { threshold: 0.5 }); // Set threshold to trigger when at least 50% of the element is visible
       observer.observe(element);
     });
   }
@@ -606,22 +606,47 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // Function to check if the section has translation 0 in X-axis
   function isSectionTranslatedX(section) {
-    const transitionDuration = parseFloat(getComputedStyle(section).getPropertyValue('transition-duration')) * 1000; // Convert transition duration from seconds to milliseconds
-    return transitionDuration >= 500; // Check if the transition duration is at least 0.5 seconds
-  }
+    const style = getComputedStyle(section);
+    const transitionDuration = parseFloat(style.transitionDuration) * 1000; // Convert transition duration from seconds to milliseconds
+    const transitionDelay = parseFloat(style.transitionDelay) * 1000; // Convert transition delay from seconds to milliseconds
+    const currentTime = performance.now(); // Get the current time in milliseconds
+    
+    // Check if the section has started transition yet
+    if (!section.__transitionStartTime) {
+        section.__transitionStartTime = currentTime; // Store the start time of the transition
+        return false; // Return false until the transition starts
+    }
+    
+    // Calculate elapsed time since transition started
+    const elapsedTime = currentTime - section.__transitionStartTime;
+    
+    // Calculate total duration of the transition including delay
+    const totalDuration = transitionDuration + transitionDelay;
+    
+    // Check if the elapsed time exceeds the total duration
+    if (elapsedTime >= totalDuration) {
+        return true; // Return true once the transition is completed
+    }
+    
+    // Calculate progress of the transition
+    const progress = elapsedTime / totalDuration;
+    
+    // Check if the transition progress is greater than or equal to 90%
+    return progress >= 0.7;
+}
+
+
 
   titleSections.forEach(titleSection => {
     let isHovering = false; // Flag to track if the mouse is hovering over the div
 
     titleSection.addEventListener('mouseenter', () => {
-      if (isSectionTranslatedX(titleSection)) {
-        isHovering = true;
-      }
+      isHovering = true;
     });
 
     titleSection.addEventListener('mouseleave', () => {
+      isHovering = false;
       if (isSectionTranslatedX(titleSection)) {
-        isHovering = false;
         titleSection.style.transition = 'transform 0.5s ease'; // Apply transition
         titleSection.style.transform = `perspective(1000px) rotateY(0deg)`; // Rotate back to 0 degrees
       }
