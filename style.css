@@ -332,6 +332,7 @@ body {
     transition: opacity 1s ease, left 1s ease, top 1s ease;
     cursor: move;
     pointer-events: all;
+    opacity: 0;
 }
 
 .design-two {
@@ -342,6 +343,7 @@ body {
     transition: opacity 1s ease, right 1s ease, top 1s ease;
     cursor: move;
     pointer-events: all;
+    opacity: 0;
 }
 
 .design-three {
@@ -352,6 +354,7 @@ body {
     transition: opacity 1s ease, left 1s ease, top 1s ease;
     cursor: move;
     pointer-events: all;
+    opacity: 0;
 }
 
 .middle-section {
