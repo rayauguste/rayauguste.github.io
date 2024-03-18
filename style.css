@@ -1396,6 +1396,10 @@ body {
     .header-buttons {
         display: none;
       }
+
+      .section {
+        transform: translateX(0px); /* Initially translate each section */
+      }
   }
 
   @media screen and (max-width: 1000px) {

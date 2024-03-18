@@ -592,7 +592,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //3D Card flip effect
 document.addEventListener('DOMContentLoaded', function() {
-  const titleSections = document.querySelectorAll('.title-section, .about-me-section, .design-process-section, .services-section, .contact-section');
+  const titleSections = document.querySelectorAll('.section');
   
   // Function to check if the section has translation 0 in X-axis
   function isSectionTranslatedX(section) {
@@ -782,12 +782,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 //Slide sections
 document.addEventListener('DOMContentLoaded', function() {
-  const sections = document.querySelectorAll('.title-section, .about-me-section, .design-process-section, .services-section, .contact-section');
+  const sections = document.querySelectorAll('.section');
 
   // Define options for the IntersectionObserver
   const options = {
     root: null, // Use the viewport as the root
-    rootMargin: '0px', // No margin
+    rootMargin: '0px 100px', // Margin of 100px on each side of the viewport
     threshold: 0.5 // Trigger when at least 50% of the section is visible
   };
 
@@ -812,6 +812,7 @@ document.addEventListener('DOMContentLoaded', function() {
     observer.observe(section);
   });
 });
+
 
 //fix bug where the screen is aligned to the right
 document.addEventListener('DOMContentLoaded', function() {
