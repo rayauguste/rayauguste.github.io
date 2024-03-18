@@ -266,10 +266,10 @@ body {
 }
 
 .about-me p {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 200;
     color: #ffffff;
-    line-height: 34px;
+    line-height: 32px;
     margin: 0;
 }
 
@@ -418,7 +418,7 @@ body {
 .design-process-steps {
     display: flex;
     flex-direction: row;
-    margin-top: 220px;
+    margin-top: 260px;
     flex-wrap: wrap;
     padding-bottom: 65px;
 }
@@ -468,7 +468,7 @@ body {
 
 .step p {
     color: #B5B5B5;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 200;
     line-height: 26px;
     margin: 0;
@@ -579,7 +579,7 @@ body {
     padding-bottom: 65px;
     padding-top: 65px;
     padding-left: 65px;
-    gap: 59px;
+    gap: 10px;
     margin-right: -180px;
 }
 
