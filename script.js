@@ -788,7 +788,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const options = {
     root: null, // Use the viewport as the root
     rootMargin: '0px 100px', // Margin of 100px on each side of the viewport
-    threshold: 0.5 // Trigger when at least 50% of the section is visible
+    threshold: 0.2 // Trigger when at least 50% of the section is visible
   };
 
   // Callback function for the IntersectionObserver
@@ -796,7 +796,7 @@ document.addEventListener('DOMContentLoaded', function() {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         // Check if at least 50% of the section is visible
-        if (entry.intersectionRatio >= 0.5) {
+        if (entry.intersectionRatio >= 0.2) {
           entry.target.classList.add('in-view');
           observer.unobserve(entry.target); // Stop observing the section
         }
