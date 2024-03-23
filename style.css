@@ -333,6 +333,8 @@ body {
     cursor: move;
     pointer-events: all;
     opacity: 0;
+    width: 687px;
+    height: 410px;
 }
 
 .design-two {
@@ -344,6 +346,8 @@ body {
     cursor: move;
     pointer-events: all;
     opacity: 0;
+    width: 687px;
+    height: 410px;
 }
 
 .design-three {
@@ -355,6 +359,8 @@ body {
     cursor: move;
     pointer-events: all;
     opacity: 0;
+    width: 687px;
+    height: 410px;
 }
 
 .middle-section {
@@ -849,14 +855,14 @@ body {
 }
 
 .large-design img {
-    width: 689px;
-    height: 412px;
+    width: 687px;
+    height: 410px;
     transition: width 0.5s ease, height 0.5s ease;
 }
 
 .large-design img:hover {
-    width: 826.8px;
-    height: 494.4px;
+    width: 790.18px;
+    height: 471.58px;
 }
 
 .design-back-button {
