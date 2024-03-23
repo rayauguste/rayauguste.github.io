@@ -865,6 +865,73 @@ body {
     height: 471.58px;
 }
 
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it appears on top of other content */
+    cursor: zoom-out;
+}
+
+.enlarged-image {
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.close-btn {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    color: white;
+    font-size: 50px;
+    z-index: 1001; /* Ensure it appears on top of the enlarged image */
+}
+
+.close-btn:hover {
+    background-color: #06112D;
+}
+
+/* Styles for left and right arrows */
+.arrow-container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.left-arrow, .right-arrow {
+    cursor: pointer;
+    font-size: 30px;
+    color: white;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    pointer-events: all;
+}
+
+.left-arrow:hover, .right-arrow:hover {
+    background-color: #06112D;
+}
+
 .design-back-button {
     color: white;
     transition: background-color 0.5s ease; /* Add a transition effect for the color change */

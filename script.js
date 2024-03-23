@@ -145,7 +145,8 @@ function generateImages(variable) {
     'img/GameUI/Frame 3476.png',
     'img/GameUI/Frame 3483.png',
     'img/GameUI/Frame 3502.png',
-    'img/GameUI/Frame 3501.png'
+    'img/GameUI/Frame 3501.png',
+    'img/GameUI/Frame 3503.png'
   ];
 
   // Web UI Image List
@@ -245,6 +246,7 @@ document.addEventListener('DOMContentLoaded', function() {
     'img/GameUI/Frame 3483.png',
     'img/GameUI/Frame 3502.png',
     'img/GameUI/Frame 3501.png',
+    'img/GameUI/Frame 3503.png',
     'img/WebUI/Frame 3435.png',
     'img/WebUI/Frame 3436.png',
     'img/WebUI/Frame 3437.png',
@@ -830,4 +832,86 @@ document.addEventListener('DOMContentLoaded', function() {
       // Scroll the page to the left
       window.scrollTo({left: 0, behavior: 'smooth'});
   }, 500); // Adjust the delay time (in milliseconds) as needed
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+// Variable to store the index of the clicked image
+let clickedImageIndex = 0;
+
+// Function to handle image click events
+function handleImageClick(event) {
+    if (event.target.classList.contains('portfolio-image')) {
+        const clickedImageSrc = event.target.src;
+        const category = document.querySelector('.selected').textContent.trim(); // Get the selected category
+        const enlargedImage = document.querySelector('.enlarged-image');
+        enlargedImage.src = clickedImageSrc;
+        document.querySelector('.overlay').style.display = 'flex';
+        // Update the index of the clicked image within the category
+        clickedImageIndex = getImageIndex(clickedImageSrc, category);
+        currentImageIndex = clickedImageIndex; // Update the current image index as well
+    }
+}
+
+// Function to get the index of the clicked image within the selected category
+function getImageIndex(src) {
+    const images = document.querySelectorAll('.portfolio-image');
+    for (let i = 0; i < images.length; i++) {
+        if (images[i].src === src) {
+            return i;
+        }
+    }
+    return -1; // Return -1 if image is not found
+}
+
+
+    // Function to close the enlarged image overlay
+    function closeEnlargedImage() {
+        document.querySelector('.overlay').style.display = 'none';
+    }
+
+    // Function to close the enlarged image overlay when clicking outside of the image
+    function closeOverlayOnClickOutside(event) {
+        if (event.target.classList.contains('overlay')) {
+            closeEnlargedImage();
+        }
+    }
+
+    // Function to handle left arrow click event
+function handleLeftArrowClick() {
+    const category = document.querySelector('.selected').textContent.trim(); // Get the selected category
+    const totalImages = imageCategories[category].length;
+    currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages;
+    const enlargedImage = document.querySelector('.enlarged-image');
+    enlargedImage.src = imageCategories[category][currentImageIndex];
+}
+
+// Function to handle right arrow click event
+function handleRightArrowClick() {
+    const category = document.querySelector('.selected').textContent.trim(); // Get the selected category
+    const totalImages = imageCategories[category].length;
+    currentImageIndex = (currentImageIndex + 1) % totalImages;
+    const enlargedImage = document.querySelector('.enlarged-image');
+    enlargedImage.src = imageCategories[category][currentImageIndex];
+}
+
+    // Add event listener to handle category click events
+    handleCategoryClick();
+
+    // Add event listener to handle image click events
+    document.querySelector('.portfolio').addEventListener('click', handleImageClick);
+
+    // Add event listener to close the enlarged image overlay
+    document.querySelector('.close-btn').addEventListener('click', closeEnlargedImage);
+
+    // Add event listener to close the enlarged image overlay
+    document.querySelector('.enlarged-image').addEventListener('click', closeEnlargedImage);
+
+    // Add event listener to close the enlarged image overlay when clicking outside of the image
+    document.querySelector('.overlay').addEventListener('click', closeOverlayOnClickOutside);
+
+    // Add event listener to left arrow
+    document.querySelector('.left-arrow').addEventListener('click', handleLeftArrowClick);
+
+    // Add event listener to right arrow
+    document.querySelector('.right-arrow').addEventListener('click', handleRightArrowClick);
 });
