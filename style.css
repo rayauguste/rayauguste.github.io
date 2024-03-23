@@ -879,6 +879,7 @@ body {
     align-items: center;
     z-index: 1000; /* Ensure it appears on top of other content */
     cursor: zoom-out;
+    pointer-events: all;
 }
 
 .enlarged-image {
@@ -903,18 +904,6 @@ body {
 
 .close-btn:hover {
     background-color: #06112D;
-}
-
-/* Styles for left and right arrows */
-.arrow-container {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: space-between;
-    pointer-events: none;
 }
 
 .design-back-button {

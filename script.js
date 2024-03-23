@@ -840,19 +840,29 @@ document.addEventListener("DOMContentLoaded", function() {
   const enlargedImage = document.querySelector(".enlarged-image");
   const closeBtn = document.querySelector(".close-btn");
 
-  largeDesigns.forEach(function(largeDesign) {
-      largeDesign.addEventListener("click", function() {
-          const imgSrc = this.querySelector("img").getAttribute("src");
-          enlargedImage.setAttribute("src", imgSrc);
-          overlay.style.display = "flex";
+  if (overlay && enlargedImage && closeBtn) {
+      largeDesigns.forEach(function(largeDesign) {
+          largeDesign.addEventListener("click", function() {
+              const img = this.querySelector("img");
+              if (img) {
+                  const imgSrc = img.getAttribute("src");
+                  if (imgSrc) {
+                      enlargedImage.setAttribute("src", imgSrc);
+                      overlay.style.display = "flex";
+                  }
+              }
+          });
       });
-  });
 
-  enlargedImage.addEventListener("click", function() {
-      overlay.style.display = "none";
-  });
+      enlargedImage.addEventListener("click", function() {
+          overlay.style.display = "none";
+      });
 
-  closeBtn.addEventListener("click", function() {
-      overlay.style.display = "none";
-  });
+      closeBtn.addEventListener("click", function() {
+          overlay.style.display = "none";
+      });
+  } else {
+      console.error("One or more variables are invalid.");
+  }
 });
+
