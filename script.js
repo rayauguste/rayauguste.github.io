@@ -882,3 +882,4 @@ document.addEventListener('DOMContentLoaded', function() {
   // Add event listener to close the enlarged image overlay when clicking outside of the image
   document.addEventListener('click', closeOverlayOnClickOutside);
 });
+
