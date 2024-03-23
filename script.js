@@ -854,8 +854,8 @@ document.addEventListener("DOMContentLoaded", function() {
           });
       });
 
-      enlargedImage.addEventListener("click", function(event) {
-          event.stopPropagation(); // Prevents the event from bubbling up to the overlay
+      enlargedImage.addEventListener("click", function() {
+          overlay.style.display = "none";
       });
 
       closeBtn.addEventListener("click", function() {
@@ -863,11 +863,12 @@ document.addEventListener("DOMContentLoaded", function() {
       });
 
       overlay.addEventListener("click", function(event) {
-          if (event.target === overlay) {
-              overlay.style.display = "none";
-          }
-      });
+        if (event.target === overlay) {
+            overlay.style.display = "none";
+        }
+    });
   } else {
       console.error("One or more variables are invalid.");
   }
 });
+
