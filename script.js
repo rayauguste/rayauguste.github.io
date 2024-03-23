@@ -838,16 +838,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // Function to handle image click events
   function handleImageClick(event) {
       let clickedImageSrc;
-      if (event.target.classList.contains('large-design')) {
-          // If the clicked element has the class 'large-design', use its src
+      // Check if the clicked element is an <img> within an element with the class 'design-list'
+      const designList = event.target.closest('.design-list');
+      if (designList && event.target.tagName === 'IMG') {
+          // If the clicked element is an <img> within a .design-list element, use its src
           clickedImageSrc = event.target.src;
-      } else {
-          // If the clicked element doesn't have the class 'large-design',
-          // traverse up the DOM tree to find the closest ancestor with that class
-          const closestLargeDesign = event.target.closest('.large-design');
-          if (closestLargeDesign) {
-              clickedImageSrc = closestLargeDesign.querySelector('img').src;
-          }
       }
 
       if (clickedImageSrc) {
@@ -877,7 +872,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Add event listener to handle image click events
-  document.querySelector('.design-list').addEventListener('click', handleImageClick);
+  document.addEventListener('click', handleImageClick);
 
   // Add event listener to close the enlarged image overlay
   document.querySelector('.close-btn').addEventListener('click', closeEnlargedImage);
@@ -885,5 +880,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Add event listener to close the enlarged image overlay when clicking outside of the image
   document.addEventListener('click', closeOverlayOnClickOutside);
 });
+
 
 
