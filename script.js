@@ -835,31 +835,27 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Variable to store the index of the clicked image
-  let clickedImageIndex = 0;
-
   // Function to handle image click events
   function handleImageClick(event) {
-      if (event.target.classList.contains('large-design')) {
-          const clickedImageSrc = event.target.src;
-          const enlargedImage = document.querySelector('.enlarged-image');
-          enlargedImage.src = clickedImageSrc;
-          document.querySelector('.overlay').style.display = 'flex';
-          // Update the index of the clicked image
-          clickedImageIndex = getImageIndex(clickedImageSrc);
-      }
-  }
-
-  // Function to get the index of the clicked image
-  function getImageIndex(src) {
-      const images = document.querySelectorAll('.large-design img');
-      for (let i = 0; i < images.length; i++) {
-          if (images[i].src === src) {
-              return i;
-          }
-      }
-      return -1; // Return -1 if image is not found
-  }
+    let clickedImageSrc;
+    if (event.target.classList.contains('large-design')) {
+        // If the clicked element has the class 'large-design', use its src
+        clickedImageSrc = event.target.src;
+    } else {
+        // If the clicked element doesn't have the class 'large-design',
+        // traverse up the DOM tree to find the closest ancestor with that class
+        const closestLargeDesign = event.target.closest('.large-design');
+        if (closestLargeDesign) {
+            clickedImageSrc = closestLargeDesign.querySelector('img').src;
+        }
+    }
+    
+    if (clickedImageSrc) {
+        console.log('Image clicked:', clickedImageSrc);
+        // Additional code to handle displaying the overlay and updating the index
+        // ...
+    }
+}
 
   // Function to close the enlarged image overlay
   function closeEnlargedImage() {
