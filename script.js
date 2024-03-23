@@ -853,7 +853,7 @@ function handleImageClick(event) {
 
 // Function to get the index of the clicked image within the selected category
 function getImageIndex(src) {
-    const images = document.querySelectorAll('.portfolio-image');
+    const images = document.querySelectorAll('.large-design');
     for (let i = 0; i < images.length; i++) {
         if (images[i].src === src) {
             return i;
@@ -874,6 +874,9 @@ function getImageIndex(src) {
             closeEnlargedImage();
         }
     }
+
+    // Add event listener to handle image click events
+    document.querySelector('.desin-list').addEventListener('click', handleImageClick);
 
     // Add event listener to close the enlarged image overlay
     document.querySelector('.close-btn').addEventListener('click', closeEnlargedImage);
