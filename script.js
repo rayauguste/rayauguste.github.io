@@ -835,55 +835,50 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-// Variable to store the index of the clicked image
-let clickedImageIndex = 0;
+  // Variable to store the index of the clicked image
+  let clickedImageIndex = 0;
 
-// Function to handle image click events
-function handleImageClick(event) {
-    if (event.target.classList.contains('large-design')) {
-        const clickedImageSrc = event.target.src;
-        const enlargedImage = document.querySelector('.enlarged-image');
-        enlargedImage.src = clickedImageSrc;
-        document.querySelector('.overlay').style.display = 'flex';
-        // Update the index of the clicked image within the category
-        clickedImageIndex = getImageIndex(clickedImageSrc, category);
-        currentImageIndex = clickedImageIndex; // Update the current image index as well
-    }
-}
+  // Function to handle image click events
+  function handleImageClick(event) {
+      if (event.target.classList.contains('large-design')) {
+          const clickedImageSrc = event.target.src;
+          const enlargedImage = document.querySelector('.enlarged-image');
+          enlargedImage.src = clickedImageSrc;
+          document.querySelector('.overlay').style.display = 'flex';
+          // Update the index of the clicked image
+          clickedImageIndex = getImageIndex(clickedImageSrc);
+      }
+  }
 
-// Function to get the index of the clicked image within the selected category
-function getImageIndex(src) {
-    const images = document.querySelectorAll('.large-design');
-    for (let i = 0; i < images.length; i++) {
-        if (images[i].src === src) {
-            return i;
-        }
-    }
-    return -1; // Return -1 if image is not found
-}
+  // Function to get the index of the clicked image
+  function getImageIndex(src) {
+      const images = document.querySelectorAll('.large-design img');
+      for (let i = 0; i < images.length; i++) {
+          if (images[i].src === src) {
+              return i;
+          }
+      }
+      return -1; // Return -1 if image is not found
+  }
 
+  // Function to close the enlarged image overlay
+  function closeEnlargedImage() {
+      document.querySelector('.overlay').style.display = 'none';
+  }
 
-    // Function to close the enlarged image overlay
-    function closeEnlargedImage() {
-        document.querySelector('.overlay').style.display = 'none';
-    }
+  // Function to close the enlarged image overlay when clicking outside of the image
+  function closeOverlayOnClickOutside(event) {
+      if (!event.target.closest('.overlay')) {
+          closeEnlargedImage();
+      }
+  }
 
-    // Function to close the enlarged image overlay when clicking outside of the image
-    function closeOverlayOnClickOutside(event) {
-        if (event.target.classList.contains('overlay')) {
-            closeEnlargedImage();
-        }
-    }
+  // Add event listener to handle image click events
+  document.querySelector('.design-list').addEventListener('click', handleImageClick);
 
-    // Add event listener to handle image click events
-    document.querySelector('.desin-list').addEventListener('click', handleImageClick);
+  // Add event listener to close the enlarged image overlay
+  document.querySelector('.close-btn').addEventListener('click', closeEnlargedImage);
 
-    // Add event listener to close the enlarged image overlay
-    document.querySelector('.close-btn').addEventListener('click', closeEnlargedImage);
-
-    // Add event listener to close the enlarged image overlay
-    document.querySelector('.enlarged-image').addEventListener('click', closeEnlargedImage);
-
-    // Add event listener to close the enlarged image overlay when clicking outside of the image
-    document.querySelector('.overlay').addEventListener('click', closeOverlayOnClickOutside);
+  // Add event listener to close the enlarged image overlay when clicking outside of the image
+  document.addEventListener('click', closeOverlayOnClickOutside);
 });
