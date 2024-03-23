@@ -840,9 +840,8 @@ let clickedImageIndex = 0;
 
 // Function to handle image click events
 function handleImageClick(event) {
-    if (event.target.classList.contains('portfolio-image')) {
+    if (event.target.classList.contains('large-design')) {
         const clickedImageSrc = event.target.src;
-        const category = document.querySelector('.selected').textContent.trim(); // Get the selected category
         const enlargedImage = document.querySelector('.enlarged-image');
         enlargedImage.src = clickedImageSrc;
         document.querySelector('.overlay').style.display = 'flex';
@@ -876,30 +875,6 @@ function getImageIndex(src) {
         }
     }
 
-    // Function to handle left arrow click event
-function handleLeftArrowClick() {
-    const category = document.querySelector('.selected').textContent.trim(); // Get the selected category
-    const totalImages = imageCategories[category].length;
-    currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages;
-    const enlargedImage = document.querySelector('.enlarged-image');
-    enlargedImage.src = imageCategories[category][currentImageIndex];
-}
-
-// Function to handle right arrow click event
-function handleRightArrowClick() {
-    const category = document.querySelector('.selected').textContent.trim(); // Get the selected category
-    const totalImages = imageCategories[category].length;
-    currentImageIndex = (currentImageIndex + 1) % totalImages;
-    const enlargedImage = document.querySelector('.enlarged-image');
-    enlargedImage.src = imageCategories[category][currentImageIndex];
-}
-
-    // Add event listener to handle category click events
-    handleCategoryClick();
-
-    // Add event listener to handle image click events
-    document.querySelector('.portfolio').addEventListener('click', handleImageClick);
-
     // Add event listener to close the enlarged image overlay
     document.querySelector('.close-btn').addEventListener('click', closeEnlargedImage);
 
@@ -908,10 +883,4 @@ function handleRightArrowClick() {
 
     // Add event listener to close the enlarged image overlay when clicking outside of the image
     document.querySelector('.overlay').addEventListener('click', closeOverlayOnClickOutside);
-
-    // Add event listener to left arrow
-    document.querySelector('.left-arrow').addEventListener('click', handleLeftArrowClick);
-
-    // Add event listener to right arrow
-    document.querySelector('.right-arrow').addEventListener('click', handleRightArrowClick);
 });
