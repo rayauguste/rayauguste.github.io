@@ -917,23 +917,6 @@ body {
     pointer-events: none;
 }
 
-.left-arrow, .right-arrow {
-    cursor: pointer;
-    font-size: 30px;
-    color: white;
-    padding: 5px 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 100px;
-    pointer-events: all;
-}
-
-.left-arrow:hover, .right-arrow:hover {
-    background-color: #06112D;
-}
-
 .design-back-button {
     color: white;
     transition: background-color 0.5s ease; /* Add a transition effect for the color change */

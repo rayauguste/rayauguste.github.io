@@ -834,52 +834,25 @@ document.addEventListener('DOMContentLoaded', function() {
   }, 500); // Adjust the delay time (in milliseconds) as needed
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-  // Function to handle image click events
-  function handleImageClick(event) {
-      let clickedImageSrc;
-      // Check if the clicked element is an <img> within an element with the class 'design-list'
-      const designList = event.target.closest('.design-list');
-      if (designList && event.target.tagName === 'IMG') {
-          // If the clicked element is an <img> within a .design-list element, use its src
-          clickedImageSrc = event.target.src;
-      }
+document.addEventListener("DOMContentLoaded", function() {
+  const largeDesigns = document.querySelectorAll(".large-design");
+  const overlay = document.querySelector(".overlay");
+  const enlargedImage = document.querySelector(".enlarged-image");
+  const closeBtn = document.querySelector(".close-btn");
 
-      if (clickedImageSrc) {
-          console.log('Image clicked:', clickedImageSrc);
-          // Additional code to handle displaying the overlay and updating the index
-          displayOverlay(clickedImageSrc);
-      }
-  }
+  largeDesigns.forEach(function(largeDesign) {
+      largeDesign.addEventListener("click", function() {
+          const imgSrc = this.querySelector("img").getAttribute("src");
+          enlargedImage.setAttribute("src", imgSrc);
+          overlay.style.display = "flex";
+      });
+  });
 
-  // Function to display the enlarged image overlay
-  function displayOverlay(imageSrc) {
-      const enlargedImage = document.querySelector('.enlarged-image');
-      enlargedImage.src = imageSrc;
-      document.querySelector('.overlay').style.display = 'flex';
-  }
+  enlargedImage.addEventListener("click", function() {
+      overlay.style.display = "none";
+  });
 
-  // Function to close the enlarged image overlay
-  function closeEnlargedImage() {
-      document.querySelector('.overlay').style.display = 'none';
-  }
-
-  // Function to close the enlarged image overlay when clicking outside of the image
-  function closeOverlayOnClickOutside(event) {
-      if (!event.target.closest('.overlay')) {
-          closeEnlargedImage();
-      }
-  }
-
-  // Add event listener to handle image click events
-  document.addEventListener('click', handleImageClick);
-
-  // Add event listener to close the enlarged image overlay
-  document.querySelector('.close-btn').addEventListener('click', closeEnlargedImage);
-
-  // Add event listener to close the enlarged image overlay when clicking outside of the image
-  document.addEventListener('click', closeOverlayOnClickOutside);
+  closeBtn.addEventListener("click", function() {
+      overlay.style.display = "none";
+  });
 });
-
-
-
