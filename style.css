@@ -902,10 +902,6 @@ body {
     z-index: 1001; /* Ensure it appears on top of the enlarged image */
 }
 
-.close-btn:hover {
-    background-color: #06112D;
-}
-
 .design-back-button {
     color: white;
     transition: background-color 0.5s ease; /* Add a transition effect for the color change */
