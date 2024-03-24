@@ -877,7 +877,7 @@ body {
 }
 
 .large-design img {
-    width: 100%; /* Set width to fill the container */
+    width: 90%; /* Set width to fill the container */
     max-width: 687px; /* Set maximum width */
     max-height: 410px; /* Set maximum height */
     height: auto; /* Allow the height to adjust proportionally */
