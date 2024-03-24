@@ -875,10 +875,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
                       // Apply a small delay to allow the browser to render the initial size
                       setTimeout(() => {
-                          // Scale the image to a larger size with transition
+                          // Calculate the aspect ratio of the original image
+                          const aspectRatio = img.offsetHeight / img.offsetWidth;
+                          
+                          // Set the maximum width based on the aspect ratio and viewport width
+                          const maxWidth = Math.min(window.innerWidth * 0.9, img.offsetWidth * 2);
                           enlargedImage.style.transition = "width 0.5s ease, height 0.5s ease";
-                          enlargedImage.style.width = "90%"; // Adjust to your desired size
-                          enlargedImage.style.height = "auto";
+                          enlargedImage.style.maxWidth = maxWidth + "px"; // Set max-width
+                          enlargedImage.style.width = "auto"; // Allow width to adjust based on max-width
+                          enlargedImage.style.height = "auto"; // Allow height to adjust proportionally
                       }, 50); // You can adjust the delay time as needed
                   }
               }
@@ -899,19 +904,20 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function hideOverlay() {
-      // Set the size of the enlarged image back to match the clicked image's width and height
-      const clickedImg = document.querySelector(".large-design img");
-      enlargedImage.style.transition = "width 0.5s ease, height 0.5s ease"; // Apply transition
-      enlargedImage.style.width = clickedImg.offsetWidth + "px";
-      enlargedImage.style.height = clickedImg.offsetHeight + "px";
+      // Reset the enlarged image styles
+      enlargedImage.style.transition = "none"; // Disable transition
+      enlargedImage.style.width = "auto"; // Reset width to auto
+      enlargedImage.style.maxWidth = "none"; // Reset max-width
+      enlargedImage.style.height = "auto"; // Reset height to auto
 
       // Allow a small delay before hiding the overlay to ensure the transition is applied
       setTimeout(() => {
           // Hide the overlay
           overlay.style.display = "none";
-      }, 500); // Adjust the delay time to match the transition duration
+      }, 50); // Adjust the delay time as needed
   }
 });
+
 
 
 //3D card effect
