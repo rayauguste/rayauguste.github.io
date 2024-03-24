@@ -904,8 +904,8 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Calculate the rotation angles based on mouse position
       const maxRotation = 10; // Maximum rotation angle
-      const rotationX = -(mouseY / centerY) * maxRotation; // Rotation around the X-axis
-      const rotationY = (mouseX / centerX) * maxRotation; // Rotation around the Y-axis
+      const rotationX = (mouseY / centerY) * maxRotation; // Rotation around the X-axis
+      const rotationY = -(mouseX / centerX) * maxRotation; // Rotation around the Y-axis
       
       // Apply the rotation to the image
       this.style.transform = `perspective(1000px) rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
