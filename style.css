@@ -874,10 +874,11 @@ body {
     transform: perspective(1000px) rotateX(25deg); /* Apply perspective and rotation */
     transition: transform 0.5s ease;
     cursor: pointer;
+    padding: 0 50px;
 }
 
 .large-design img {
-    width: 90%; /* Set width to fill the container */
+    width: 100%; /* Set width to fill the container */
     max-width: 687px; /* Set maximum width */
     max-height: 410px; /* Set maximum height */
     height: auto; /* Allow the height to adjust proportionally */
