@@ -868,6 +868,18 @@ document.addEventListener("DOMContentLoaded", function() {
                   if (imgSrc) {
                       enlargedImage.setAttribute("src", imgSrc);
                       overlay.style.display = "flex";
+
+                      // Set the initial size of the enlarged image to match the clicked div
+                      enlargedImage.style.width = img.offsetWidth + "px";
+                      enlargedImage.style.height = img.offsetHeight + "px";
+
+                      // Apply a small delay to allow the browser to render the initial size
+                      setTimeout(() => {
+                          // Scale the image to a larger size with transition
+                          enlargedImage.style.transition = "width 0.5s ease, height 0.5s ease";
+                          enlargedImage.style.width = "90%"; // Adjust to your desired size
+                          enlargedImage.style.height = "90%";
+                      }, 50); // You can adjust the delay time as needed
                   }
               }
           });
@@ -882,13 +894,15 @@ document.addEventListener("DOMContentLoaded", function() {
       });
 
       overlay.addEventListener("click", function(event) {
-        if (event.target === overlay) {
-            overlay.style.display = "none";
-        }
-    });
+          if (event.target === overlay) {
+              overlay.style.display = "none";
+          }
+      });
   }
 });
 
+
+//3D card effect
 document.addEventListener('DOMContentLoaded', function() {
   const enlargedImage = document.querySelector('.enlarged-image');
 
@@ -919,5 +933,3 @@ document.addEventListener('DOMContentLoaded', function() {
     this.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
   });
 });
-
-
