@@ -893,6 +893,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const enlargedImage = document.querySelector('.enlarged-image');
 
   enlargedImage.addEventListener('mouseenter', function() {
+    this.style.transition = 'none'; // Disable transition on hover
     this.addEventListener('mousemove', function(event) {
       const boundingRect = this.getBoundingClientRect();
       const centerX = boundingRect.left + boundingRect.width / 2; // X-coordinate of the center of the image
@@ -912,8 +913,11 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   enlargedImage.addEventListener('mouseleave', function() {
+    // Enable transition on mouse leave
+    this.style.transition = 'transform 0.5s ease';
     // Reset the transform on mouse leave
     this.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
   });
 });
+
 
