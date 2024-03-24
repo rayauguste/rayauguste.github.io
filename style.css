@@ -873,6 +873,7 @@ body {
     justify-content: center;
     transform: perspective(1000px) rotateX(25deg); /* Apply perspective and rotation */
     transition: transform 0.5s ease;
+    cursor: pointer;
 }
 
 .large-design img {
