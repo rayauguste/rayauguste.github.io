@@ -916,11 +916,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100px;
-    height: 100px;
     cursor: pointer;
-    color: white;
-    font-size: 50px;
     z-index: 1001; /* Ensure it appears on top of the enlarged image */
 }
 
