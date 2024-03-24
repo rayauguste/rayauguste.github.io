@@ -882,12 +882,11 @@ body {
     max-width: 687px; /* Set maximum width */
     max-height: 410px; /* Set maximum height */
     height: auto; /* Allow the height to adjust proportionally */
-    transition: max-width 0.5s ease, max-height 0.5s ease;
+    transition: transform 0.5s ease; /* Apply transition effect */
 }
 
 .large-design img:hover {
-    max-width: 790.18px;
-    max-height: 471.58px;
+    transform: scale(1.15); /* Scale the image on hover */
 }
 
 .overlay {
