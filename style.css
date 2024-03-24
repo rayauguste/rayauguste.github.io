@@ -876,14 +876,16 @@ body {
 }
 
 .large-design img {
-    width: 687px;
-    height: 410px;
+    width: 100%; /* Set width to fill the container */
+    max-width: 687px; /* Set maximum width */
+    max-height: 410px; /* Set maximum height */
+    height: auto; /* Allow the height to adjust proportionally */
     transition: width 0.5s ease, height 0.5s ease;
 }
 
 .large-design img:hover {
-    width: 790.18px;
-    height: 471.58px;
+    max-width: 790.18px;
+    max-height: 471.58px;
 }
 
 .overlay {
