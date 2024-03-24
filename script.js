@@ -931,7 +931,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   enlargedImage.addEventListener('mouseleave', function() {
     // Enable transition on mouse leave
-    this.style.transition = 'transform 0.5s ease';
+    this.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
     // Reset the transform on mouse leave
     this.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
   });
