@@ -910,9 +910,9 @@ body {
 }
 
 .close-btn {
-    position: absolute;
-    top: 30px;
-    right: 30px;
+    position: fixed;
+    right: 2%;
+    top: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
