@@ -868,58 +868,26 @@ document.addEventListener("DOMContentLoaded", function() {
                   if (imgSrc) {
                       enlargedImage.setAttribute("src", imgSrc);
                       overlay.style.display = "flex";
-
-                      // Set the initial size of the enlarged image to match the clicked div
-                      enlargedImage.style.width = img.offsetWidth + "px";
-                      enlargedImage.style.height = img.offsetHeight + "px";
-
-                      // Apply a small delay to allow the browser to render the initial size
-                      setTimeout(() => {
-                          // Calculate the aspect ratio of the original image
-                          const aspectRatio = img.offsetHeight / img.offsetWidth;
-                          
-                          // Set the maximum width based on the aspect ratio and viewport width
-                          const maxWidth = Math.min(window.innerWidth * 0.9, img.offsetWidth * 2);
-                          enlargedImage.style.transition = "width 0.5s ease, height 0.5s ease";
-                          enlargedImage.style.maxWidth = maxWidth + "px"; // Set max-width
-                          enlargedImage.style.width = "auto"; // Allow width to adjust based on max-width
-                          enlargedImage.style.height = "auto"; // Allow height to adjust proportionally
-                      }, 50); // You can adjust the delay time as needed
                   }
               }
           });
       });
 
       enlargedImage.addEventListener("click", function() {
-          hideOverlay();
+          overlay.style.display = "none";
       });
 
       closeBtn.addEventListener("click", function() {
-          hideOverlay();
-      });
-
-      overlay.addEventListener("click", function() {
-          hideOverlay();
-      });
-  }
-
-  function hideOverlay() {
-      // Reset the enlarged image styles
-      enlargedImage.style.transition = "width 0.5s ease, height 0.5s ease"; // Apply transition
-      enlargedImage.style.width = "auto"; // Reset width to auto
-      enlargedImage.style.maxWidth = "none"; // Reset max-width
-      enlargedImage.style.height = "auto"; // Reset height to auto
-
-      // Allow a small delay before hiding the overlay to ensure the transition is applied
-      setTimeout(() => {
-          // Hide the overlay
           overlay.style.display = "none";
-      }, 50); // Adjust the delay time as needed
+      });
+
+      overlay.addEventListener("click", function(event) {
+        if (event.target === overlay) {
+            overlay.style.display = "none";
+        }
+    });
   }
 });
-
-
-
 
 //3D card effect
 document.addEventListener('DOMContentLoaded', function() {
@@ -971,4 +939,3 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   });
 });
-
