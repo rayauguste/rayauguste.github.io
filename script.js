@@ -870,30 +870,15 @@ document.addEventListener("DOMContentLoaded", function() {
                       overlay.style.display = "flex";
 
                       // Set the initial size of the enlarged image to match the clicked div
-                      const clickedImg = this.querySelector("img");
-                      const maxPercentage = 0.9; // Maximum percentage of the window size
-                      const aspectRatio = clickedImg.width / clickedImg.height;
-
-                      // Calculate the maximum width and height based on aspect ratio and percentage
-                      let maxWidth = window.innerWidth * maxPercentage;
-                      let maxHeight = window.innerHeight * maxPercentage;
-
-                      // Adjust the maximum width or height based on the aspect ratio to fit within the window
-                      if (maxWidth / aspectRatio > maxHeight) {
-                          maxWidth = maxHeight * aspectRatio;
-                      } else {
-                          maxHeight = maxWidth / aspectRatio;
-                      }
-
-                      enlargedImage.style.width = maxWidth + "px";
-                      enlargedImage.style.height = maxHeight + "px";
+                      enlargedImage.style.width = img.offsetWidth + "px";
+                      enlargedImage.style.height = img.offsetHeight + "px";
 
                       // Apply a small delay to allow the browser to render the initial size
                       setTimeout(() => {
                           // Scale the image to a larger size with transition
                           enlargedImage.style.transition = "width 0.5s ease, height 0.5s ease";
                           enlargedImage.style.width = "90%"; // Adjust to your desired size
-                          enlargedImage.style.height = "90%";
+                          enlargedImage.style.height = "auto";
                       }, 50); // You can adjust the delay time as needed
                   }
               }
@@ -916,22 +901,9 @@ document.addEventListener("DOMContentLoaded", function() {
   function hideOverlay() {
       // Set the size of the enlarged image back to match the clicked image's width and height
       const clickedImg = document.querySelector(".large-design img");
-      const aspectRatio = clickedImg.width / clickedImg.height;
-
-      // Calculate the maximum width and height based on aspect ratio and percentage
-      let maxWidth = window.innerWidth * 0.9;
-      let maxHeight = window.innerHeight * 0.9;
-
-      // Adjust the maximum width or height based on the aspect ratio to fit within the window
-      if (maxWidth / aspectRatio > maxHeight) {
-          maxWidth = maxHeight * aspectRatio;
-      } else {
-          maxHeight = maxWidth / aspectRatio;
-      }
-
       enlargedImage.style.transition = "width 0.5s ease, height 0.5s ease"; // Apply transition
-      enlargedImage.style.width = maxWidth + "px";
-      enlargedImage.style.height = maxHeight + "px";
+      enlargedImage.style.width = clickedImg.offsetWidth + "px";
+      enlargedImage.style.height = clickedImg.offsetHeight + "px";
 
       // Allow a small delay before hiding the overlay to ensure the transition is applied
       setTimeout(() => {
