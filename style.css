@@ -880,7 +880,7 @@ body {
     max-width: 687px; /* Set maximum width */
     max-height: 410px; /* Set maximum height */
     height: auto; /* Allow the height to adjust proportionally */
-    transition: width 0.5s ease, height 0.5s ease;
+    transition: max-width 0.5s ease, max-height 0.5s ease;
 }
 
 .large-design img:hover {
