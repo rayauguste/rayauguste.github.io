@@ -885,21 +885,43 @@ document.addEventListener("DOMContentLoaded", function() {
           });
       });
 
+      enlargedImage.addEventListener("transitionend", function(event) {
+          if (event.propertyName === "width" || event.propertyName === "height") {
+              // Hide the overlay after the transition of the enlarged image is complete
+              hideOverlay();
+          }
+      });
+
       enlargedImage.addEventListener("click", function() {
-          overlay.style.display = "none";
+          hideOverlay();
       });
 
       closeBtn.addEventListener("click", function() {
-          overlay.style.display = "none";
+          hideOverlay();
       });
 
       overlay.addEventListener("click", function(event) {
           if (event.target === overlay) {
-              overlay.style.display = "none";
+              hideOverlay();
           }
       });
   }
+
+  function hideOverlay() {
+      // Set the size of the enlarged image back to match the clicked image's width and height
+      const clickedImg = document.querySelector(".large-design img");
+      enlargedImage.style.transition = "none"; // Disable transition temporarily to prevent animation glitch
+      enlargedImage.style.width = clickedImg.offsetWidth + "px";
+      enlargedImage.style.height = clickedImg.offsetHeight + "px";
+
+      // Allow a short delay before hiding the overlay to ensure the size reset is applied
+      setTimeout(() => {
+          // Hide the overlay
+          overlay.style.display = "none";
+      }, 50);
+  }
 });
+
 
 
 //3D card effect
