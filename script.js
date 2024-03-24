@@ -905,7 +905,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function hideOverlay() {
       // Reset the enlarged image styles
-      enlargedImage.style.transition = "none"; // Disable transition
+      enlargedImage.style.transition = "width 0.5s ease, height 0.5s ease"; // Apply transition
       enlargedImage.style.width = "auto"; // Reset width to auto
       enlargedImage.style.maxWidth = "none"; // Reset max-width
       enlargedImage.style.height = "auto"; // Reset height to auto
@@ -917,6 +917,7 @@ document.addEventListener("DOMContentLoaded", function() {
       }, 50); // Adjust the delay time as needed
   }
 });
+
 
 
 
