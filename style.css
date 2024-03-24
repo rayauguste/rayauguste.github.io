@@ -848,6 +848,21 @@ body {
     pointer-events: all;
 }
 
+.title-space {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: -200;
+}
+
+.design-list-title {
+    color: #ffffff05;
+    font-size: 176px;
+}
+
 .large-design {
     display: flex;
     justify-content: center;
@@ -859,7 +874,6 @@ body {
     width: 687px;
     height: 410px;
     transition: width 0.5s ease, height 0.5s ease;
-    cursor: zoom-in;
 }
 
 .large-design img:hover {

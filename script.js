@@ -117,6 +117,25 @@ function generateImagesOnLoad() {
       }
       // Call the function to generate images based on the variable
       generateImages(variable);
+
+      // Update the design list title based on the variable value
+      const designListTitle = document.querySelector(".design-list-title");
+      if (designListTitle) {
+          switch (variable) {
+              case 'game':
+                  designListTitle.textContent = "VIDEO GAME UI";
+                  break;
+              case 'web':
+                  designListTitle.textContent = "WEBSITE UI";
+                  break;
+              case 'app':
+                  designListTitle.textContent = "MOBILE APP UI";
+                  break;
+              default:
+                  designListTitle.textContent = "UNKNOWN UI";
+          }
+      }
+      
   }
 }
 
@@ -867,8 +886,5 @@ document.addEventListener("DOMContentLoaded", function() {
             overlay.style.display = "none";
         }
     });
-  } else {
-      console.error("One or more variables are invalid.");
   }
 });
-
