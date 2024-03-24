@@ -862,7 +862,7 @@ body {
 
 .design-list-title {
     color: #ffffff15;
-    font-size: 176px;
+     font-size: calc(176px + 5vw); /* Adjust font size based on viewport width with a default of 185px */
 }
 
 .large-design {
