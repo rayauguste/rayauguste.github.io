@@ -888,3 +888,32 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  const enlargedImage = document.querySelector('.enlarged-image');
+
+  enlargedImage.addEventListener('mouseenter', function() {
+    this.addEventListener('mousemove', function(event) {
+      const boundingRect = this.getBoundingClientRect();
+      const centerX = boundingRect.left + boundingRect.width / 2; // X-coordinate of the center of the image
+      const centerY = boundingRect.top + boundingRect.height / 2; // Y-coordinate of the center of the image
+      
+      const mouseX = event.clientX - centerX; // X-coordinate of the mouse relative to the center of the image
+      const mouseY = event.clientY - centerY; // Y-coordinate of the mouse relative to the center of the image
+      
+      // Calculate the rotation angles based on mouse position
+      const maxRotation = 10; // Maximum rotation angle
+      const rotationX = (mouseY / centerY) * maxRotation; // Rotation around the X-axis
+      const rotationY = (mouseX / centerX) * maxRotation; // Rotation around the Y-axis
+      
+      // Apply the rotation to the image
+      this.style.transform = `perspective(1000px) rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+    });
+  });
+
+  enlargedImage.addEventListener('mouseleave', function() {
+    // Reset the transform on mouse leave
+    this.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+  });
+});
+
