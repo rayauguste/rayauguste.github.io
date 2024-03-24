@@ -892,50 +892,31 @@ document.addEventListener("DOMContentLoaded", function() {
 //3D card effect
 document.addEventListener('DOMContentLoaded', function() {
   const enlargedImage = document.querySelector('.enlarged-image');
-  let sizeTransitionFinished = false; // Flag to track if the transition of size has finished
 
-  // Function to handle mouse enter event
-  function handleMouseEnter(event) {
-      if (sizeTransitionFinished) {
-          // Enable transition and apply 3D card effect
-          this.style.transition = 'none'; // Disable transition on hover
-          this.addEventListener('mousemove', handleMouseMove);
-      }
-  }
-
-  // Function to handle mouse move event
-  function handleMouseMove(event) {
+  enlargedImage.addEventListener('mouseenter', function() {
+    this.style.transition = 'none'; // Disable transition on hover
+    this.addEventListener('mousemove', function(event) {
       const boundingRect = this.getBoundingClientRect();
       const centerX = boundingRect.left + boundingRect.width / 2; // X-coordinate of the center of the image
       const centerY = boundingRect.top + boundingRect.height / 2; // Y-coordinate of the center of the image
-
+      
       const mouseX = event.clientX - centerX; // X-coordinate of the mouse relative to the center of the image
       const mouseY = event.clientY - centerY; // Y-coordinate of the mouse relative to the center of the image
-
+      
       // Calculate the rotation angles based on mouse position
       const maxRotation = 10; // Maximum rotation angle
       const rotationX = (mouseY / centerY) * maxRotation; // Rotation around the X-axis
       const rotationY = -(mouseX / centerX) * maxRotation; // Rotation around the Y-axis
-
+      
       // Apply the rotation to the image
       this.style.transform = `perspective(1000px) rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
-  }
+    });
+  });
 
-  // Function to handle mouse leave event
-  function handleMouseLeave() {
-      // Enable transition and reset the transform on mouse leave
-      this.style.transition = 'transform 0.5s ease';
-      this.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-  }
-
-  // Add event listeners
-  enlargedImage.addEventListener('mouseenter', handleMouseEnter);
-  enlargedImage.addEventListener('mouseleave', handleMouseLeave);
-
-  // Listen for transition end event on width and height properties
-  enlargedImage.addEventListener('transitionend', function(event) {
-      if (event.propertyName === 'width' || event.propertyName === 'height') {
-          sizeTransitionFinished = true; // Set the flag to true once the transition finishes
-      }
+  enlargedImage.addEventListener('mouseleave', function() {
+    // Enable transition on mouse leave
+    this.style.transition = 'transform 0.5s ease';
+    // Reset the transform on mouse leave
+    this.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
   });
 });
