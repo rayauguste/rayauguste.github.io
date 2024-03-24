@@ -907,7 +907,8 @@ body {
 .enlarged-image {
     max-width: 90%;
     max-height: 90%;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
 }
 
 .close-btn {

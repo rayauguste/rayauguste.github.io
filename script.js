@@ -860,31 +860,47 @@ document.addEventListener("DOMContentLoaded", function() {
   const closeBtn = document.querySelector(".close-btn");
 
   if (overlay && enlargedImage && closeBtn) {
-      largeDesigns.forEach(function(largeDesign) {
-          largeDesign.addEventListener("click", function() {
-              const img = this.querySelector("img");
-              if (img) {
-                  const imgSrc = img.getAttribute("src");
-                  if (imgSrc) {
-                      enlargedImage.setAttribute("src", imgSrc);
-                      overlay.style.display = "flex";
-                  }
-              }
-          });
-      });
-
-      enlargedImage.addEventListener("click", function() {
-          overlay.style.display = "none";
-      });
-
-      closeBtn.addEventListener("click", function() {
-          overlay.style.display = "none";
-      });
-
-      overlay.addEventListener("click", function(event) {
-        if (event.target === overlay) {
-            overlay.style.display = "none";
+    largeDesigns.forEach(function(largeDesign) {
+      largeDesign.addEventListener("click", function() {
+        const img = this.querySelector("img");
+        if (img) {
+          const imgSrc = img.getAttribute("src");
+          if (imgSrc) {
+            enlargedImage.setAttribute("src", imgSrc);
+            overlay.style.display = "flex";
+            setTimeout(() => {
+              // Fade in the enlarged image after a small delay
+              enlargedImage.style.opacity = 1;
+            }, 50); // Adjust delay time as needed
+          }
         }
+      });
+    });
+
+    enlargedImage.addEventListener("click", function() {
+      // Fade out the enlarged image before hiding the overlay
+      enlargedImage.style.opacity = 0;
+      setTimeout(() => {
+        overlay.style.display = "none";
+      }, 500); // Adjust delay time to match transition duration
+    });
+
+    closeBtn.addEventListener("click", function() {
+      // Fade out the enlarged image before hiding the overlay
+      enlargedImage.style.opacity = 0;
+      setTimeout(() => {
+        overlay.style.display = "none";
+      }, 500); // Adjust delay time to match transition duration
+    });
+
+    overlay.addEventListener("click", function(event) {
+      if (event.target === overlay) {
+        // Fade out the enlarged image before hiding the overlay
+        enlargedImage.style.opacity = 0;
+        setTimeout(() => {
+          overlay.style.display = "none";
+        }, 500); // Adjust delay time to match transition duration
+      }
     });
   }
 });
