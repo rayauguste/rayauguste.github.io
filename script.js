@@ -885,42 +885,35 @@ document.addEventListener("DOMContentLoaded", function() {
           });
       });
 
-      enlargedImage.addEventListener("transitionend", function(event) {
-          if (event.propertyName === "width" || event.propertyName === "height") {
-              // Hide the overlay after the transition of the enlarged image is complete
-              hideOverlay();
-          }
-      });
-
-      enlargedImage.addEventListener("click", function() {
-          hideOverlay();
+      enlargedImage.addEventListener("click", function(event) {
+          // Prevent click event propagation to the overlay
+          event.stopPropagation();
       });
 
       closeBtn.addEventListener("click", function() {
           hideOverlay();
       });
 
-      overlay.addEventListener("click", function(event) {
-          if (event.target === overlay) {
-              hideOverlay();
-          }
+      overlay.addEventListener("click", function() {
+          hideOverlay();
       });
   }
 
   function hideOverlay() {
       // Set the size of the enlarged image back to match the clicked image's width and height
       const clickedImg = document.querySelector(".large-design img");
-      enlargedImage.style.transition = "none"; // Disable transition temporarily to prevent animation glitch
+      enlargedImage.style.transition = "width 0.5s ease, height 0.5s ease"; // Apply transition
       enlargedImage.style.width = clickedImg.offsetWidth + "px";
       enlargedImage.style.height = clickedImg.offsetHeight + "px";
 
-      // Allow a short delay before hiding the overlay to ensure the size reset is applied
+      // Allow a small delay before hiding the overlay to ensure the transition is applied
       setTimeout(() => {
           // Hide the overlay
           overlay.style.display = "none";
-      }, 50);
+      }, 500); // Adjust the delay time to match the transition duration
   }
 });
+
 
 
 
