@@ -580,7 +580,6 @@ document.addEventListener('DOMContentLoaded', function() {
     observeAndScramble("contact-header-h1", phrases["contact-header-h1"]);
 });
 
-
 //3D Card flip effect
 document.addEventListener('DOMContentLoaded', function() {
   const titleSections = document.querySelectorAll('.section');
