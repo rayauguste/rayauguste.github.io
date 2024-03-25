@@ -856,6 +856,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener("DOMContentLoaded", function() {
   const overlay = document.querySelector(".overlay");
   const enlargedImage = document.querySelector(".enlarged-image");
+  const closeBtn = document.querySelector(".close-btn");
 
   function fadeInOverlay() {
     overlay.style.display = "flex";
@@ -870,6 +871,10 @@ document.addEventListener("DOMContentLoaded", function() {
       overlay.style.display = "none";
     }, 500); // Adjust delay time to match transition duration
   }
+
+  closeBtn.addEventListener("click", function() {
+    fadeOutOverlay();
+  });
 
   enlargedImage.addEventListener("click", function() {
     fadeOutOverlay();
@@ -896,7 +901,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 });
-
 
 //3D card effect
 document.addEventListener('DOMContentLoaded', function() {
