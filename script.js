@@ -858,7 +858,6 @@ document.addEventListener("DOMContentLoaded", function() {
   const overlay = document.querySelector(".overlay");
   const enlargedImage = document.querySelector(".enlarged-image");
   const closeBtn = document.querySelector(".close-btn");
-  let fadeInTimer; // Variable to hold the timer ID for fadeInOverlay
 
   // Check if overlay exists before using it
   if (overlay) {
@@ -878,9 +877,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function fadeInOverlay() {
     if (overlay) {
-      clearTimeout(fadeOutTimer); // Clear the fadeIn timer if active
       overlay.style.display = "flex";
-      fadeInTimer = setTimeout(() => {
+      setTimeout(() => {
         overlay.style.opacity = 1;
       }, 50); // Adjust delay time as needed
     }
@@ -888,9 +886,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function fadeOutOverlay() {
     if (overlay) {
-      clearTimeout(fadeInTimer); // Clear the fadeIn timer if active
       overlay.style.opacity = 0;
-      fadeOutTimer = setTimeout(() => {
+      setTimeout(() => {
         overlay.style.display = "none";
       }, 500); // Adjust delay time to match transition duration
     }
@@ -921,7 +918,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 });
-
 
 //3D card effect
 document.addEventListener('DOMContentLoaded', function() {
