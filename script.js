@@ -977,7 +977,7 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   // Call the function to fade in .design-categories elements after a small delay
-  const timer = setTimeout(fadeInDesignCategories, 100); // Adjust delay time as needed
+  const timer = setTimeout(fadeInDesignCategories, 200); // Adjust delay time as needed
 
   // Add event listeners for hover effect
   designCategories.forEach(function(category) {
