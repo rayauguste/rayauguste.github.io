@@ -838,13 +838,13 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-
 //fix bug where the screen is aligned to the right
 document.addEventListener('DOMContentLoaded', function() {
   // Scroll the page to the left
   window.scrollTo({left: 0, behavior: 'smooth'});
 });
 
+//fix bug where the screen is aligned to the right
 document.addEventListener('DOMContentLoaded', function() {
   // Set a delay of 1000 milliseconds (1 second) before scrolling
   setTimeout(function() {
@@ -853,38 +853,45 @@ document.addEventListener('DOMContentLoaded', function() {
   }, 500); // Adjust the delay time (in milliseconds) as needed
 });
 
+//Enlarge design image
 document.addEventListener("DOMContentLoaded", function() {
   const overlay = document.querySelector(".overlay");
   const enlargedImage = document.querySelector(".enlarged-image");
   const closeBtn = document.querySelector(".close-btn");
 
+  // Check if overlay exists before using it
+  if (overlay) {
+    overlay.addEventListener("click", function(event) {
+      if (event.target === overlay) {
+        fadeOutOverlay();
+      }
+    });
+  }
+
   function fadeInOverlay() {
-    overlay.style.display = "flex";
-    setTimeout(() => {
-      overlay.style.opacity = 1;
-    }, 50); // Adjust delay time as needed
+    if (overlay) {
+      overlay.style.display = "flex";
+      setTimeout(() => {
+        overlay.style.opacity = 1;
+      }, 50); // Adjust delay time as needed
+    }
   }
 
   function fadeOutOverlay() {
-    overlay.style.opacity = 0;
-    setTimeout(() => {
-      overlay.style.display = "none";
-    }, 500); // Adjust delay time to match transition duration
+    if (overlay) {
+      overlay.style.opacity = 0;
+      setTimeout(() => {
+        overlay.style.display = "none";
+      }, 500); // Adjust delay time to match transition duration
+    }
   }
 
-  closeBtn.addEventListener("click", function() {
-    fadeOutOverlay();
-  });
-
-  enlargedImage.addEventListener("click", function() {
-    fadeOutOverlay();
-  });
-
-  overlay.addEventListener("click", function(event) {
-    if (event.target === overlay) {
+  // Check if closeBtn exists before using it
+  if (closeBtn) {
+    closeBtn.addEventListener("click", function() {
       fadeOutOverlay();
-    }
-  });
+    });
+  }
 
   // Show overlay and fade in on large design click
   const largeDesigns = document.querySelectorAll(".large-design");
@@ -894,8 +901,11 @@ document.addEventListener("DOMContentLoaded", function() {
       if (img) {
         const imgSrc = img.getAttribute("src");
         if (imgSrc) {
-          enlargedImage.setAttribute("src", imgSrc);
-          fadeInOverlay();
+          // Check if enlargedImage exists before using it
+          if (enlargedImage) {
+            enlargedImage.setAttribute("src", imgSrc);
+            fadeInOverlay();
+          }
         }
       }
     });
@@ -906,30 +916,79 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener('DOMContentLoaded', function() {
   const enlargedImage = document.querySelector('.enlarged-image');
 
-  enlargedImage.addEventListener('mouseenter', function() {
-    this.style.transition = 'none'; // Disable transition on hover
-    this.addEventListener('mousemove', function(event) {
-      const boundingRect = this.getBoundingClientRect();
-      const centerX = boundingRect.left + boundingRect.width / 2; // X-coordinate of the center of the image
-      const centerY = boundingRect.top + boundingRect.height / 2; // Y-coordinate of the center of the image
-      
-      const mouseX = event.clientX - centerX; // X-coordinate of the mouse relative to the center of the image
-      const mouseY = event.clientY - centerY; // Y-coordinate of the mouse relative to the center of the image
-      
-      // Calculate the rotation angles based on mouse position
-      const maxRotation = 10; // Maximum rotation angle
-      const rotationX = (mouseY / centerY) * maxRotation; // Rotation around the X-axis
-      const rotationY = -(mouseX / centerX) * maxRotation; // Rotation around the Y-axis
-      
-      // Apply the rotation to the image
-      this.style.transform = `perspective(1000px) rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+  // Check if enlargedImage exists before adding event listeners
+  if (enlargedImage) {
+    enlargedImage.addEventListener('mouseenter', function() {
+      this.style.transition = 'none'; // Disable transition on hover
+      this.addEventListener('mousemove', function(event) {
+        const boundingRect = this.getBoundingClientRect();
+        const centerX = boundingRect.left + boundingRect.width / 2; // X-coordinate of the center of the image
+        const centerY = boundingRect.top + boundingRect.height / 2; // Y-coordinate of the center of the image
+        
+        const mouseX = event.clientX - centerX; // X-coordinate of the mouse relative to the center of the image
+        const mouseY = event.clientY - centerY; // Y-coordinate of the mouse relative to the center of the image
+        
+        // Calculate the rotation angles based on mouse position
+        const maxRotation = 10; // Maximum rotation angle
+        const rotationX = (mouseY / centerY) * maxRotation; // Rotation around the X-axis
+        const rotationY = -(mouseX / centerX) * maxRotation; // Rotation around the Y-axis
+        
+        // Apply the rotation to the image
+        this.style.transform = `perspective(1000px) rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+      });
     });
+
+    enlargedImage.addEventListener('mouseleave', function() {
+      // Enable transition on mouse leave
+      this.style.transition = 'transform 0.5s ease';
+      // Reset the transform on mouse leave
+      this.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+    });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  const designCategories = document.querySelectorAll(".cat-info");
+  let completedAnimations = 0;
+
+  // Set initial rotation for each .cat-info element
+  designCategories.forEach(function(category) {
+    category.style.transform = "perspective(1000px) rotateY(50deg)"; // Set initial Y rotation
   });
 
-  enlargedImage.addEventListener('mouseleave', function() {
-    // Enable transition on mouse leave
-    this.style.transition = 'transform 0.5s ease';
-    // Reset the transform on mouse leave
-    this.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+  // Function to fade in each .design-categories element with staggered delays
+  function fadeInDesignCategories() {
+    designCategories.forEach(function(category, index) {
+      const delay = index * 250; // Delay multiplier (0.5s for each element)
+      setTimeout(function() {
+        category.style.opacity = 1;
+        if (!category.classList.contains('hovered')) {
+          category.style.transform = "perspective(1000px) rotateY(0deg)"; // Apply default rotation transform
+        }
+        completedAnimations++;
+
+        // Check if all elements have finished animating
+        if (completedAnimations === designCategories.length) {
+          // All animations are complete, stop the timer here
+          clearTimeout(timer);
+        }
+      }, delay);
+    });
+  }
+
+  // Call the function to fade in .design-categories elements after a small delay
+  const timer = setTimeout(fadeInDesignCategories, 100); // Adjust delay time as needed
+
+  // Add event listeners for hover effect
+  designCategories.forEach(function(category) {
+    category.addEventListener('mouseenter', function() {
+      this.classList.add('hovered');
+      this.style.transform = ""; // Reset transform on hover
+    });
+    category.addEventListener('mouseleave', function() {
+      this.classList.remove('hovered');
+    });
   });
 });
+
+
