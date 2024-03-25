@@ -947,6 +947,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+//Designs flip at start
 document.addEventListener("DOMContentLoaded", function() {
   const designCategories = document.querySelectorAll(".cat-info");
   let completedAnimations = 0;
@@ -990,5 +991,3 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 });
-
-
