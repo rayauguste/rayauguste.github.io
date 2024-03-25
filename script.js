@@ -868,6 +868,13 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
+  // Check if enlargedImage exists before using it
+  if (enlargedImage) {
+    enlargedImage.addEventListener("click", function() {
+      fadeOutOverlay();
+    });
+  }
+
   function fadeInOverlay() {
     if (overlay) {
       overlay.style.display = "flex";
