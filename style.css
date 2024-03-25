@@ -869,7 +869,7 @@ body {
 
 .design-list-title {
     color: #ffffff15;
-    font-size: max(min(10vw, 220px), 24px); /* Adjust font size based on viewport width, limited to a range between 24px and 176px */
+    font-size: max(min(10vw, 220px), 1px); /* Adjust font size based on viewport width, limited to a range between 24px and 176px */
     text-align: center;
     width: 100%;
 }
