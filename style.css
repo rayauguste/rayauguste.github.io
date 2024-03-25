@@ -872,7 +872,6 @@ body {
     font-size: max(min(10vw, 220px), 24px); /* Adjust font size based on viewport width, limited to a range between 24px and 176px */
     text-align: center;
     width: 100%;
-    white-space: nowrap; /* Prevent text from wrapping */
 }
 
 .large-design {
