@@ -1,3 +1,4 @@
+//Show and hide nav bar
 document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener("scroll", function() {
       var navSection = document.querySelector(".nav-section");
@@ -15,93 +16,58 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-  //burger menu check box
-  document.addEventListener('DOMContentLoaded', function() {
-    var hamburgers = document.querySelectorAll('.hamburger');
-    var element = document.querySelector('#burger-menu');
-    var closeButton = document.getElementById('close-button');
-  
-    hamburgers.forEach(function(hamburger) {
-      var bodyClick = null;
-  
-      if (hamburger && element && closeButton) {
-        hamburger.addEventListener('change', function() {
-          console.log('Checkbox state changed');
-          var isChecked = this.checked;
-  
-          // Toggle the 'move-left' class based on the state of the checkbox
-          if (isChecked) {
-            element.classList.remove('move-left');
-            closeButton.classList.remove('move-left'); // Remove 'move-left' from close button
-          } else {
-            element.classList.add('move-left');
-            closeButton.classList.add('move-left'); // Add 'move-left' to close button
-          }
-  
-          // Check if the hamburger is checked and if the bodyClick exists
-          if (isChecked) {
-            // create a new div element and assign an id
-            bodyClick = document.createElement('div');
-            bodyClick.id = 'bodyClick';
-            // apply the CSS style using style.cssText
-            bodyClick.style.cssText = "height: 100%; width: 100%; position: fixed; top: 0; left: auto; right: 0; z-index: 5;";
-            // append the div element to the document body
-            document.body.appendChild(bodyClick);
-          } else if (!isChecked && bodyClick) {
-            // remove the div element from the document body
-            document.body.removeChild(bodyClick);
-            // set the variable to null
-            bodyClick = null;
-          }
-        });
+//Hamburger menu
+document.addEventListener('DOMContentLoaded', function() {
+  const hamburgerElements = document.querySelectorAll('.hamburger');
+  const element = document.querySelector('#burger-menu');
+  const closeButton = document.getElementById('close-button');
+
+  // Toggle move-left class and create bodyClick div
+  function toggleMenu() {
+    const isChecked = this.checked;
+    const bodyClick = document.getElementById('bodyClick');
+    const elements = [element, closeButton];
+
+    elements.forEach(function(el) {
+      if (isChecked) {
+        el.classList.remove('move-left');
+      } else {
+        el.classList.add('move-left');
       }
     });
-  });
-  
-//Click off burger menu
-document.addEventListener('DOMContentLoaded', function() {
-  var elements = [document.querySelector('#burger-menu'), document.querySelector('#close-button')];
 
-  document.addEventListener("click", function(event) {
-    if (event.target.id === "bodyClick") {
-      // Uncheck the checkbox for all elements with class .hamburger
-      document.querySelectorAll('.hamburger').forEach(function(hamburger) {
-        hamburger.checked = false;
-      });
-      // Remove the class "move-left" from the elements
-      elements.forEach(function(element) {
-        element.classList.add("move-left");
-      });
-      // Remove the bodyClick element
-      var bodyClick = document.getElementById("bodyClick");
-      if (bodyClick) {
-        document.body.removeChild(bodyClick);
-      }
+    if (isChecked && !bodyClick) {
+      const bodyClick = document.createElement('div');
+      bodyClick.id = 'bodyClick';
+      bodyClick.style.cssText = "height: 100%; width: 100%; position: fixed; top: 0; left: auto; right: 0; z-index: 5;";
+      document.body.appendChild(bodyClick);
+    } else if (!isChecked && bodyClick) {
+      document.body.removeChild(bodyClick);
     }
+  }
+
+  // Event listener for hamburger checkboxes
+  hamburgerElements.forEach(function(hamburger) {
+    hamburger.addEventListener('change', toggleMenu);
   });
-});
 
-document.addEventListener('DOMContentLoaded', function() {
-  var closeButton = document.getElementById('close-button');
-  var elements = [document.querySelector('#burger-menu'), document.querySelector('#close-button')];
-  var hamburgerElements = document.querySelectorAll('.hamburger');
-
-  if (closeButton) {
-    closeButton.addEventListener('click', function() {
-      // Uncheck the checkboxes for all elements with class .hamburger
+  // Event listener for clicks outside the menu
+  document.addEventListener('click', function(event) {
+    if (event.target.id === 'bodyClick') {
       hamburgerElements.forEach(function(hamburger) {
         hamburger.checked = false;
       });
-      // Remove the class "move-left" from the elements
-      elements.forEach(function(element) {
-        element.classList.add("move-left");
+      toggleMenu.call({ checked: false });
+    }
+  });
+
+  // Event listener for close button
+  if (closeButton) {
+    closeButton.addEventListener('click', function() {
+      hamburgerElements.forEach(function(hamburger) {
+        hamburger.checked = false;
       });
-      // get the current div element by its id
-      var bodyClick = document.getElementById("bodyClick");
-      // remove the div element from the document body
-      document.body.removeChild(bodyClick);
-      // set the variable to null
-      bodyClick = null;
+      toggleMenu.call({ checked: false });
     });
   }
 });

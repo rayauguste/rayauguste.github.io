@@ -901,7 +901,6 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 1000; /* Ensure it appears on top of other content */
-    cursor: zoom-out;
     pointer-events: all;
     transition: opacity 0.5s ease;
     opacity: 0;
