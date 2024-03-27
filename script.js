@@ -154,7 +154,8 @@ function generateImages(variable) {
     'img/WebUI/Frame 3509.png',
     'img/WebUI/Frame 3510.png',
     'img/WebUI/Frame 3511.png',
-    'img/WebUI/Frame 3512.png'
+    'img/WebUI/Frame 3512.png',
+    'img/WebUI/Frame 3513.png'
   ];
 
   // App UI Image List
@@ -167,7 +168,8 @@ function generateImages(variable) {
     'img/AppUI/Frame 3449.png',
     'img/AppUI/Frame 3453.png',
     'img/AppUI/Frame 3451.png',
-    'img/AppUI/Frame 3448.png'
+    'img/AppUI/Frame 3448.png',
+    'img/AppUI/Frame 3516.png'
   ];
 
   if (variable === 'game') {
@@ -259,6 +261,7 @@ document.addEventListener('DOMContentLoaded', function() {
     'img/WebUI/Frame 3510.png',
     'img/WebUI/Frame 3511.png',
     'img/WebUI/Frame 3512.png',
+    'img/WebUI/Frame 3513.png',
     'img/AppUI/Frame 3455.png',
     'img/AppUI/Frame 3450.png',
     'img/AppUI/Frame 3457.png',
@@ -267,7 +270,8 @@ document.addEventListener('DOMContentLoaded', function() {
     'img/AppUI/Frame 3449.png',
     'img/AppUI/Frame 3453.png',
     'img/AppUI/Frame 3451.png',
-    'img/AppUI/Frame 3448.png'
+    'img/AppUI/Frame 3448.png',
+    'img/AppUI/Frame 3516.png'
   ];
 
   // Function to randomly select an image path from the array
