@@ -146,7 +146,8 @@ function generateImages(variable) {
     'img/WebUI/Frame 3443.png',
     'img/WebUI/Frame 3444.png',
     'img/WebUI/Frame 3445.png',
-    'img/WebUI/Frame 3446.png'
+    'img/WebUI/Frame 3446.png',
+    'img/WebUI/Frame 3505.png'
   ];
 
   // App UI Image List
@@ -243,6 +244,7 @@ document.addEventListener('DOMContentLoaded', function() {
     'img/WebUI/Frame 3444.png',
     'img/WebUI/Frame 3445.png',
     'img/WebUI/Frame 3446.png',
+    'img/WebUI/Frame 3505.png',
     'img/AppUI/Frame 3455.png',
     'img/AppUI/Frame 3450.png',
     'img/AppUI/Frame 3457.png',
