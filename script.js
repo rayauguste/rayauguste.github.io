@@ -131,7 +131,8 @@ function generateImages(variable) {
     'img/GameUI/Frame 3483.png',
     'img/GameUI/Frame 3502.png',
     'img/GameUI/Frame 3501.png',
-    'img/GameUI/Frame 3503.png'
+    'img/GameUI/Frame 3503.png',
+    'img/GameUI/Frame 3518.png'
   ];
 
   // Web UI Image List
@@ -242,6 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
     'img/GameUI/Frame 3502.png',
     'img/GameUI/Frame 3501.png',
     'img/GameUI/Frame 3503.png',
+    'img/GameUI/Frame 3518.png',
     'img/WebUI/Frame 3435.png',
     'img/WebUI/Frame 3436.png',
     'img/WebUI/Frame 3437.png',
