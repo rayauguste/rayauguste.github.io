@@ -180,6 +180,38 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  //3D card effect
+  const visitStoreButton = document.querySelector(".visit-store-button");
+  visitStoreButton.addEventListener("mouseenter", function () {
+    this.style.transition = "none"; // Disable transition on hover
+    this.style.transition = "transform 0.1s ease";
+    this.addEventListener("mousemove", function (event) {
+      const boundingRect = this.getBoundingClientRect();
+      const centerX = boundingRect.left + boundingRect.width / 2; // X-coordinate of the center of the image
+      const centerY = boundingRect.top + boundingRect.height / 2; // Y-coordinate of the center of the image
+
+      const mouseX = event.clientX - centerX; // X-coordinate of the mouse relative to the center of the image
+      const mouseY = event.clientY - centerY; // Y-coordinate of the mouse relative to the center of the image
+
+      // Calculate the rotation angles based on mouse position
+      const maxRotation = 150; // Maximum rotation angle
+      const rotationX = (mouseY / centerY) * maxRotation; // Rotation around the X-axis
+      const rotationY = -(mouseX / centerX) * maxRotation; // Rotation around the Y-axis
+
+      // Apply the rotation to the image
+      this.style.transform = `perspective(1000px) rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+    });
+  });
+
+  visitStoreButton.addEventListener("mouseleave", function () {
+    // Enable transition on mouse leave
+    this.style.transition = "transform 0.1s ease";
+    // Reset the transform on mouse leave
+    this.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+  });
+});
+
 // Array of image URLs
 const imageUrls = [
   "img/GameUI/game_ui_one.png",

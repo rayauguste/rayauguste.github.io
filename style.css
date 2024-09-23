@@ -351,3 +351,139 @@ body {
   z-index: 2;
   pointer-events: all;
 }
+
+
+.pick-it-up-section {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 212px;
+  pointer-events: all;
+  position: absolute;
+  top: 5400px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1294px;
+}
+
+.pick-it-up-logo {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+}
+
+.pick-it-up-logo .img-one {
+  width: 64px;
+  height: auto;
+}
+
+.pick-it-up-logo .img-two {
+  width: 293px;
+  height: auto;
+}
+
+.pick-it-up-about {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 46px;
+}
+
+.pick-it-up-about-header {
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+}
+
+.pick-it-up-about p {
+  font-size: 20px;
+  color: #1F2833;
+  font-weight: 50;
+  pointer-events: all;
+  line-height: 43px;
+  letter-spacing: 5px; /* Adjust as needed */
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+.pick-it-up-about-header h1 {
+  font-size: 35px;
+  color: #39BBC930;
+  font-weight: 400;
+  pointer-events: all;
+  line-height: 43px;
+  letter-spacing: 5px; /* Adjust as needed */
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+.pick-it-up-about-header h4 {
+  font-size: 24px;
+  color: #1F2833;
+  font-weight: 400;
+  pointer-events: all;
+  line-height: 43px;
+  letter-spacing: 5px; /* Adjust as needed */
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+.pick-it-up-details {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 114px;
+  margin-top: -140px;
+}
+
+.visit-store-button {
+  font-family: "Rubik", Arial, sans-serif;
+  font-size: 20px;
+  color: #1F2833;
+  font-weight: 50;
+  pointer-events: all;
+  width: 275px;
+  height: 67px;
+  outline: none;
+  border: 2px solid transparent;
+  background: linear-gradient(#F6FDFF, #F6FDFF) padding-box,
+              linear-gradient(45deg, #1F2833, #1F283340) border-box;
+
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  text-decoration: none;
+}
+
+.pick-it-up-details-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.pick-it-up-details-text h4 {
+  font-size: 24px;
+  color: #1F2833;
+  font-weight: 400;
+  pointer-events: all;
+  line-height: 43px;
+  letter-spacing: 5px; /* Adjust as needed */
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+.pick-it-up-details-text ul {
+  font-size: 20px;
+  color: #1F2833;
+  font-weight: 400;
+  pointer-events: all;
+  line-height: 43px;
+  letter-spacing: 5px; /* Adjust as needed */
+  width: 100%;
+}
