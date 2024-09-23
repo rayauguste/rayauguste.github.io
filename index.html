@@ -34,6 +34,10 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&display=swap"
     />
+    <link
+      href="https://fonts.googleapis.com/css?family=Rubik:50,100,200,300,400,500,600,700"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
     <link rel="shortcut icon" href="RayLogo.ico" />
@@ -53,453 +57,104 @@
     </script>
   </head>
   <body>
-    <div class="logo">
-      <a href="/">
-        <img draggable="false" src="img/RayLogo.png" alt="logo" />
-      </a>
-    </div>
-    <div class="header">
-      <div class="search-container active">
-        <button class="search-button" onclick="toggleSearch()">
-          <img draggable="false" src="img/SearchIcon.png" alt="search-icon" />
-        </button>
-        <input
-          type="text"
-          class="search-input active"
-          id="search-input"
-          placeholder="Search something"
-        />
-        <label for="search-input" class="search-label"><p>Search</p></label>
-      </div>
-
-      <ul class="header-buttons">
-        <li class="home-button selected-tab">
-          <a href="/"> Home </a>
-          <div class="selected-tab-bar"></div>
-        </li>
-        <li class="designs-button">
-          <a href="designs"> Designs </a>
-        </li>
-        <li class="resume-button">
-          <a href="cv/RayAuguste_resume.pdf" target="_blank"> Resume </a>
-        </li>
-        <li class="contact-button">
-          <a
-            href="mailto:raekwon322@gmail.com?subject=[Ray%20Auguste%20Portfolio]%20"
-            >Contact</a
-          >
-        </li>
-      </ul>
-      <!-- Checkbox to track the state of the menu -->
-      <input type="checkbox" id="hamburger" class="hamburger" />
-      <!-- Label to act as the hamburger icon -->
-      <label for="hamburger" id="hamburger-icon">
-        <!-- You can use CSS, an image, or a font icon to create the three lines -->
-        <span></span>
-        <span></span>
-        <span></span>
-        <p>label</p>
-      </label>
-    </div>
-    <div class="nav-section hide">
-      <div class="nav-bar hide-two">
-        <div class="search-container-two active">
-          <button class="search-button-two" onclick="toggleSearchTwo()">
-            <img draggable="false" src="img/SearchIcon.png" alt="search-icon" />
-          </button>
-          <input
-            type="text"
-            class="search-input-two active"
-            id="search-input-two"
-            placeholder="Search something"
-          />
-          <label for="search-input-two" class="search-label"
-            ><p>Search</p></label
-          >
+    <div class="camera-effects-container">
+      <div class="camera-effects breathing-effect">
+        <div class="play-text-container">
+          <img draggable="false" src="img/Icons/Play.svg" alt="" />
+          <p class="play-time-text">00:00:00:07</p>
         </div>
-        <ul class="header-buttons">
-          <li class="home-button selected-tab">
-            <a href="/"> Home </a>
-            <div class="selected-tab-bar"></div>
-          </li>
-          <li class="designs-button">
-            <a href="designs"> Designs </a>
-          </li>
-          <li class="resume-button">
-            <a href="cv/RayAuguste_resume.pdf" target="_blank"> Resume </a>
-          </li>
-          <li class="contact-button">
-            <a
-              href="mailto:raekwon322@gmail.com?subject=[Ray%20Auguste%20Portfolio]%20"
-              >Contact</a
-            >
-          </li>
-        </ul>
-        <!-- Checkbox to track the state of the menu -->
-        <input type="checkbox" id="hamburger-two" class="hamburger" />
-        <!-- Label to act as the hamburger icon -->
-        <label for="hamburger-two" id="hamburger-icon">
-          <!-- You can use CSS, an image, or a font icon to create the three lines -->
-          <span></span>
-          <span></span>
-          <span></span>
-          <p>label</p>
-        </label>
+        <div class="persons-text-container">
+          <p class="persons-text"></p>
+          <div class="persons-text-cursor-text"></div>
+        </div>
+        <div class="battery-container">
+          <div class="battery-fill-container">
+            <div class="battery-fill"></div>
+          </div>
+          <div class="battery-bar-tip"></div>
+        </div>
+        <p class="background-blur-text">JUST ANOTHER UI/UX DESIGNER</p>
       </div>
     </div>
-    <div class="back-up hide" onclick="topFunction()">
+    <p class="background-blur-text-nothing">NOTHING</p>
+    <div class="blur-background"></div>
+    <p class="introduction-text">
+      Hi, I'm Ray Auguste, a UI/UX Designer and Web Developer. My designs aim to
+      create genuine value and address important challenges. Welcome to my
+      portfolio!
+    </p>
+    <a
+      href="mailto:raekwon322@gmail.com?subject=[Ray%20Auguste%20Portfolio]"
+      class="contact-button"
+    >
       <img
         draggable="false"
-        src="img/iconamoon_arrow-up-2.png"
-        alt="up-arrow"
+        src="img/Icons/contact_me_button.svg"
+        alt="Contact Button"
       />
+    </a>
+
+    <div class="reach-me-buttons-container">
+      <a
+        href="https://twitter.com/Saotekin"
+        target="_blank"
+        class="reach-me-button"
+      >
+        <img
+          draggable="false"
+          src="img/Icons/devicon_twitter.svg"
+          alt="Twitter Button"
+        /> </a
+      ><a
+        href="https://www.behance.net/rayauguste"
+        target="_blank"
+        class="reach-me-button"
+      >
+        <img
+          draggable="false"
+          src="img/Icons/fa6-brands_behance.svg"
+          alt="Behance Button"
+        /> </a
+      ><a
+        href="https://www.artstation.com/ray_auguste"
+        target="_blank"
+        class="reach-me-button"
+      >
+        <img
+          draggable="false"
+          src="img/Icons/fa-brands_artstation.svg"
+          alt="Art Station Button"
+        /> </a
+      ><a
+        href="https://www.linkedin.com/in/ray-auguste-613684299/"
+        target="_blank"
+        class="reach-me-button"
+        ><img
+          draggable="false"
+          src="img/Icons/fontisto_linkedin.svg"
+          alt="Linkedin Button"
+      /></a>
     </div>
-    <!-- Nav element to contain the menu items -->
-    <button type="button" id="close-button" class="move-left">
-      <img src="img/ph_x.png" alt="close" />
-    </button>
-    <div class="burger-section">
-      <nav id="burger-menu" class="move-left">
-        <div class="burger-center">
-          <div class="list-div">
-            <ul>
-              <li>
-                <a href="/"> Home </a>
-              </li>
-              <li>
-                <a href="designs"> Designs </a>
-              </li>
-              <li>
-                <a href="cv/RayAuguste_resume.pdf" target="_blank"> Resume </a>
-              </li>
-              <li>
-                <a
-                  href="mailto:raekwon322@gmail.com?subject=[Ray%20Auguste%20Portfolio]%20"
-                >
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="grid-div">
-            <ul class="grid-menu-items">
-              <li>
-                <a href="https://twitter.com/Saotekin" target="_blank">
-                  <img src="img/Icons/X svg.png" alt="Twitter" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/ray-auguste-613684299/"
-                  target="_blank"
-                >
-                  <img src="img/Icons/LinkedIn.png" alt="LinkedIn" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.artstation.com/ray_auguste"
-                  target="_blank"
-                >
-                  <img src="img/Icons/mdi_artstation.png" alt="Art Station" />
-                </a>
-              </li>
-              <li>
-                <a href="https://www.behance.net/rayauguste" target="_blank">
-                  <img src="img/Icons/Behance svg.png" alt="Behance" />
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+    <div class="scroll-down-text-container">
+      <img
+        draggable="false"
+        src="img/Icons/wide_arrow_down.svg"
+        alt="down arrow"
+      />
+      <p>sc r oll dow n</p>
     </div>
-    <div class="main-section">
-      <div class="top-section">
-        <div class="title-section section">
-          <div class="title-two">
-            <div class="glow-line"><div class="glow-blur"></div></div>
-            <div class="title">
-              <div class="title-info">
-                <div class="title-header">
-                  <h1 class="title-header-h1">Hi, I'm Ray Auguste</h1>
-                  <h2>An UI/UX Designer & Web Developer</h2>
-                </div>
-                <p>
-                  My designs strive to add real value and solve key problems.
-                  Welcome to my portfolio.
-                </p>
-              </div>
-              <ul class="title-buttons">
-                <li class="my-portfolio">
-                  <a href="designs">My Portfolio</a>
-                </li>
-                <li class="contact">
-                  <a
-                    href="mailto:raekwon322@gmail.com?subject=[Ray%20Auguste%20Portfolio]%20"
-                    >Contact</a
-                  >
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="large-logo">
-            <img
-              class="image"
-              draggable="false"
-              src="img/Group 728.png"
-              alt="large-logo"
-            />
-          </div>
-        </div>
-        <div class="about-me-section section">
-          <div class="about-me">
-            <h1 class="about-me-h1">About Me</h1>
-            <p>
-              In the digital twilight, I stand as the silent guardian of app and
-              web UI, crafting portals within the liminal spaces of user
-              experience. With Figma as my lantern, I illuminate the path for
-              those traversing the nebulous boundaries of games, applications,
-              and websites. My designs whisper of responsive grace and intuitive
-              passage, ensuring every transition is a seamless voyage through
-              the veiled thresholds of the virtual expanse. In the quietude that
-              precedes the cacophony of development, my wireframes and
-              prototypes are the cartography of anticipation, charting the
-              silent contours of interaction that await the user’s touch.
-            </p>
-          </div>
-          <ul class="social-buttons">
-            <li>
-              <a href="https://twitter.com/Saotekin" target="_blank">
-                <img
-                  draggable="false"
-                  src="img/Icons/X svg.png"
-                  alt="Twitter"
-                />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.linkedin.com/in/ray-auguste-613684299/"
-                target="_blank"
-              >
-                <img
-                  draggable="false"
-                  src="img/Icons/LinkedIn.png"
-                  alt="LinkedIn"
-                />
-              </a>
-            </li>
-            <li>
-              <a href="https://www.artstation.com/ray_auguste" target="_blank">
-                <img
-                  draggable="false"
-                  src="img/Icons/mdi_artstation.png"
-                  alt="Art Station"
-                />
-              </a>
-            </li>
-            <li>
-              <a href="https://www.behance.net/rayauguste" target="_blank">
-                <img
-                  draggable="false"
-                  src="img/Icons/Behance svg.png"
-                  alt="Behance"
-                />
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="middle-section">
-        <div class="design-process-section section">
-          <div class="design-process-two">
-            <div class="design-process-group">
-              <div class="design-process-header">
-                <h1 class="design-process-h1">Design Process</h1>
-                <h2>How I work</h2>
-              </div>
-              <div class="dots-images">
-                <img
-                  draggable="false"
-                  src="img/Group 266.png"
-                  alt="large-image"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="design-process-steps">
-            <div draggable="false" class="step">
-              <h1>Strategy</h1>
-              <p>
-                Before diving into design, I first confirm the right questions
-                and challenges are set—laying the groundwork with clear goals,
-                research, and solution-focused analysis.
-              </p>
-            </div>
-            <div draggable="false" class="step step-two">
-              <h1>Design</h1>
-              <p>
-                In this problem-solving stage, you’ll receive a design that’s
-                both precise and ideal, forged through wireframes, mockups, and
-                prototypes before actual development begins.
-              </p>
-            </div>
-            <div draggable="false" class="step">
-              <h1>Development</h1>
-              <p>
-                As a designer with coding prowess, I seamlessly partner with
-                developers, breathing life into products. For web projects, I
-                also take on front-end development, bridging design and code.
-              </p>
-            </div>
-          </div>
-          <div class="large-image">
-            <img
-              class="image"
-              draggable="false"
-              src="img/Group 267.png"
-              alt="large-logo"
-            />
-          </div>
-        </div>
-        <div class="services-section section">
-          <div class="services-group">
-            <div class="services-header">
-              <h1 class="services-header-h1">What Services Do I Offer</h1>
-              <p>
-                I craft digital products that are both appealing and intuitive,
-                ensuring they fulfill the aspirations of my clients and their
-                users. Here's an overview of the services I offer:
-              </p>
-            </div>
-            <div class="large-image-two">
-              <img
-                draggable="false"
-                src="img/Group 730.png"
-                alt="large-image"
-              />
-            </div>
-          </div>
-          <div class="service-list">
-            <div class="service">
-              <img
-                id="service-icon-one"
-                draggable="false"
-                src="img/tabler_id.png"
-                alt="large-image"
-              />
-              <div class="service-info">
-                <h1>User Testing</h1>
-                <p>
-                  I test your product’s usability and appeal with users, analyze
-                  their feedback and metrics, and refine for an optimal
-                  experience.
-                </p>
-              </div>
-            </div>
-            <div class="service">
-              <img
-                id="service-icon-two"
-                draggable="false"
-                src="img/Group 729.png"
-                alt="large-image"
-              />
-              <div class="service-info">
-                <h1>UX Consulting</h1>
-                <p>
-                  I streamline user experience, aligning design with user and
-                  business needs, and bridging satisfaction with strategic
-                  objectives.
-                </p>
-              </div>
-            </div>
-            <div class="service">
-              <img
-                id="service-icon-three"
-                draggable="false"
-                src="img/Group 268.png"
-                alt="large-image"
-              />
-              <div class="service-info">
-                <h1>UI UX Design</h1>
-                <p>
-                  I define your product's look with chosen colors, fonts, icons,
-                  animations, and detailed guides for its style.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="bottom-section">
-        <div class="contact-section section">
-          <div class="contact-info">
-            <div class="contact-header">
-              <h1 class="contact-header-h1">Get in Touch</h1>
-              <h2>Let's work together</h2>
-            </div>
-            <p>
-              If you have a video game, website or mobile app idea in mind, feel
-              free to contact me.
-            </p>
-          </div>
-          <div class="contact-div">
-            <a
-              class="contact-button-two"
-              href="mailto:raekwon322@gmail.com?subject=[Ray%20Auguste%20Portfolio]%20"
-              >Contact</a
-            >
-            <ul class="social-buttons-two">
-              <li>
-                <a href="https://twitter.com/Saotekin" target="_blank">
-                  <img
-                    draggable="false"
-                    src="img/Icons/X svg.png"
-                    alt="Twitter"
-                  />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/ray-auguste-613684299/"
-                  target="_blank"
-                >
-                  <img
-                    draggable="false"
-                    src="img/Icons/LinkedIn.png"
-                    alt="LinkedIn"
-                  />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.artstation.com/ray_auguste"
-                  target="_blank"
-                >
-                  <img
-                    draggable="false"
-                    src="img/Icons/mdi_artstation.png"
-                    alt="Art Station"
-                  />
-                </a>
-              </li>
-              <li>
-                <a href="https://www.behance.net/rayauguste" target="_blank">
-                  <img
-                    draggable="false"
-                    src="img/Icons/Behance svg.png"
-                    alt="Behance"
-                  />
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <img class="design-one draggable" src="" alt="design" />
-      <img class="design-two draggable" src="" alt="design" />
-      <img class="design-three draggable" src="" alt="design" />
+    <div class="about-me-section">
+      <h1>About Me</h1>
+      <p>
+        As a UI/UX designer with a focus on UI/UX, I am passionate about
+        creating visually appealing and user-friendly websites and software.
+        With Figma as my go-to tool, I have honed my skills in designing
+        responsive interfaces that provide an exceptional user experience. My
+        strengths include responsive design, user experience, and accessibility.
+        I am also well-versed in creating wireframes and prototypes that help me
+        visualize the final product and make necessary changes before the
+        development phase.
+      </p>
     </div>
   </body>
 </html>

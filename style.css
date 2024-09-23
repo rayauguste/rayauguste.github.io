@@ -4,1628 +4,341 @@ html {
 
 body {
     margin: 0; padding: 0;
-    background-color: #000000;
-    font-family: 'Inter', sans-serif;
+    background-color: #F6FDFF;
+    font-family: "Rubik", Arial, sans-serif;
     pointer-events: none;
     overflow-x: hidden;
+    transition: background-color 0.2s; /* Smooth transition */
 }
 
-.logo {
+.play-time-text {
+    font-size: 30px;
+    color: #A4C0C5;
+    text-align: center;
+    font-weight: 50;
+}
+
+.camera-effects {
+    width: 90%;
+    height: 100%;
+    pointer-events: none;
+    justify-content: space-between;
+    align-items: flex-start;
     display: flex;
-    justify-content: center;
-    width: 100%;
-    padding: 32px 0;
+    flex-direction: row;
 }
 
-.logo a {
-    pointer-events: all;
-}
-
-.header {
-    display: flex; /* Use flexbox */
-    align-items: center; /* Center items vertically */
-    justify-content: center; /* Create space between items */
+.camera-effects-container {
+    position: fixed;
     top: 0;
-    right: 0;
+    left: 0;
     width: 100%;
-    z-index: 4;
-    height: 42px;
-    gap: 77px;
-    margin-bottom: 70px;
-    pointer-events: all;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.blur-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1); /* Transparent white */
+    backdrop-filter: blur(3px); /* Adjust blur level */
+    pointer-events: none;
+    z-index: 1;
+}
+
+.play-text-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+
+
+.breathing-effect {
+    animation: breathing 6s infinite ease-in-out;
+  }
+  
+  @keyframes breathing {
+    0% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(1.03);
+    }
+    50% {
+      transform: scale(1);
+    }
+    75% {
+      transform: scale(1.02);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+
+
+.persons-text-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.persons-text {
+    font-size: 28px;
+    color: #5CDB95;
+    text-align: center;
+    font-weight: 50;
+}
+
+.persons-text-cursor-text {
+    animation: blink 1s infinite;
+    height: 33px;
+    width: 2px;
+    background-color: #00000055;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+
+
+.battery-container {
+    margin-top: 30px;
+    width: 80px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    gap: 7px;
+    flex-direction: row;
+}
+
+.battery-bar-tip {
+    min-width: 12px;
+    height: 20px;
+    background-color: #A4C0C550;
+}
+
+.battery-fill-container {
+    width: 100%;
+    height: 100%;
+    border: 6px solid #A4C0C550;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.battery-fill {
+    width: 100%;
+    height: 100%;
+    background-color: #A4C0C550;
+    animation: progress 20s infinite alternate;
+  }
+  
+  @keyframes progress {
+    0% {
+      width: 0%;
+    }
+    100% {
+      width: 100%;
+    }
   }
 
-.header-buttons {
-    display: flex;
-    gap: 36px;
-    list-style: none;
-    padding: 0px;
-    margin: 0;
-}
-
-.header-buttons a {
-    color: #ffffff50;
-    transition: color 0.2s ease; /* Add a transition effect for the color change */
-    border: none;
-    background-color: transparent; /* Remove the fill color */
-    font-size: 22px;
-    font-weight: 400;
-    cursor: pointer; /* Change the cursor to a pointer */
-    border-radius: 25px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 16px;
-    padding-right: 16px;
-    display: flex; /* Use flexbox */
-    align-items: center; /* Center items vertically */
-    text-decoration: none; /* no underline */
-}
-
-.header-buttons a:hover {
-    color: white;
-}
-
-.back-button {
-    display: flex;
-    height: 34px;
-    justify-content: center;
-    align-items: center;
-    padding-left: 16px;
-    padding-right: 16px;
-    pointer-events: all;
-}
-
-.back-button img {
-    width: 16px;
-    height: 30px;
-    transition: transform 0.5s ease; /* Add a transition effect for the color change */
-}
-
-.back-button:hover img {
-    transform: translateX(-30px); /* Translate and rotate the image on hover */
-}
-
-.main-section {
-    display: flex;
-    flex-direction: column;
-    gap: 100px;
-    width: 100%;
-    align-items: center;
-    margin-bottom: 300px;
+.background-blur-text {
+    font-size: 20px;
+    color: #A4C0C5;
+    text-align: center;
+    font-weight: 50;
     pointer-events: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 64px;
+    letter-spacing: 5px; /* Adjust as needed */
 }
 
-.top-section {
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 100px;
-}
 
-.title-section {
-    display: flex;
-    width: 100%;
-    max-width: 1920px;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 200px;
-    flex-direction: row;
-    padding-top: 65px;
-    background: linear-gradient(to right, #ffffff10, #ffffff10, #99999900);
-    border-radius: 44px;
-    box-shadow: inset 0 11px 0 #ffffff05; /* Add inner shadow */
-    overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
-    border: 1px solid black; /* Remove default border */
-    -webkit-backdrop-filter: blur(28px); /* Apply the background blur for Safari */
-    backdrop-filter: blur(28px); /* Apply the background blur */
-    transition: transform 0.5s ease, opacity 0.5s ease;
+.introduction-text {
+    z-index: 2;
+    font-size: 20px;
+    color: #1F2833;
+    font-weight: 50;
     pointer-events: all;
-    transform: translateX(-500px); /* Initially translate each section */
-    opacity: 0;
-}
-
-.glow-line {
-    width: 2px;
-    height: 280px;
-    background-color: #58E3F2;
-}
-
-.glow-blur {
-    width: 2px;
-    height: 280px;
-    background-color: #58E3F2;
-    filter: blur(14.8px); /* Adjust the radius (3px in this example) */
-}
-
-.large-logo {
-    width: 809px;
-    height: 314px;
-    overflow: hidden;
-}
-
-.title {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-}
-
-.title-two {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 71px;
-    max-width: 624px;
+    position: absolute;
+    top: 100px;
+    left: 50px;
     width: 100%;
-    padding-bottom: 65px;
-    padding-left: 65px;
+    max-width: 867px;
+    line-height: 64px;
+    letter-spacing: 5px; /* Adjust as needed */
 }
 
-.title-header {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    max-width: 535px;
+
+.contact-button {
+  z-index: 2;
+  font-family: "Rubik", Arial, sans-serif;
+  font-size: 20px;
+  color: #1F2833;
+  font-weight: 50;
+  pointer-events: all;
+  width: 223px;
+  height: 67px;
+  outline: none;
+  border: 2px solid transparent;
+  background: linear-gradient(#F6FDFF, #F6FDFF) padding-box,
+              linear-gradient(45deg, #1F2833, #1F283340) border-box;
+
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  position: absolute;
+  top: 560px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-decoration: none;
 }
 
-.title-header h1{
-    color: white;
-    font-size: 50px;
-    font-weight: 200;
-    margin: 0;
+.reach-me-buttons-container {
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 121px;
+  pointer-events: all;
+  position: absolute;
+  top: 690px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.title-header h2{
-    color: #39BBC9;
-    font-size: 26px;
-    font-weight: 200;
-    margin: 0;
+.reach-me-button {
+  width: 32px;
+  height: 32px;
+  padding: 0px;
+  margin: 0px;
+  outline: none;
+  border: none;
 }
 
-.title-info {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: 100%;
+.scroll-down-text-container {
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  gap: 34px;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 50px;
+  bottom: 0px;
 }
 
-.title-info p {
-    color: #B5B5B5;
-    font-size: 16px;
-    font-weight: 200;
-    margin: 0;
-    line-height: 22px;
-}
-
-.title-buttons {
-    display: flex;
-    align-items: flex-start;
-    list-style: none;
-    padding: 0px;
-    gap: 47px;
-    margin: 0;
-}
-
-.my-portfolio a {
-    color: white;
-    transition: background-color 0.5s ease; /* Add a transition effect for the color change */
-    border: none;
-    border-radius: 13.25px;
-    background-color: #202B35; /* Remove the fill color */
-    font-size: 18px;
-    font-weight: 400;
-    cursor: pointer; /* Change the cursor to a pointer */
-    height: 62px;
-    width: 225px;
-    display: flex; /* Use flexbox */
-    align-items: center; /* Center items vertically */
-    justify-content: center;
-    text-decoration: none; /* no underline */
-}
-
-.my-portfolio a:hover {
-    background-color: #39BBC9;
-    color: white;
-}
-
-.contact a {
-    color: white;
-    transition: background-color 0.5s ease; /* Add a transition effect for the color change */
-    border: 2px solid #39BBC9;
-    border-radius: 13.25px;
-    background-color: transparent; /* Remove the fill color */
-    font-size: 18px;
-    font-weight: 400;
-    cursor: pointer; /* Change the cursor to a pointer */
-    height: 62px;
-    width: 225px;
-    display: flex; /* Use flexbox */
-    align-items: center; /* Center items vertically */
-    justify-content: center;
-    text-decoration: none; /* no underline */
-    box-sizing: border-box;
-}
-
-.contact a:hover {
-    background-color: #39BBC9;
-    color: white;
-}
-
-.about-me {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: 100%;
-    max-width: 918px;
-}
-
-.about-me h1 {
-    font-size: 35px;
-    font-weight: 200;
-    color: #39BBC9;
-    margin: 0;
-}
-
-.about-me p {
-    font-size: 18px;
-    font-weight: 200;
-    color: #ffffff;
-    line-height: 32px;
-    margin: 0;
+.scroll-down-text-container p {
+  font-size: 20px;
+    color: #1F2833;
+    font-weight: 50;
+    pointer-events: none;
+    line-height: 64px;
+    letter-spacing: 5px; /* Adjust as needed */
 }
 
 .about-me-section {
-    display: flex;
-    flex-direction: row;
-    gap: 224px;
-    padding-left: 65px;
-    padding-right: 65px;
-    padding-top: 65px;
-    padding-bottom: 65px;
-    background: linear-gradient(to right, #ffffff10, #ffffff10, #99999900);
-    border-radius: 44px;
-    box-shadow: inset 0 11px 0 #ffffff05; /* Add inner shadow */
-    overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
-    border: 1px solid black; /* Remove default border */
-    -webkit-backdrop-filter: blur(28px); /* Apply the background blur for Safari */
-    backdrop-filter: blur(28px); /* Apply the background blur */
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    pointer-events: all;
-    transform: translateX(500px); /* Initially translate each section */
-    opacity: 0;
-}
-
-.social-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    list-style: none;
-    padding: 0px;
-    margin: 0;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.social-buttons a {
-    transition: background-color 0.5s ease, transform 0.5s ease; /* Add a transition effect for the color change */
-    background-color: transparent; /* Remove the fill color */
-    cursor: pointer; /* Change the cursor to a pointer */
-    border-radius: 57px;
-    width: 65px;
-    height: 65px;
-    border: 1px solid;
-    border-color: #ffffff66;
-    display: flex; /* Use flexbox */
-    justify-content: center;
-    align-items: center;
-}
-
-.social-buttons a:hover {
-    background-color: #39BBC9;
-    border-color: #ffffff;
-    transform: rotate(-30deg); /* Rotate the image by 30 degrees on hover */
-}
-
-.design-one {
-    position: absolute;
-    z-index: -1;
-    top: 1107px;
-    left: -40px;
-    transition: opacity 1s ease, left 1s ease, top 1s ease;
-    cursor: move;
-    pointer-events: all;
-    opacity: 0;
-    width: 687px;
-    height: 410px;
-}
-
-.design-two {
-    position: absolute;
-    z-index: -1;
-    top: 1754px;
-    right: -201px;
-    transition: opacity 1s ease, right 1s ease, top 1s ease;
-    cursor: move;
-    pointer-events: all;
-    opacity: 0;
-    width: 687px;
-    height: 410px;
-}
-
-.design-three {
-    position: absolute;
-    z-index: -1;
-    top: 2554px;
-    left: 305px;
-    transition: opacity 1s ease, left 1s ease, top 1s ease;
-    cursor: move;
-    pointer-events: all;
-    opacity: 0;
-    width: 687px;
-    height: 410px;
-}
-
-.middle-section {
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 100px;
-}
-
-.design-process-section {
-    display: flex;
-    gap: 50px;
-    max-width: 1920px;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row;
-    background: linear-gradient(to right, #ffffff10, #ffffff10, #99999900);
-    border-radius: 44px;
-    box-shadow: inset 0 11px 0 #ffffff05; /* Add inner shadow */
-    overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
-    border: 1px solid black; /* Remove default border */
-    -webkit-backdrop-filter: blur(28px); /* Apply the background blur for Safari */
-    backdrop-filter: blur(28px); /* Apply the background blur */
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    pointer-events: all;
-    transform: translateX(-500px); /* Initially translate each section */
-    opacity: 0;
-}
-
-.design-process-group {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 65px;
-    padding-top: 65px;
-    padding-left: 65px;
-    gap: 59px;
-    margin-right: -180px;
-}
-
-.design-process-header {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    max-width: 405px;
-}
-
-.design-process-header h1{
-    color: white;
-    font-size: 50px;
-    font-weight: 200;
-    margin: 0;
-}
-
-.design-process-header h2{
-    color: #39BBC9;
-    font-size: 26px;
-    font-weight: 200;
-    margin: 0;
-}
-
-.design-process-steps {
-    display: flex;
-    flex-direction: row;
-    margin-top: 260px;
-    flex-wrap: wrap;
-    padding-bottom: 65px;
-}
-
-.large-image {
-    width: 715px;
-    height: 505.87px;
-    display: flex;
-    justify-content: flex-start;
-    margin-left: -400px;
-    pointer-events: none;
-}
-
-.large-image img {
-    position: relative;
-    top: -150px;
-    right: -160px;
-}
-
-.step {
-    width: 330.24px;
-    height: 316px; /* Adjust as needed */
-    background-image: url("img/Polygon 292.png");
-    object-fit: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 24px;
-}
-
-.step-two {
-    margin-top: -200px;
-    margin-left: -40px;
-    margin-right: -40px;
-}
-
-.step h1 {
-    padding-top: 40px;
-    color: #39BBC9;
-    font-size: 26px;
-    font-weight: 200;
-    margin: 0;
-}
-
-.step p {
-    color: #B5B5B5;
-    font-size: 17px;
-    font-weight: 200;
-    line-height: 26px;
-    margin: 0;
-    max-width: 245px;
-    text-align: center;
-}
-
-.services-section {
-    display: flex;
-    width: 100%;
-    max-width: 1720px;
-    align-items: center;
-    justify-content: flex-end;
-    justify-content: space-between;
-    flex-direction: row;
-    background: linear-gradient(to right, #ffffff10, #ffffff10, #99999900);
-    border-radius: 44px;
-    box-shadow: inset 0 11px 0 #ffffff05; /* Add inner shadow */
-    overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
-    border: 1px solid black; /* Remove default border */
-    -webkit-backdrop-filter: blur(28px); /* Apply the background blur for Safari */
-    backdrop-filter: blur(28px); /* Apply the background blur */
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    pointer-events: all;
-    transform: translateX(500px); /* Initially translate each section */
-    opacity: 0;
-}
-
-.service-info h1 {
-    color: #39BBC9;
-    font-size: 26px;
-    font-weight: 200;
-    margin: 0;
-}
-
-.service-info p {
-    color: #B5B5B5;
-    font-size: 16px;
-    font-weight: 200;
-    margin: 0;
-    line-height: 24px;
-}
-
-.service {
-    display: flex;
-    flex-direction: column;
-    gap: 31px;
-    width: 100%;
-    max-width: 302px;
-}
-
-.service-info {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
-#service-icon-one {
-    width: 52px;
-    height: 47px;
-}
-
-#service-icon-two {
-    width: 48px;
-    height: 47.99px;
-}
-
-#service-icon-three {
-    width: 48px;
-    height: 49px;
-}
-
-.services-header {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    width: 100%;
-    max-width: 410px;
-}
-
-.services-header h1{
-    color: white;
-    font-size: 50px;
-    font-weight: 200;
-    margin: 0;
-}
-
-.services-header p{
-    color: #B5B5B5;
-    font-size: 16px;
-    font-weight: 200;
-    margin: 0;
-    line-height: 22px;
-}
-
-.service-list {
-    display: flex;
-    flex-direction: row;
-    gap: 42px;
-    padding-top: 135px;
-    padding-right: 65px;
-    padding-bottom: 65px;
-    flex-wrap: wrap;
-}
-
-.services-group {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 65px;
-    padding-top: 65px;
-    padding-left: 65px;
-    gap: 10px;
-    margin-right: -180px;
-}
-
-.large-image-two {
-    width: 715px;
-    height: 505.87px;
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: -280px;
-}
-
-.large-image-two img {
-    position: relative;
-    left: -250px;
-}
-
-.contact-info {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: 100%;
-    max-width: 500px;
-}
-
-.contact-header {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    max-width: 535px;
-}
-
-.contact-header h1 {
-    font-size: 50px;
-    font-weight: 200;
-    color: #ffffff;
-    margin: 0;
-}
-
-.contact-header h2 {
-    font-size: 26px;
-    font-weight: 200;
-    color: #39BBC9;
-    margin: 0;
-}
-
-.contact-info p {
-    font-size: 16px;
-    font-weight: 200;
-    color: #B5B5B5;
-    line-height: 22px;
-    margin: 0;
-}
-
-.bottom-section {
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 100px;
-}
-
-.contact-section {
-    display: flex;
-    flex-direction: column;
-    gap: 58px;
-    padding-left: 65px;
-    padding-right: 65px;
-    padding-top: 65px;
-    padding-bottom: 65px;
-    background: linear-gradient(to right, #ffffff10, #ffffff10, #99999900);
-    border: 1px solid black; /* Remove default border */
-    border-radius: 44px;
-    box-shadow: inset 0 11px 0 #ffffff05; /* Add inner shadow */
-    overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
-    -webkit-backdrop-filter: blur(28px); /* Apply the background blur for Safari */
-    backdrop-filter: blur(28px); /* Apply the background blur */
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    pointer-events: all;
-    transform: translateX(-500px); /* Initially translate each section */
-    opacity: 0;
-}
-
-.contact-div {
-    display: flex;
-    flex-direction: row;
-    gap: 258px;
-    align-items: center;
-}
-
-.social-buttons-two {
-    display: flex;
-    flex-direction: row;
-    gap: 33px;
-    list-style: none;
-    padding: 0px;
-    margin: 0;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.social-buttons-two a {
-    transition: background-color 0.5s ease, transform 0.5s ease; /* Add a transition effect for the color change */
-    background-color: transparent; /* Remove the fill color */
-    cursor: pointer; /* Change the cursor to a pointer */
-    border-radius: 57px;
-    width: 65px;
-    height: 65px;
-    border: 1px solid;
-    border-color: #ffffff66;
-    display: flex; /* Use flexbox */
-    justify-content: center;
-    align-items: center;
-}
-
-.social-buttons-two a:hover {
-    background-color: #39BBC9;
-    border-color: #ffffff;
-    transform: rotate(-30deg); /* Rotate the image by 30 degrees on hover */
-}
-
-.contact-button-two {
-    color: white;
-    transition: background-color 0.5s ease; /* Add a transition effect for the color change */
-    border: 2px solid #39BBC9;
-    border-radius: 13.25px;
-    background-color: transparent; /* Remove the fill color */
-    font-size: 18px;
-    font-weight: 400;
-    cursor: pointer; /* Change the cursor to a pointer */
-    height: 62px;
-    width: 225px;
-    display: flex; /* Use flexbox */
-    align-items: center; /* Center items vertically */
-    justify-content: center;
-    text-decoration: none; /* no underline */
-    box-sizing: border-box;
-}
-
-.contact-button-two:hover {
-    background-color: #39BBC9;
-    color: white;
-}
-
-.design-section {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 80px;
-    margin-bottom: 300px;
-    pointer-events: all;
-}
-
-.design-categories {
-    width: 80%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
-}
-
-.category {
-    height: 340px;
-    display: flex;
-    width: 100%;
-    max-width: 380px;;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    transition: background 0.5s ease, border-color 0.5s ease; /* Add a transition effect for the color change */
-    border: none; /* Remove default border */
-    border-radius: 10px;
-    cursor: pointer;
-    box-shadow: inset 0 11px 0 #ffffff05; /* Add inner shadow */
-    overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
-    border: 1px solid black; /* Remove default border */
-    -webkit-backdrop-filter: blur(28px); /* Apply the background blur for Safari */
-    backdrop-filter: blur(28px); /* Apply the background blur */
-}
-
-.cat-info {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    max-width: 380px;
-    gap: 30px;
-    opacity: 0;
-    transition: transform 0.5s ease, opacity 0.5s ease;
-}
-
-.cat-info p {
-    font-size: 18px;
-    font-weight: 200;
-    color: #ffffff;
-    margin: 0;
-    line-height: 24px;
-    text-align: center;
-}
-
-.cat-one {
-    border-radius: 75px 10px 10px 75px;
-    background: linear-gradient(to left, #ffffff10, #ffffff10, #99999900);
-}
-
-.cat-two {
-    background: linear-gradient(to right, #ffffff10, #ffffff10, #ffffff10);
-}
-
-.cat-three {
-    border-radius: 10px 75px 75px 10px;
-    background: linear-gradient(to right, #ffffff10, #ffffff10, #99999900);
-}
-
-.cat-one:hover {
-    background: linear-gradient(to left, #58E3F210, #58E3F210, #58E3F200);
-    border: 1px solid white; /* Remove default border */
-}
-
-.cat-two:hover {
-    background: linear-gradient(to right, #58E3F210, #58E3F210, #58E3F210);
-    border: 1px solid white; /* Remove default border */
-}
-
-.cat-three:hover {
-    background: linear-gradient(to right, #58E3F210, #58E3F210, #58E3F200);
-    border: 1px solid white; /* Remove default border */
-}
-
-.cat-info-one:hover {
-    transform: perspective(1000px) rotateY(25deg); /* Apply perspective and rotation */
-}
-
-.cat-info-two:hover {
-    transform: perspective(1000px) rotateX(25deg); /* Apply perspective and rotation */
-}
-
-.cat-info-three:hover {
-    transform: perspective(1000px) rotateY(-25deg); /* Apply perspective and rotation */
-}
-
-.category img {
-    transition: transform 0.5s ease; /* Add a transition effect for the color change */
-}
-
-.category:hover img {
-    transform: translateY(-30px) rotate(-30deg); /* Translate and rotate the image on hover */
-}
-
-.design-list-section {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 300px;
-    pointer-events: all;
-}
-
-.design-list {
-    display: flex;
-    flex-direction: column;
-    gap: 60px;
-    pointer-events: all;
-}
-
-.title-space {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: -200;
-}
-
-.design-list-title {
-    color: #ffffff15;
-    font-size: max(min(10vw, 220px), 1px); /* Adjust font size based on viewport width, limited to a range between 24px and 176px */
-    text-align: center;
-    width: 100%;
-}
-
-.large-design {
-    display: flex;
-    justify-content: center;
-    transform: perspective(1000px) rotateX(25deg); /* Apply perspective and rotation */
-    transition: transform 0.5s ease;
-    cursor: pointer;
-    padding: 0 50px;
-}
-
-.large-design img {
-    width: 100%; /* Set width to fill the container */
-    max-width: 687px; /* Set maximum width */
-    max-height: 410px; /* Set maximum height */
-    height: auto; /* Allow the height to adjust proportionally */
-    transition: transform 0.5s ease; /* Apply transition effect */
-}
-
-.large-design img:hover {
-    transform: scale(1.15); /* Scale the image on hover */
-}
-
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* Ensure it appears on top of other content */
-    pointer-events: all;
-    transition: opacity 0.5s ease;
-    opacity: 0;
-}
-
-.enlarged-image {
-    max-width: 90%;
-    max-height: 90%;
-    transition: transform 0.5s ease;
-}
-
-.close-btn {
-    position: fixed;
-    right: 2%;
-    top: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 1001; /* Ensure it appears on top of the enlarged image */
-}
-
-.design-back-button {
-    color: white;
-    transition: background-color 0.5s ease; /* Add a transition effect for the color change */
-    border: 2px solid #39BBC9;
-    border-radius: 13.25px;
-    background-color: transparent; /* Remove the fill color */
-    font-size: 18px;
-    font-weight: 400;
-    cursor: pointer; /* Change the cursor to a pointer */
-    height: 62px;
-    width: 225px;
-    display: flex; /* Use flexbox */
-    align-items: center; /* Center items vertically */
-    justify-content: center;
-    text-decoration: none; /* no underline */
-    box-sizing: border-box;
-}
-
-.design-back-button:hover {
-    background-color: #39BBC9;
-    color: white;
-}
-
-.selected-tab-bar {
-    width: 82px;
-    height: 2px;
-    background-color: #DBDBDB;
-}
-
-.header-buttons li {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.selected-tab a {
-    color: white;
-}
-
-.search-input {
-    transition: all 0.5s ease;
-    opacity: 1;
-    width: 100%;  
-    height: 52px;
-    border: 1px solid #39BBC9;
-    border-radius: 38px;
-    font-size: 18px;
-    font-weight: 200;
-    outline: none;
-    padding-left: 25px;
-    padding-right: 25px;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    padding-left: 20px;
-    background-color: #ffffff20;
-    color: #B5B5B5;
-    pointer-events: all;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  pointer-events: all;
+  position: absolute;
+  top: 2100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1294px;
+}
+
+.about-me-section p {
+  font-size: 20px;
+  color: #1F2833;
+  font-weight: 50;
+  pointer-events: all;
+  line-height: 43px;
+  letter-spacing: 5px; /* Adjust as needed */
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+.about-me-section h1 {
+  font-size: 35px;
+  color: #39BBC930;
+  font-weight: 400;
+  pointer-events: all;
+  line-height: 43px;
+  letter-spacing: 5px; /* Adjust as needed */
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+.background-blur-text-nothing {
+  font-size: 24px;
+  color: #ffffff;
+  text-align: center;
+  font-weight: 50;
+  pointer-events: none;
+  position: absolute;
+  top: 10000px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 64px;
+  letter-spacing: 5px; /* Adjust as needed */
+  padding-bottom: 200px;
+}
+
+
+  /* Scrollbar Styles for Minecraft Build Versions List */
+  ::-webkit-scrollbar {
+    /* Scrollbars of cuteness */
+    width: 10px; /* Width of the scrollbar */
+    height: 10px;
   }
   
-  .search-input.active {
-    opacity: 0;
-    width: 0%;
+  ::-webkit-scrollbar-track {
+    /* Tracks that are kawaii */
+    background: #00000000; /* Color of the track */
+    border-radius: 10px; /* Roundness of the thumb */
   }
   
-  .search-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    opacity: 1;
-    transition: all 0.5s ease;
-    padding: 0;
-    pointer-events: all;
+  ::-webkit-scrollbar-thumb {
+    /* Thumbs of pure kawaii-ness */
+    background: #BEC7D850; /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Roundness of the thumb */
   }
   
-  .search-button.active {
-    opacity: 0;
-  }
-
-  .search-container {
-    width: 300px;
-    transition: all 0.5s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .search-container.active {
-    width: 0px;
-  }
-
-  .search-button.active img {
-    display: none;
-  }
-
-  .search-button img {
-    transition: transform 0.5s ease; /* Add a transition effect for the color change */
-}
-
-.search-button:hover img {
-    transform: translateX(-30px) rotate(45deg); /* Translate and rotate the image on hover */
-}
-
-  .search-input-two {
-    transition: all 0.5s ease;
-    opacity: 1;
-    width: 100%;  
-    height: 52px;
-    border: 1px solid #39BBC9;
-    border-radius: 38px;
-    font-size: 18px;
-    font-weight: 200;
-    outline: none;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    padding-left: 20px;
-    background-color: #000000;
-    color: #B5B5B5;
-  }
-  
-  .search-input-two.active {
-    opacity: 0;
-    width: 0%;
-  }
-  
-  .search-button-two {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    opacity: 1;
-    transition: all 0.5s ease;
-    padding: 0;
-    padding-left: 60px;
-  }
-  
-  .search-button-two.active {
-    opacity: 0;
-    padding-left: 0px;
-  }
-
-  .search-container-two {
-    width: 300px;
-    transition: all 0.5s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .search-container-two.active {
-    width: 0px;
-  }
-
-  .search-button-two.active img {
-    display: none;
-  }
-
-  .search-button-two img {
-    transition: transform 0.5s ease; /* Add a transition effect for the color change */
-}
-
-.search-button-two:hover img {
-    transform: translateX(-30px) rotate(45deg); /* Translate and rotate the image on hover */
-}
-
-.nav-bar {
-    height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    background: linear-gradient(to right, #58E3F210, #58E3F210, #58E3F200);
-    border: none; /* Remove default border */
-    border-radius: 44px;
-    box-shadow: inset 0 11px 0 #ffffff05; /* Add inner shadow */
-    overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
-    border: 1px solid black; /* Remove default border */
-    -webkit-backdrop-filter: blur(28px); /* Apply the background blur for Safari */
-    backdrop-filter: blur(28px); /* Apply the background blur */
-    gap: 77px;
-    pointer-events: fill;
-    padding: 0 65px;
-}
-
-.nav-section {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    bottom: 30px;
-    right: 0;
-    z-index: 4;
-    transition: opacity 0.3s;
-    pointer-events: none;
-}
-
-.hide {
-    opacity: 0;
-  }
-
-  .back-up {
-    transition: background 0.5s ease, border-color 0.5s ease, opacity 0.5s ease; /* Add a transition effect for the color change */
-    background: linear-gradient(to right, #ffffff10, #ffffff10, #99999900);
-    border-radius: 44px;
-    box-shadow: inset 0 11px 0 #ffffff05; /* Add inner shadow */
-    overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
-    border: 1px solid black; /* Remove default border */
-    -webkit-backdrop-filter: blur(28px); /* Apply the background blur for Safari */
-    backdrop-filter: blur(28px); /* Apply the background blur */
-    cursor: pointer; /* Change the cursor to a pointer */
-    width: 132px;
-    height: 125px;
-    display: flex; /* Use flexbox */
-    align-items: center; /* Center items vertically */
-    justify-content: center;
-    box-sizing: border-box;
-    position: fixed;
-    bottom: 30px;
-    left: 30px;
-    z-index: 4;
-    pointer-events: all;
-}
-
-.back-up:hover {
-    background: linear-gradient(to right, #58E3F210, #58E3F210, #58E3F200);
-    border: 1px solid white; /* Remove default border */
-}
-
-.back-up img {
-    transition: transform 0.5s ease; /* Add a transition effect for the color change */
-}
-
-.back-up:hover img {
-    transform: translateY(-20px); /* Translate and rotate the image on hover */
-}
-
-.in-view {
-    transform: translateX(0px); /* Initially translate each section */
-    opacity: 1;
-}
-
-  .hide-two {
-    pointer-events: none;
-  }
-
-  #close-button {
-    position: fixed;
-    right: 2%;
-    top: 60px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    z-index: 10;
-    pointer-events: all;
-  }
-
-  #bodyClick {
-    background-color: #00000050;
-    -webkit-backdrop-filter: blur(28px); /* Apply the background blur for Safari */
-    backdrop-filter: blur(28px); /* Apply the background blur */
-    pointer-events: all;
-  }
-
-.burger-section {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.burger-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-}
-
-/* Style the nav element as the menu */
-#burger-menu {
-    pointer-events: none;
-    width: 80%;
-    height: 100%;
-    background: transparent;
-    position: fixed;
-    top: 0;
-    z-index: 9;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .grid-div {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .list-div {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* Push the header and burger-menu to the left when the menu is open */
-.move-left {
-    display: none;
-  }
-
-/* Hide the checkbox */
-#hamburger {
-    display: none;
-  }
-
-  /* Hide the checkbox */
-#hamburger-two {
-    display: none;
-  }
-
-  /* Style the label as the hamburger icon */
-#hamburger-icon {
-    cursor: pointer;
-    transition: margin-right 0.3s ease;
-    pointer-events: all;
-  }
-  
-  #hamburger-icon p {
-    display: none;
-  }
-
-  .search-label p {
-    display: none;
-  }
-  
-  /* Style the span elements as the three lines */
-  #hamburger-icon span {
-    display: block;
-    width: 47px;
-    height: 2px;
-    background-color: #DBDBDB;
-    border-radius: 2px;
-    transition: transform 0.3s ease, width 0.5s ease, opacity 0.01s ease;
-  }
-
-  /* Style the menu items */
-#burger-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  #burger-menu ul li {
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  #burger-menu ul li a {
-    color: white;
-    transition: background-color 0.5s ease; /* Add a transition effect for the color change */
-    border: none;
-    background-color: transparent; /* Remove the fill color */
-    justify-content: center;
-    font-size: 18px;
-    font-weight: 400;
-    pointer-events: all;
-    cursor: pointer; /* Change the cursor to a pointer */
-    border-radius: 40px;
-    height: 80px;
-    width: 100%;
-    display: flex; /* Use flexbox */
-    align-items: center; /* Center items vertically */
-    text-decoration: none; /* no underline */
-    gap: 12px;
-  }
-
-  #burger-menu .grid-menu-items {
-    display: flex;
-    width: 100%;
-    max-width: 500px;
-    flex-direction: row;
-    justify-content: space-evenly;
-    flex-wrap: wrap; /* This allows the items to wrap onto multiple lines */
-    margin-top: 10px;
-  }
-
-  #burger-menu .grid-menu-items li {
-    padding-left: 0px;
-    padding-right: 0px;
-    width: auto;
-  }
-
-  #burger-menu .grid-menu-items a {
-    padding: 0;
-    width: 100px;
-    height: 100px;
-    justify-content: center;
-  }
-  
-  /* Change the background color on mouse-over */
-  #burger-menu ul li a:hover {
-    background-color: #58E3F210;
-  }
-
-  #hamburger-icon span:nth-child(2) {
-    width: 33px; /* Change this to a smaller value */
-    margin-top: 14px;
-  }
-  
-  #hamburger-icon:hover span:nth-child(2) {
-    width: 47px; /* Change this to a larger value */
-  }
-  
-  #hamburger-icon span:nth-child(3) {
-    margin-top: 14px;
-  }
-
-  @media screen and (max-width: 1830px) {
-    .dots-images {
-        display: none;
-    }
-
-    .large-image {
-        display: none;
-    }
-
-    .design-process-section {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .design-process-header h1 {
-        text-align: center;
-    }
-
-    .design-process-header h2 {
-        text-align: center;
-    }
-
-    .design-process-group {
-        padding-left: 65px;
-        padding-right: 65px;
-        margin-right: 0;
-    }
-
-    .services-section {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .step-two {
-        margin: 0;
-    }
-
-    .design-process-steps {
-        justify-content: center;
-        gap: 40px;
-        padding-left: 65px;
-        padding-right: 65px;
-        margin-top: 0;
-    }
-
-    .large-image-two {
-        display: none;
-    }
-
-    .service-list {
-        padding-top: 0;
-        padding-left: 65px;
-        padding-bottom: 65px;
-        justify-content: center;
-        gap: 82px;
-    }
-
-    .services-header h1 {
-        text-align: center;
-    }
-
-    .services-header p {
-        text-align: center;
-    }
-
-    .services-group {
-        padding-left: 65px;
-        padding-right: 65px;
-        margin-right: 0;
-    }
-  }
-
-  @media screen and (max-width: 1530px) {
-    .cat-two {
-        border-radius: 10px 75px 75px 10px;
-      }
-
-      .cat-three {
-        border-radius: 10px 10px 75px 75px;
-      }
-    
-    .cat-info-two:hover {
-        transform: perspective(1000px) rotateY(-25deg); /* Apply perspective and rotation */
-    }
-    
-    .cat-info-three:hover {
-        transform: perspective(1000px) rotateX(25deg); /* Apply perspective and rotation */
-    }
-  }
-
-  @media screen and (max-width: 1400px) {
-    .design-process-steps {
-        margin-top: 0;
-    }
-  }
-
-  @media screen and (max-width: 1280px) {
-    .header-buttons {
-        display: none;
-      }
-  }
-
-  @media screen and (max-width: 1100px) {
-    .design-one {
-        display: none;
-    }
-
-    .design-two {
-        display: none;
-    }
-
-    .design-three {
-        display: none;
-    }
-
-      .section {
-        transform: translateX(0px); /* Initially translate each section */
-      }
-  }
-
-  @media screen and (max-width: 1000px) {
-    .contact-div {
-        flex-direction: column;
-        gap: 80px;
-    }
-
-    .bottom-section {
-        align-items: center;
-    }
-
-    .top-section {
-        align-items: center;
-    }
-
-    .design-process-group {
-        padding-left: 65px;
-        padding-right: 65px;
-        margin-right: 0;
-    }
-
-    .contact-info {
-        text-align: center;
-    }
-
-    .category {
-        border-radius: 75px 75px 75px 75px;
-      }
-
-      .cat-info-one:hover {
-        transform: perspective(1000px) rotateX(25deg); /* Apply perspective and rotation */
-    }
-    
-    .cat-info-two:hover {
-        transform: perspective(1000px) rotateX(25deg); /* Apply perspective and rotation */
-    }
-    
-    .cat-info-three:hover {
-        transform: perspective(1000px) rotateX(25deg); /* Apply perspective and rotation */
-    }
-  }
-
-  @media screen and (max-width: 900px) {
-    .about-me-section {
-        flex-direction: column;
-        gap: 100px;
-    }
-
-    .social-buttons {
-        flex-direction: row;
-    }
-
-    .large-logo {
-        display: none;
-    }
-
-    .title-buttons {
-        align-items: center;
-    }
-
-    .glow-line {
-        display: none;
-    }
-
-    .title-two {
-        padding-left: 65px;
-        padding-right: 65px;
-    }
-
-    .title-section {
-        justify-content: center;
-    }
-
-    .about-me-section {
-        justify-content: center;
-    }
-
-    .title-info {
-        text-align: center;
-        align-items: center;
-    }
-
-    .about-me {
-        text-align: center;
-    }
-
-    .title {
-        align-items: center;
-    }
-
-    .title-header {
-        align-items: center;
-    }
-
-    .service {
-        align-items: center;
-    }
-
-    .service-info {
-        align-items: center;
-    }
-
-    .service-info h1 {
-        text-align: center;
-    }
-
-    .service-info p {
-        text-align: center;
-    }
-  }
-
-  @media screen and (max-width: 700px) {
-    .title-buttons {
-        flex-direction: column;
-    }
-
-    .title-header h1 {
-        font-size: 40px;
-    }
-
-    .title-header h2 {
-        font-size: 20px;
-    }
-
-    .design-process-header h1 {
-        font-size: 40px;
-    }
-
-    .design-process-header h2 {
-        font-size: 20px;
-    }
-
-    .services-header h1 {
-        font-size: 40px;
-    }
-
-    .contact-header h1 {
-        font-size: 40px;
-    }
-
-    .contact-header h2 {
-        font-size: 20px;
-    }
-
-    .back-up {
-        display: none;
-    }
-
-    .design-process-steps {
-        padding: 0;
-        padding-bottom: 65px;
-    }
+  ::-webkit-scrollbar-thumb:hover {
+    /* Thumbs that get even cuter on hover */
+    background: #ffffff90; /* Color of the scrollbar thumb on hover */
   }
