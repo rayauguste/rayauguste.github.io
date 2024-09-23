@@ -179,3 +179,173 @@ document.addEventListener("DOMContentLoaded", function () {
       "perspective(1000px) rotateX(0deg) rotateY(0deg) translateX(-50%)";
   });
 });
+
+// Array of image URLs
+const imageUrls = [
+  "img/GameUI/game_ui_one.png",
+  "img/GameUI/game_ui_two.png",
+  "img/GameUI/game_ui_three.png",
+  "img/GameUI/game_ui_four.png",
+  "img/GameUI/game_ui_five.png",
+  "img/GameUI/game_ui_six.png",
+  "img/GameUI/game_ui_seven.png",
+  "img/GameUI/game_ui_eight.png",
+  "img/GameUI/game_ui_nine.png",
+  "img/GameUI/game_ui_ten.png",
+  "img/GameUI/game_ui_eleven.png",
+  "img/GameUI/game_ui_twelve.png",
+  "img/GameUI/game_ui_thirteen.png",
+  "img/GameUI/game_ui_fourteen.png",
+  "img/GameUI/game_ui_fifteen.png",
+  // Add more image URLs as needed
+
+  "img/WebUI/web_ui_one.png",
+  "img/WebUI/web_ui_two.png",
+  "img/WebUI/web_ui_three.png",
+  "img/WebUI/web_ui_four.png",
+  "img/WebUI/web_ui_five.png",
+  "img/WebUI/web_ui_six.png",
+  "img/WebUI/web_ui_seven.png",
+  "img/WebUI/web_ui_eight.png",
+  "img/WebUI/web_ui_nine.png",
+  "img/WebUI/web_ui_ten.png",
+  "img/WebUI/web_ui_eleven.png",
+  "img/WebUI/web_ui_twelve.png",
+  "img/WebUI/web_ui_thirteen.png",
+  "img/WebUI/web_ui_fourteen.png",
+  "img/WebUI/web_ui_fifteen.png",
+  "img/WebUI/web_ui_sixteen.png",
+  "img/WebUI/web_ui_seventeen.png",
+  "img/WebUI/web_ui_eighteen.png",
+  "img/WebUI/web_ui_nineteen.png",
+  "img/WebUI/web_ui_twenty.png",
+  // Add more image URLs as needed
+
+  "img/AppUI/app_ui_one.png",
+  "img/AppUI/app_ui_two.png",
+  "img/AppUI/app_ui_three.png",
+  "img/AppUI/app_ui_four.png",
+  "img/AppUI/app_ui_five.png",
+  "img/AppUI/app_ui_six.png",
+  "img/AppUI/app_ui_seven.png",
+  "img/AppUI/app_ui_eight.png",
+  "img/AppUI/app_ui_nine.png",
+  "img/AppUI/app_ui_ten.png",
+  // Add more image URLs as needed
+];
+
+// Function to create and append an image to the body at a specified position
+function createImage(imageUrl, top = "0px", left = "0px", className = "") {
+  // Create a new img element
+  const imgElement = document.createElement("img");
+
+  // Set the src attribute to the provided image URL
+  imgElement.src = imageUrl;
+
+  // Optionally add a class to the img element
+  if (className) {
+    imgElement.className = className;
+  }
+
+  // Set the position of the image
+  imgElement.style.position = "absolute";
+  imgElement.style.top = top;
+  imgElement.style.left = left;
+  imgElement.style.opacity = "1";
+  imgElement.style.transition = "opacity 0.5s";
+
+  // Store the last known position as data attributes
+  imgElement.dataset.top = top;
+  imgElement.dataset.left = left;
+
+  // Prevent default drag behavior
+  imgElement.addEventListener("dragstart", (event) => {
+    event.preventDefault();
+  });
+
+  // Make the image draggable
+  makeDraggable(imgElement);
+
+  // Append the img element directly to the body
+  document.body.appendChild(imgElement);
+}
+
+// Function to make an element draggable
+function makeDraggable(element) {
+  let offsetX, offsetY;
+
+  element.addEventListener("mousedown", (event) => {
+    // Calculate the offset relative to the element's position
+    offsetX = event.clientX - element.getBoundingClientRect().left;
+    offsetY = event.clientY - element.getBoundingClientRect().top;
+
+    function mouseMoveHandler(e) {
+      // Update the position considering the current scroll
+      element.style.left = `${e.clientX - offsetX}px`;
+      element.style.top = `${e.clientY - offsetY + window.scrollY}px`;
+
+      // Update the data attributes for the new position
+      element.dataset.top = element.style.top;
+      element.dataset.left = element.style.left;
+    }
+
+    function mouseUpHandler() {
+      // Remove event listeners when dragging stops
+      document.removeEventListener("mousemove", mouseMoveHandler);
+      document.removeEventListener("mouseup", mouseUpHandler);
+    }
+
+    // Attach the move and up event listeners
+    document.addEventListener("mousemove", mouseMoveHandler);
+    document.addEventListener("mouseup", mouseUpHandler);
+  });
+}
+
+// Function to change the image every 10 seconds
+function changeImage() {
+  // Get all images
+  const existingImages = document.querySelectorAll("img.design-item");
+
+  existingImages.forEach((img) => {
+    // Fade out the image
+    img.style.opacity = "0";
+
+    // After the fade-out transition, change the image source
+    setTimeout(() => {
+      // Get a random image URL from the array
+      const randomImageUrl =
+        imageUrls[Math.floor(Math.random() * imageUrls.length)];
+
+      // Update the src attribute of the image
+      img.src = randomImageUrl;
+
+      // Retain the last position
+      img.style.top = img.dataset.top;
+      img.style.left = img.dataset.left;
+
+      // Fade in the image
+      img.style.opacity = "1";
+    }, 500); // Wait for the fade-out duration
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Fixed Y positions for the images
+  const yPositions = ["3550px", "3930px", "3500px", "3900px", "3550px"];
+
+  // Fixed X positions for the images
+  const xPositions = ["100px", "400px", "700px", "1000px", "1300px"];
+
+  // Create initial images at specified Y and X positions
+  for (let i = 0; i < yPositions.length; i++) {
+    createImage(
+      imageUrls[Math.floor(Math.random() * imageUrls.length)],
+      yPositions[i], // Set Y position from the array
+      xPositions[i], // Set X position from the array
+      "design-item"
+    );
+  }
+
+  // Change images every 10 seconds
+  setInterval(changeImage, 10000);
+});

@@ -342,3 +342,12 @@ body {
     /* Thumbs that get even cuter on hover */
     background: #ffffff90; /* Color of the scrollbar thumb on hover */
   }
+
+.design-item {
+  width: 500px;
+  height: auto;
+  position: absolute; /* Allows positioning with top and left */
+  cursor: move; /* Change cursor to indicate dragging */
+  z-index: 2;
+  pointer-events: all;
+}
