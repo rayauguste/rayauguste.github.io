@@ -32,21 +32,164 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
   const textElement = document.querySelector(".persons-text");
-  const text = "Hello person"; // The text you want to animate
+  const texts = [
+    "Hello person",
+    "Hello user",
+    "Hi there!",
+    "Hey human!",
+    "Greetings traveler",
+    "Welcome back!",
+  ]; // Array of texts
   let index = 0; // Start index
+  let textIndex = 0; // Index for the array of texts
 
   function typeAnimation() {
-    if (index < text.length) {
-      textElement.innerHTML += text.charAt(index); // Add one character at a time
+    const currentText = texts[textIndex]; // Pick the current text from the array
+
+    if (index < currentText.length) {
+      textElement.innerHTML += currentText.charAt(index); // Add one character at a time
       index++;
       setTimeout(typeAnimation, 100); // Adjust speed (100ms delay between letters)
+    } else {
+      setTimeout(backspaceAnimation, 1000); // Wait 1s before starting the backspace
     }
   }
 
-  typeAnimation(); // Call the function to start typing
+  function backspaceAnimation() {
+    const currentText = texts[textIndex];
+
+    if (index > 0) {
+      textElement.innerHTML = currentText.substring(0, index - 1); // Remove one character at a time
+      index--;
+      setTimeout(backspaceAnimation, 50); // Adjust speed (50ms delay between removing letters)
+    } else {
+      // Move to the next text after backspacing
+      textIndex = (textIndex + 1) % texts.length; // Loop back to the start if we reach the end
+      setTimeout(typeAnimation, 500); // Start typing the next text after 0.5s
+    }
+  }
+
+  // Start the typing animation
+  typeAnimation();
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+  // Glitch text class
+  class TextScramble {
+    constructor(el) {
+      this.el = el;
+      this.chars = "!<>-_\\/[]{}—=+*^?#________";
+      this.update = this.update.bind(this);
+    }
+
+    setText(newText) {
+      const oldText = this.el.innerText;
+      const length = Math.max(oldText.length, newText.length);
+      const promise = new Promise((resolve) => (this.resolve = resolve));
+      this.queue = [];
+      for (let i = 0; i < length; i++) {
+        const from = oldText[i] || "";
+        const to = newText[i] || "";
+        const start = Math.floor(Math.random() * 100);
+        const end = start + Math.floor(Math.random() * 100) + 300; // add a bit more to the end
+        this.queue.push({ from, to, start, end });
+      }
+      cancelAnimationFrame(this.frameRequest);
+      this.frame = 0;
+      this.update();
+      return promise;
+    }
+
+    update() {
+      let output = "";
+      let complete = 0;
+      for (let i = 0, n = this.queue.length; i < n; i++) {
+        let { from, to, start, end, char } = this.queue[i];
+        if (this.frame >= end) {
+          complete++;
+          output += to;
+        } else if (this.frame >= start) {
+          if (!char || Math.random() < 0.28) {
+            char = this.randomChar();
+            this.queue[i].char = char;
+          }
+          output += `<span class="dud">${char}</span>`;
+        } else {
+          output += from;
+        }
+      }
+      this.el.innerHTML = output;
+      if (complete === this.queue.length) {
+        this.resolve();
+      } else {
+        this.frameRequest = requestAnimationFrame(this.update);
+        this.frame++;
+      }
+    }
+
+    randomChar() {
+      return this.chars[Math.floor(Math.random() * this.chars.length)];
+    }
+  }
+
+  const phrases = [
+    "no exit",
+    "null",
+    "no way out",
+    "not here",
+    "nothingness",
+    "out of bounds",
+    "lost",
+    "void",
+    "empty",
+    "undefined",
+    "nowhere",
+    "shadows",
+    "silence",
+    "disconnected",
+    "unseen",
+    "unreachable",
+    "fading away",
+    "lost in thought",
+    "endless void",
+    "beyond reach",
+    "echoes of emptiness",
+    "invisible barriers",
+    "shattered dreams",
+    "fading light",
+    "whispers of doubt",
+    "darkened path",
+  ];
+
+  const textElement = document.querySelector(".background-blur-text-nothing");
+  const fx = new TextScramble(textElement); // Initialize the TextScramble once
+
+  function updateText() {
+    const randomIndex = Math.floor(Math.random() * phrases.length);
+    const newText = phrases[randomIndex];
+
+    // Fade out
+    textElement.style.opacity = 0;
+
+    // Start the glitch effect after fade-out
+    fx.setText(newText).then(() => {
+      // Wait for a moment after glitch effect before fading in
+      setTimeout(() => {
+        textElement.style.opacity = 1; // Fade in after a delay
+      }, 2000); // Adjust this delay as needed (in milliseconds)
+    });
+  }
+
+  // Update text every 6 seconds (6000 milliseconds)
+  setInterval(updateText, 8000);
+
+  // Initial call to set the text immediately
+  updateText();
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const cursorTextElement = document.querySelector(".persons-text-cursor-text");
+
   document.addEventListener("scroll", function () {
     // Get the current scroll position
     const scrollY = window.scrollY;
@@ -61,6 +204,13 @@ document.addEventListener("DOMContentLoaded", function () {
     if (scrollY > scrollThreshold) {
       const backgroundColorValue = 255 - darkeningFactor * 700; // Adjust for darker colors
       document.body.style.backgroundColor = `rgb(${backgroundColorValue}, ${backgroundColorValue}, ${backgroundColorValue})`;
+
+      // Add 'white' class if background is sufficiently dark
+      if (darkeningFactor > 0.5) {
+        cursorTextElement.classList.add("white");
+      } else {
+        cursorTextElement.classList.remove("white");
+      }
     } else {
       // Reset the background color when below the threshold
       document.body.style.backgroundColor = `rgb(246, 253, 255)`; // Original color
@@ -150,7 +300,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const mouseY = event.clientY - centerY; // Y-coordinate of the mouse relative to the center of the image
 
       // Calculate the rotation angles based on mouse position
-      const maxRotation = 10; // Maximum rotation angle
+      const maxRotation = 7; // Maximum rotation angle
       const rotationX = (mouseY / centerY) * maxRotation; // Rotation around the X-axis
       const rotationY = -(mouseX / centerX) * maxRotation; // Rotation around the Y-axis
 
@@ -391,10 +541,32 @@ setInterval(changeImage, 10000);
 
 document.addEventListener("DOMContentLoaded", function () {
   // Fixed Y positions for the images
-  const yPositions = ["2550px", "2930px", "2500px", "2900px", "2550px"];
+  const yPositions = [
+    "2550px",
+    "2770px",
+    "2500px",
+    "2700px",
+    "2550px",
+    "2770px",
+    "2500px",
+    "2750px", // 8th image
+    "2750px", // 9th image
+    "2400px", // 10th image
+  ];
 
   // Fixed X positions for the images
-  const xPositions = ["100px", "400px", "700px", "1000px", "1300px"];
+  const xPositions = [
+    "30px",
+    "40px",
+    "360px",
+    "360px",
+    "680px",
+    "680px",
+    "1000px",
+    "1420px", // 8th image
+    "1000px", // 9th image
+    "1320px", // 10th image
+  ];
 
   // Create initial images at specified Y and X positions
   for (let i = 0; i < yPositions.length; i++) {
@@ -406,7 +578,7 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   }
 
-  // Change images every 10 seconds
+  // Change images every 20 seconds
   setInterval(changeImage, 20000);
 });
 
