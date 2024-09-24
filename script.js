@@ -31,18 +31,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  const breathingElement = document.querySelector(".breathing-effect");
-
-  function randomBreathing() {
-    const randomDuration = (Math.random() * 2 + 5).toFixed(2); // Between 5 and 7 seconds
-    breathingElement.style.animationDuration = `${randomDuration}s`;
-  }
-
-  // Call the randomBreathing function periodically to change the timing
-  setInterval(randomBreathing, 7000); // Change duration every 7 seconds
-});
-
-document.addEventListener("DOMContentLoaded", function () {
   const textElement = document.querySelector(".persons-text");
   const text = "Hello person"; // The text you want to animate
   let index = 0; // Start index
@@ -64,14 +52,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const scrollY = window.scrollY;
 
     // Set the threshold for when the background should start darkening
-    const scrollThreshold = 7000; // Adjust this value as needed
+    const scrollThreshold = 6000; // Adjust this value as needed
 
     // Calculate the darkening factor based on scroll position
-    const darkeningFactor = Math.min((scrollY - scrollThreshold) / 1000, 1);
+    const darkeningFactor = Math.min((scrollY - scrollThreshold) / 2000, 1);
 
     // Darken the background if above the threshold
     if (scrollY > scrollThreshold) {
-      const backgroundColorValue = 255 - darkeningFactor * 500; // Adjust for darker colors
+      const backgroundColorValue = 255 - darkeningFactor * 700; // Adjust for darker colors
       document.body.style.backgroundColor = `rgb(${backgroundColorValue}, ${backgroundColorValue}, ${backgroundColorValue})`;
     } else {
       // Reset the background color when below the threshold
@@ -266,6 +254,9 @@ const imageUrls = [
   // Add more image URLs as needed
 ];
 
+let isDraggingTimer;
+let isDragging = false; // Track if the image is being dragged
+
 // Function to create and append an image to the body at a specified position
 function createImage(imageUrl, top = "0px", left = "0px", className = "") {
   // Create a new img element
@@ -300,31 +291,65 @@ function createImage(imageUrl, top = "0px", left = "0px", className = "") {
 
   // Append the img element directly to the body
   document.body.appendChild(imgElement);
+
+  const enlargedImage = document.querySelector(".enlarged-image");
+
+  imgElement.addEventListener("click", function () {
+    if (!isDragging) {
+      // Only execute if not dragging
+      const imgSrc = imgElement.getAttribute("src");
+      if (imgSrc) {
+        // Check if enlargedImage exists before using it
+        if (enlargedImage) {
+          enlargedImage.setAttribute("src", imgSrc);
+          fadeInOverlay();
+        }
+      }
+    }
+  });
 }
 
 // Function to make an element draggable
 function makeDraggable(element) {
   let offsetX, offsetY;
+  const dragThreshold = 5; // Set a threshold for drag detection (in pixels)
+  let startX, startY; // Variables to store the initial mouse position
 
   element.addEventListener("mousedown", (event) => {
+    // Store the initial mouse position
+    startX = event.clientX;
+    startY = event.clientY;
+
     // Calculate the offset relative to the element's position
-    offsetX = event.clientX - element.getBoundingClientRect().left;
-    offsetY = event.clientY - element.getBoundingClientRect().top;
+    offsetX = startX - element.getBoundingClientRect().left;
+    offsetY = startY - element.getBoundingClientRect().top;
 
     function mouseMoveHandler(e) {
-      // Update the position considering the current scroll
-      element.style.left = `${e.clientX - offsetX}px`;
-      element.style.top = `${e.clientY - offsetY + window.scrollY}px`;
+      const dx = e.clientX - startX; // Calculate horizontal movement
+      const dy = e.clientY - startY; // Calculate vertical movement
 
-      // Update the data attributes for the new position
-      element.dataset.top = element.style.top;
-      element.dataset.left = element.style.left;
+      // Check if the drag distance exceeds the threshold
+      if (Math.abs(dx) > dragThreshold || Math.abs(dy) > dragThreshold) {
+        clearTimeout(isDraggingTimer);
+        isDragging = true; // Set dragging state to true
+
+        // Update the position considering the current scroll
+        element.style.left = `${e.clientX - offsetX}px`;
+        element.style.top = `${e.clientY - offsetY + window.scrollY}px`;
+
+        // Update the data attributes for the new position
+        element.dataset.top = element.style.top;
+        element.dataset.left = element.style.left;
+      }
     }
 
     function mouseUpHandler() {
       // Remove event listeners when dragging stops
       document.removeEventListener("mousemove", mouseMoveHandler);
       document.removeEventListener("mouseup", mouseUpHandler);
+      isDraggingTimer = setTimeout(() => {
+        isDragging = false; // Reset dragging state on mouse up
+      }, 50);
     }
 
     // Attach the move and up event listeners
@@ -338,7 +363,7 @@ function changeImage() {
   // Get all images
   const existingImages = document.querySelectorAll("img.design-item");
 
-  existingImages.forEach((img) => {
+  existingImages.forEach((img, index) => {
     // Fade out the image
     img.style.opacity = "0";
 
@@ -357,13 +382,16 @@ function changeImage() {
 
       // Fade in the image
       img.style.opacity = "1";
-    }, 500); // Wait for the fade-out duration
+    }, 500 + index * 500); // Stagger each image change by 500ms for each index
   });
 }
 
+// Call changeImage every 10 seconds
+setInterval(changeImage, 10000);
+
 document.addEventListener("DOMContentLoaded", function () {
   // Fixed Y positions for the images
-  const yPositions = ["3550px", "3930px", "3500px", "3900px", "3550px"];
+  const yPositions = ["2550px", "2930px", "2500px", "2900px", "2550px"];
 
   // Fixed X positions for the images
   const xPositions = ["100px", "400px", "700px", "1000px", "1300px"];
@@ -379,5 +407,174 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Change images every 10 seconds
-  setInterval(changeImage, 10000);
+  setInterval(changeImage, 20000);
+});
+
+//Enlarge design image
+document.addEventListener("DOMContentLoaded", function () {
+  const overlay = document.querySelector(".overlay");
+  const enlargedImage = document.querySelector(".enlarged-image");
+
+  // Check if overlay exists before using it
+  if (overlay) {
+    overlay.addEventListener("click", function (event) {
+      if (event.target === overlay) {
+        fadeOutOverlay();
+      }
+    });
+  }
+
+  // Check if enlargedImage exists before using it
+  if (enlargedImage) {
+    enlargedImage.addEventListener("click", function () {
+      fadeOutOverlay();
+    });
+  }
+
+  // Add scroll event listener to fade out overlay on scroll
+  window.addEventListener("scroll", function () {
+    fadeOutOverlay();
+  });
+});
+
+let fadeTimer;
+
+function fadeInOverlay() {
+  const overlay = document.querySelector(".overlay");
+  if (overlay) {
+    clearTimeout(fadeTimer);
+    overlay.style.display = "flex";
+    fadeTimer = setTimeout(() => {
+      overlay.style.opacity = 1;
+    }, 50); // Adjust delay time as needed
+  }
+}
+
+function fadeOutOverlay() {
+  const overlay = document.querySelector(".overlay");
+  if (overlay) {
+    clearTimeout(fadeTimer);
+    overlay.style.opacity = 0;
+    fadeTimer = setTimeout(() => {
+      overlay.style.display = "none";
+    }, 500); // Adjust delay time to match transition duration
+  }
+}
+
+//3D card effect
+document.addEventListener("DOMContentLoaded", function () {
+  const enlargedImage = document.querySelector(".enlarged-image");
+
+  // Check if enlargedImage exists before adding event listeners
+  if (enlargedImage) {
+    enlargedImage.addEventListener("mouseenter", function () {
+      this.style.transition = "none"; // Disable transition on hover
+      this.addEventListener("mousemove", function (event) {
+        const boundingRect = this.getBoundingClientRect();
+        const centerX = boundingRect.left + boundingRect.width / 2; // X-coordinate of the center of the image
+        const centerY = boundingRect.top + boundingRect.height / 2; // Y-coordinate of the center of the image
+
+        const mouseX = event.clientX - centerX; // X-coordinate of the mouse relative to the center of the image
+        const mouseY = event.clientY - centerY; // Y-coordinate of the mouse relative to the center of the image
+
+        // Calculate the rotation angles based on mouse position
+        const maxRotation = 10; // Maximum rotation angle
+        const rotationX = (mouseY / centerY) * maxRotation; // Rotation around the X-axis
+        const rotationY = -(mouseX / centerX) * maxRotation; // Rotation around the Y-axis
+
+        // Apply the rotation to the image
+        this.style.transform = `perspective(1000px) rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+      });
+    });
+
+    enlargedImage.addEventListener("mouseleave", function () {
+      // Enable transition on mouse leave
+      this.style.transition = "transform 0.5s ease";
+      // Reset the transform on mouse leave
+      this.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+    });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const popupText = document.getElementById("popupText");
+  let timeoutId;
+  let currentText = ""; // Variable to store the current input text
+  let isVisible = false; // Flag to track if the popup is currently visible
+
+  // Listen for keydown events on the whole document
+  document.addEventListener("keydown", (event) => {
+    // Clear the previous timeout
+    clearTimeout(timeoutId);
+
+    // Get the key that was pressed
+    const key = event.key;
+
+    // Show the popup with the key pressed
+    if (key.length === 1) {
+      // Ensure it's a single character key
+      currentText += key; // Accumulate the text
+      showPopup(currentText);
+    }
+
+    // Set a timeout to hide the popup if typing stops
+    timeoutId = setTimeout(() => {
+      hidePopup();
+    }, 1000); // Adjust the delay as needed (1 second in this case)
+  });
+
+  function showPopup(text) {
+    // Set the text content of the popup
+    popupText.textContent = text;
+
+    // Check if the popup is currently visible
+    if (isVisible) {
+      // Get the current position of the popup
+      const popupRect = popupText.getBoundingClientRect();
+
+      // Check if the popup is off-screen
+      if (
+        popupRect.right < 0 || // Off the left
+        popupRect.left > window.innerWidth || // Off the right
+        popupRect.bottom < 0 || // Off the top
+        popupRect.top > window.innerHeight // Off the bottom
+      ) {
+        // If off-screen, reposition randomly
+        repositionPopup();
+      }
+    } else {
+      // If not visible, randomly position it
+      repositionPopup();
+    }
+  }
+
+  function repositionPopup() {
+    const x = Math.random() * (window.innerWidth - 100); // 100 is the width of the popup
+    const y = Math.random() * (window.innerHeight - 50); // 50 is the height of the popup
+    popupText.style.left = `${x}px`;
+    popupText.style.top = `${y + window.scrollY}px`; // Adjust for scroll
+
+    // Show the popup with a fade-in effect
+    popupText.style.opacity = "1";
+    isVisible = true; // Set the flag to true when the popup is shown
+  }
+
+  function hidePopup() {
+    // Hide the popup with a fade-out effect
+    popupText.style.opacity = "0";
+
+    // Reset the current text after the popup fades out
+    setTimeout(() => {
+      currentText = ""; // Reset accumulated text
+      popupText.textContent = ""; // Clear the popup text
+      isVisible = false; // Reset the visibility flag
+    }, 500); // Wait for the fade-out transition (adjust time as needed)
+  }
+
+  // space key shouldn't scroll down
+  document.addEventListener("keydown", function (event) {
+    if (event.key === " ") {
+      event.preventDefault(); // Prevent scrolling when space key is pressed
+    }
+  });
 });

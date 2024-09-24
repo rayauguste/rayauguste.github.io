@@ -62,27 +62,55 @@ body {
 
 
 
+:root {
+  --breathing-duration-1: 8s; /* Duration for first effect */
+  --breathing-duration-2: 10s; /* Duration for second effect */
+  --breathing-duration-3: 12s; /* Duration for third effect */
+}
+
 .breathing-effect {
-    animation: breathing 6s infinite ease-in-out;
+  animation: breathing var(--random-duration, 8s) infinite ease-in-out;
+}
+
+/* Apply different durations randomly */
+.breathing-effect:nth-child(1) { 
+  --random-duration: var(--breathing-duration-1); 
+}
+.breathing-effect:nth-child(2) { 
+  --random-duration: var(--breathing-duration-2); 
+}
+.breathing-effect:nth-child(3) { 
+  --random-duration: var(--breathing-duration-3); 
+}
+.breathing-effect:nth-child(4) { 
+  --random-duration: var(--breathing-duration-1); 
+}
+.breathing-effect:nth-child(5) { 
+  --random-duration: var(--breathing-duration-2); 
+}
+.breathing-effect:nth-child(6) { 
+  --random-duration: var(--breathing-duration-3); 
+}
+
+@keyframes breathing {
+  0% {
+    transform: scale(1);
   }
-  
-  @keyframes breathing {
-    0% {
-      transform: scale(1);
-    }
-    25% {
-      transform: scale(1.03);
-    }
-    50% {
-      transform: scale(1);
-    }
-    75% {
-      transform: scale(1.02);
-    }
-    100% {
-      transform: scale(1);
-    }
+  25% {
+    transform: scale(1.03);
   }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
   
 
 
@@ -120,6 +148,13 @@ body {
     }
 }
 
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {  /* You can adjust 768px to your desired breakpoint */
+  .persons-text-container {
+    display: none;
+  }
+}
 
 
 
@@ -173,8 +208,9 @@ body {
     font-weight: 50;
     pointer-events: none;
     position: fixed;
-    top: 50%;
+    top: 40%;
     left: 50%;
+    width: 90%;
     transform: translate(-50%, -50%);
     line-height: 64px;
     letter-spacing: 5px; /* Adjust as needed */
@@ -190,7 +226,7 @@ body {
     position: absolute;
     top: 100px;
     left: 50px;
-    width: 100%;
+    width: 90%;
     max-width: 867px;
     line-height: 64px;
     letter-spacing: 5px; /* Adjust as needed */
@@ -215,7 +251,7 @@ body {
   padding: 0px;
   margin: 0px;
   position: absolute;
-  top: 560px;
+  top: 440px;
   left: 50%;
   transform: translateX(-50%);
   text-decoration: none;
@@ -226,11 +262,12 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  gap: 121px;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 480px;
   pointer-events: all;
   position: absolute;
-  top: 690px;
+  top: 590px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -244,6 +281,21 @@ body {
   border: none;
 }
 
+
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {  /* You can adjust 768px to your desired breakpoint */
+  .contact-button {
+    top: 520px;
+  }
+
+  .reach-me-buttons-container {
+    top: 640px;
+  }
+}
+
+
+
 .scroll-down-text-container {
   z-index: 2;
   display: flex;
@@ -254,6 +306,13 @@ body {
   position: absolute;
   left: 50px;
   bottom: 0px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 968px) {  /* You can adjust 768px to your desired breakpoint */
+  .scroll-down-text-container {
+    display: none;
+  }
 }
 
 .scroll-down-text-container p {
@@ -272,10 +331,10 @@ body {
   gap: 24px;
   pointer-events: all;
   position: absolute;
-  top: 2100px;
+  top: 1600px;
   left: 50%;
   transform: translateX(-50%);
-  width: 100%;
+  width: 90%;
   max-width: 1294px;
 }
 
@@ -293,7 +352,7 @@ body {
 
 .about-me-section h1 {
   font-size: 35px;
-  color: #39BBC930;
+  color: #39BBC9;
   font-weight: 400;
   pointer-events: all;
   line-height: 43px;
@@ -334,13 +393,13 @@ body {
   
   ::-webkit-scrollbar-thumb {
     /* Thumbs of pure kawaii-ness */
-    background: #BEC7D850; /* Color of the scrollbar thumb */
+    background: #1F2833; /* Color of the scrollbar thumb */
     border-radius: 10px; /* Roundness of the thumb */
   }
   
   ::-webkit-scrollbar-thumb:hover {
     /* Thumbs that get even cuter on hover */
-    background: #ffffff90; /* Color of the scrollbar thumb on hover */
+    background: #66FCF1; /* Color of the scrollbar thumb on hover */
   }
 
 .design-item {
@@ -357,13 +416,13 @@ body {
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 212px;
+  gap: 112px;
   pointer-events: all;
   position: absolute;
-  top: 5400px;
+  top: 3800px;
   left: 50%;
   transform: translateX(-50%);
-  width: 100%;
+  width: 90%;
   max-width: 1294px;
 }
 
@@ -412,7 +471,7 @@ body {
 
 .pick-it-up-about-header h1 {
   font-size: 35px;
-  color: #39BBC930;
+  color: #39BBC9;
   font-weight: 400;
   pointer-events: all;
   line-height: 43px;
@@ -438,8 +497,17 @@ body {
   width: 100%;
   display: flex;
   flex-direction: row;
-  gap: 114px;
-  margin-top: -140px;
+  justify-content: space-between;
+  width: 70%;
+  gap: 40px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {  /* You can adjust 768px to your desired breakpoint */
+  .pick-it-up-details {
+    flex-direction: column; /* Change to column when screen is small */
+    gap: 40px;
+  }
 }
 
 .visit-store-button {
@@ -486,4 +554,76 @@ body {
   line-height: 43px;
   letter-spacing: 5px; /* Adjust as needed */
   width: 100%;
+}
+
+.pick-it-up-details-text li {
+  opacity: 0; /* Start with opacity 0 */
+  animation: waveOpacity 3s ease-in-out infinite; /* Animation settings */
+}
+
+/* Define the wave opacity animation */
+@keyframes waveOpacity {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+
+/* Use nth-child to apply animation delay */
+/* Use nth-child to apply animation delay with 2 seconds apart */
+.pick-it-up-details-text li:nth-child(1) { animation-delay: 0s; }
+.pick-it-up-details-text li:nth-child(2) { animation-delay: 2s; }
+.pick-it-up-details-text li:nth-child(3) { animation-delay: 4s; }
+.pick-it-up-details-text li:nth-child(4) { animation-delay: 6s; }
+.pick-it-up-details-text li:nth-child(5) { animation-delay: 8s; }
+.pick-it-up-details-text li:nth-child(6) { animation-delay: 10s; }
+.pick-it-up-details-text li:nth-child(7) { animation-delay: 12s; }
+.pick-it-up-details-text li:nth-child(8) { animation-delay: 14s; }
+.pick-it-up-details-text li:nth-child(9) { animation-delay: 16s; }
+.pick-it-up-details-text li:nth-child(10) { animation-delay: 18s; }
+.pick-it-up-details-text li:nth-child(11) { animation-delay: 20s; }
+.pick-it-up-details-text li:nth-child(12) { animation-delay: 22s; }
+.pick-it-up-details-text li:nth-child(13) { animation-delay: 24s; }
+.pick-it-up-details-text li:nth-child(14) { animation-delay: 26s; }
+
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it appears on top of other content */
+  pointer-events: all;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+}
+
+.enlarged-image {
+  max-width: 90%;
+  max-height: 90%;
+  transition: transform 0.5s ease;
+}
+
+
+
+.popup {
+  position: absolute;
+  padding: 10px;
+  background-color: #1F283330;
+  color: white;
+  font-size: 20px;
+  font-weight: 50;
+  pointer-events: all;
+  line-height: 43px;
+  letter-spacing: 5px; /* Adjust as needed */
+  border-radius: 50px 50px 50px 0px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none; /* Prevent interaction with the popup */
+  z-index: 4;
 }
