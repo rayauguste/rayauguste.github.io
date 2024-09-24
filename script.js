@@ -750,3 +750,46 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  const container = document.querySelector(".vhs-container");
+
+  function createGlitchLine() {
+    const line = document.createElement("div");
+    line.classList.add("glitch-line");
+
+    // Randomize the height of the glitch line
+    const randomHeight = Math.random() * (30 - 5) + 5; // Height between 5px and 30px
+    line.style.height = `${randomHeight}px`;
+
+    // Randomize the animation duration (between 2s and 4s for more variability)
+    const randomDuration = Math.random() * (4 - 2) + 2; // Duration between 2s and 4s
+    line.style.animationDuration = `${randomDuration}s`;
+
+    // Randomize the top starting position
+    const randomStartPosition = Math.random() * 100; // Random starting position between 0% and 100%
+    line.style.top = `${randomStartPosition}%`; // Set a random starting position
+
+    // Randomize opacity at the start
+    const randomOpacity = Math.random() * 0.5 + 0.2; // Random opacity between 0.2 and 0.7
+    line.style.opacity = randomOpacity;
+
+    // Append to container
+    container.appendChild(line);
+
+    // Remove the line after the animation ends
+    line.addEventListener("animationend", () => {
+      line.remove();
+    });
+  }
+
+  // Create a maximum of 3 glitch lines at intervals
+  setInterval(() => {
+    const existingLines = document.querySelectorAll(".glitch-line");
+
+    // Create a line only if there are less than 3 already
+    if (existingLines.length < 3) {
+      createGlitchLine();
+    }
+  }, 500); // Creates new lines every 500ms
+});

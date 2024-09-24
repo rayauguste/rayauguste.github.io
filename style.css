@@ -240,7 +240,7 @@ body {
 
 
 
-.background-blur-text {
+  .background-blur-text {
     font-size: 20px;
     color: #A4C0C5;
     text-align: center;
@@ -252,8 +252,34 @@ body {
     width: 100%;
     transform: translate(-50%, -50%);
     line-height: 64px;
-    letter-spacing: 5px; /* Adjust as needed */
-}
+    letter-spacing: 5px;
+    
+    /* Adding the jittery glitch effect */
+    animation: jitter 5s infinite; /* Animation with short duration */
+  }
+  
+  /* Keyframes for jittery glitch effect */
+  @keyframes jitter {
+    0% {
+      transform: translate(-50%, -50%) translateX(0) translateY(0); /* Default */
+    }
+    20% {
+      transform: translate(-50%, -50%) translateX(-2px) translateY(-1px); /* Slight left and up */
+    }
+    40% {
+      transform: translate(-50%, -50%) translateX(3px) translateY(1px); /* Slight right and down */
+    }
+    60% {
+      transform: translate(-50%, -50%) translateX(-1px) translateY(2px); /* Slight left and down */
+    }
+    80% {
+      transform: translate(-50%, -50%) translateX(2px) translateY(-2px); /* Slight right and up */
+    }
+    100% {
+      transform: translate(-50%, -50%) translateX(0) translateY(0); /* Back to default */
+    }
+  }
+  
 
 
 .introduction-text {
@@ -443,6 +469,53 @@ body {
 }
 
 
+
+
+.breathing-effect-two {
+  animation: breathingtwo var(--random-duration, 8s) infinite ease-in-out;
+}
+
+/* Apply different durations randomly */
+.breathing-effect-two:nth-child(1) { 
+  --random-duration: var(--breathing-duration-1); 
+}
+.breathing-effect-two:nth-child(2) { 
+  --random-duration: var(--breathing-duration-2); 
+}
+.breathing-effect-two:nth-child(3) { 
+  --random-duration: var(--breathing-duration-3); 
+}
+.breathing-effect-two:nth-child(4) { 
+  --random-duration: var(--breathing-duration-1); 
+}
+.breathing-effect-two:nth-child(5) { 
+  --random-duration: var(--breathing-duration-2); 
+}
+.breathing-effect-two:nth-child(6) { 
+  --random-duration: var(--breathing-duration-3); 
+}
+
+@keyframes breathingtwo {
+  0% {
+    transform: scale(1) translate(-50%, -50%);
+  }
+  25% {
+    transform: scale(1.03) translate(-50%, -50%);
+  }
+  50% {
+    transform: scale(1) translate(-50%, -50%);
+  }
+  75% {
+    transform: scale(1.02 translate(-50%, -50%));
+  }
+  100% {
+    transform: scale(1) translate(-50%, -50%);
+  }
+}
+
+
+
+
   /* Scrollbar Styles for Minecraft Build Versions List */
   ::-webkit-scrollbar {
     /* Scrollbars of cuteness */
@@ -623,7 +696,7 @@ body {
 }
 
 .pick-it-up-details-text li {
-  opacity: 1; /* Start with opacity 0 */
+  opacity: 0.5; /* Start with opacity 0 */
   animation: waveOpacity 3s ease-in-out infinite; /* Animation settings */
 }
 
@@ -637,19 +710,19 @@ body {
 /* Use nth-child to apply animation delay */
 /* Use nth-child to apply animation delay with 2 seconds apart */
 .pick-it-up-details-text li:nth-child(1) { animation-delay: 0s; }
-.pick-it-up-details-text li:nth-child(2) { animation-delay: 2s; }
-.pick-it-up-details-text li:nth-child(3) { animation-delay: 4s; }
-.pick-it-up-details-text li:nth-child(4) { animation-delay: 6s; }
-.pick-it-up-details-text li:nth-child(5) { animation-delay: 8s; }
-.pick-it-up-details-text li:nth-child(6) { animation-delay: 10s; }
-.pick-it-up-details-text li:nth-child(7) { animation-delay: 12s; }
-.pick-it-up-details-text li:nth-child(8) { animation-delay: 14s; }
-.pick-it-up-details-text li:nth-child(9) { animation-delay: 16s; }
-.pick-it-up-details-text li:nth-child(10) { animation-delay: 18s; }
-.pick-it-up-details-text li:nth-child(11) { animation-delay: 20s; }
-.pick-it-up-details-text li:nth-child(12) { animation-delay: 22s; }
-.pick-it-up-details-text li:nth-child(13) { animation-delay: 24s; }
-.pick-it-up-details-text li:nth-child(14) { animation-delay: 26s; }
+.pick-it-up-details-text li:nth-child(2) { animation-delay: 1.5s; }
+.pick-it-up-details-text li:nth-child(3) { animation-delay: 3s; }
+.pick-it-up-details-text li:nth-child(4) { animation-delay: 4.5s; }
+.pick-it-up-details-text li:nth-child(5) { animation-delay: 6s; }
+.pick-it-up-details-text li:nth-child(6) { animation-delay: 7.5s; }
+.pick-it-up-details-text li:nth-child(7) { animation-delay: 9s; }
+.pick-it-up-details-text li:nth-child(8) { animation-delay: 10.5s; }
+.pick-it-up-details-text li:nth-child(9) { animation-delay: 12s; }
+.pick-it-up-details-text li:nth-child(10) { animation-delay: 13.5s; }
+.pick-it-up-details-text li:nth-child(11) { animation-delay: 15s; }
+.pick-it-up-details-text li:nth-child(12) { animation-delay: 16.5s; }
+.pick-it-up-details-text li:nth-child(13) { animation-delay: 18s; }
+.pick-it-up-details-text li:nth-child(14) { animation-delay: 19.5s; }
 
 
 
@@ -692,4 +765,46 @@ body {
   transition: opacity 0.5s ease;
   pointer-events: none; /* Prevent interaction with the popup */
   z-index: 4;
+}
+
+
+
+.vhs-container {
+  position: fixed; /* Fixed position for scrolling effect */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: hidden;
+}
+
+.glitch-line {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.1); /* Glitch line color */
+  width: 100%; /* Full width */
+  height: 10px; /* Default height */
+  left: 50%; /* Center the line on the screen */
+  animation: glitch 3s infinite; /* Animation for glitch effect */
+  transform: translateX(-50%); /* Centering */
+}
+
+/* Keyframes for glitch effect */
+@keyframes glitch {
+  0% {
+    top: -10%; /* Start just above the viewport */
+    opacity: 0.3;
+  }
+  25% {
+    opacity: 0.5; /* Fade in */
+  }
+  50% {
+    opacity: 1; /* Fully visible */
+  }
+  75% {
+    opacity: 0.5; /* Fade out */
+  }
+  100% {
+    top: 110%; /* Move just below the viewport */
+    opacity: 0.3; /* Fade out */
+  }
 }
