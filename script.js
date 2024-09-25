@@ -208,8 +208,12 @@ document.addEventListener("DOMContentLoaded", function () {
       // Add 'white' class if background is sufficiently dark
       if (darkeningFactor > 0.5) {
         cursorTextElement.classList.add("white");
+        const popupText = document.getElementById("popupText");
+        popupText.classList.add("dark-mode");
       } else {
         cursorTextElement.classList.remove("white");
+        const popupText = document.getElementById("popupText");
+        popupText.classList.remove("dark-mode");
       }
     } else {
       // Reset the background color when below the threshold
@@ -463,29 +467,54 @@ function createImage(imageUrl, top = "0px", left = "0px", className = "") {
 function makeDraggable(element) {
   let offsetX, offsetY;
   const dragThreshold = 5; // Set a threshold for drag detection (in pixels)
-  let startX, startY; // Variables to store the initial mouse position
+  let startX, startY;
 
-  element.addEventListener("mousedown", (event) => {
-    // Store the initial mouse position
-    startX = event.clientX;
-    startY = event.clientY;
+  function startDrag(event) {
+    const isTouchEvent = event.type === "touchstart";
+    const clientX = isTouchEvent ? event.touches[0].clientX : event.clientX;
+    const clientY = isTouchEvent ? event.touches[0].clientY : event.clientY;
+
+    // Store the initial touch or mouse position
+    startX = clientX;
+    startY = clientY;
 
     // Calculate the offset relative to the element's position
-    offsetX = startX - element.getBoundingClientRect().left;
-    offsetY = startY - element.getBoundingClientRect().top;
+    offsetX = clientX - element.getBoundingClientRect().left;
+    offsetY = clientY - element.getBoundingClientRect().top;
 
-    function mouseMoveHandler(e) {
-      const dx = e.clientX - startX; // Calculate horizontal movement
-      const dy = e.clientY - startY; // Calculate vertical movement
+    // Function to handle dragging movement
+    function moveHandler(e) {
+      const isTouch = e.type === "touchmove";
+      const moveX = isTouch ? e.touches[0].clientX : e.clientX;
+      const moveY = isTouch ? e.touches[0].clientY : e.clientY;
 
-      // Check if the drag distance exceeds the threshold
-      if (Math.abs(dx) > dragThreshold || Math.abs(dy) > dragThreshold) {
-        clearTimeout(isDraggingTimer);
-        isDragging = true; // Set dragging state to true
+      const dx = moveX - startX; // Horizontal movement
+      const dy = moveY - startY; // Vertical movement
 
-        // Update the position considering the current scroll
-        element.style.left = `${e.clientX - offsetX}px`;
-        element.style.top = `${e.clientY - offsetY + window.scrollY}px`;
+      // Check if the drag distance exceeds the threshold and is more horizontal than vertical
+      if (
+        !isDragging &&
+        (Math.abs(dx) > dragThreshold || Math.abs(dy) > dragThreshold)
+      ) {
+        // If horizontal movement is greater than vertical movement, start dragging
+        if (Math.abs(dx) > Math.abs(dy)) {
+          clearTimeout(isDraggingTimer);
+          isDragging = true;
+          e.preventDefault(); // Prevent vertical scrolling
+        } else {
+          // Allow scrolling if vertical movement is greater
+          endDrag();
+          return;
+        }
+      }
+
+      if (isDragging) {
+        // Prevent scrolling during drag on touch devices
+        e.preventDefault();
+
+        // Update the element's position during drag
+        element.style.left = `${moveX - offsetX}px`;
+        element.style.top = `${moveY - offsetY + window.scrollY}px`;
 
         // Update the data attributes for the new position
         element.dataset.top = element.style.top;
@@ -493,19 +522,27 @@ function makeDraggable(element) {
       }
     }
 
-    function mouseUpHandler() {
+    function endDrag() {
       // Remove event listeners when dragging stops
-      document.removeEventListener("mousemove", mouseMoveHandler);
-      document.removeEventListener("mouseup", mouseUpHandler);
+      document.removeEventListener("mousemove", moveHandler);
+      document.removeEventListener("mouseup", endDrag);
+      document.removeEventListener("touchmove", moveHandler);
+      document.removeEventListener("touchend", endDrag);
       isDraggingTimer = setTimeout(() => {
         isDragging = false; // Reset dragging state on mouse up
       }, 50);
     }
 
     // Attach the move and up event listeners
-    document.addEventListener("mousemove", mouseMoveHandler);
-    document.addEventListener("mouseup", mouseUpHandler);
-  });
+    document.addEventListener("mousemove", moveHandler);
+    document.addEventListener("mouseup", endDrag);
+    document.addEventListener("touchmove", moveHandler, { passive: false }); // Use passive: false to allow preventDefault
+    document.addEventListener("touchend", endDrag);
+  }
+
+  // Add event listeners for both mouse and touch events
+  element.addEventListener("mousedown", startDrag);
+  element.addEventListener("touchstart", startDrag);
 }
 
 // Function to change the image every 10 seconds
@@ -541,32 +578,10 @@ setInterval(changeImage, 10000);
 
 document.addEventListener("DOMContentLoaded", function () {
   // Fixed Y positions for the images
-  const yPositions = [
-    "2550px",
-    "2770px",
-    "2500px",
-    "2700px",
-    "2550px",
-    "2770px",
-    "2500px",
-    "2750px", // 8th image
-    "2750px", // 9th image
-    "2400px", // 10th image
-  ];
+  const yPositions = ["2550px", "2770px", "2500px", "2700px"];
 
   // Fixed X positions for the images
-  const xPositions = [
-    "30px",
-    "40px",
-    "360px",
-    "360px",
-    "680px",
-    "680px",
-    "1000px",
-    "1420px", // 8th image
-    "1000px", // 9th image
-    "1320px", // 10th image
-  ];
+  const xPositions = ["5px", "5px", "210px", "210px"];
 
   // Create initial images at specified Y and X positions
   for (let i = 0; i < yPositions.length; i++) {

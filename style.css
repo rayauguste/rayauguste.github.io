@@ -11,6 +11,12 @@ body {
     transition: background-color 0.2s; /* Smooth transition */
 }
 
+::selection {
+  background-color: #A4C0C5; /* Highlight background color */
+  color: #F6FDFF; /* Highlighted text color */
+}
+
+
 .play-time-text {
     font-size: 30px;
     color: #A4C0C5;
@@ -32,7 +38,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     height: 100%;
     display: flex;
     align-items: center;
@@ -57,6 +63,18 @@ body {
     align-items: center;
     justify-content: center;
     gap: 20px;
+}
+
+.static {
+  position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("img/Icons/animated-static-gif-10.gif");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 1;
 }
 
 
@@ -451,7 +469,7 @@ body {
 }
 
 .background-blur-text-nothing {
-  font-size: 24px;
+  font-size: 28px;
   color: #FF4C29;
   text-align: center;
   font-weight: 50;
@@ -463,7 +481,7 @@ body {
   transform: translate(-50%, -50%);
   line-height: 64px;
   letter-spacing: 5px; /* Adjust as needed */
-  padding-bottom: 50px;
+  padding-bottom: 80px;
   opacity: 1;
   transition: opacity 2s ease; /* Duration of the fade effect */
 }
@@ -541,7 +559,7 @@ body {
   }
 
 .design-item {
-  width: 300px;
+  width: 200px;
   height: auto;
   position: absolute; /* Allows positioning with top and left */
   cursor: move; /* Change cursor to indicate dragging */
@@ -753,10 +771,10 @@ body {
 .popup {
   position: absolute;
   padding: 10px;
-  background-color: #1F283330;
-  color: white;
-  font-size: 20px;
-  font-weight: 50;
+  background-color: #F6FDFF30;
+  color: #1F2833;
+  font-size: 24px;
+  font-weight: 200;
   pointer-events: all;
   line-height: 43px;
   letter-spacing: 5px; /* Adjust as needed */
@@ -764,8 +782,21 @@ body {
   opacity: 0;
   transition: opacity 0.5s ease;
   pointer-events: none; /* Prevent interaction with the popup */
-  z-index: 4;
+  z-index: 0;
+  backdrop-filter: blur(3px); /* Adjust blur level */
+  
+  /* Create blurred/faded edges */
+  box-shadow: 0 0 15px 15px rgba(246, 253, 255, 0.2); /* Adjust blur radius and color */
 }
+
+.popup.dark-mode {
+  background-color: #1F283330;
+  color: #F6FDFF;
+  
+  /* Dark blurred/faded edges for dark mode */
+  box-shadow: 0 0 15px 15px rgba(11, 12, 16, 0.3); /* Dark blur effect */
+}
+
 
 
 
