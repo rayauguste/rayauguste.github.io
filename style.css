@@ -297,18 +297,38 @@ body {
       transform: translate(-50%, -50%) translateX(0) translateY(0); /* Back to default */
     }
   }
+
+
+  .introduction-text-container {
+    z-index: 2;
+    top: 100px;
+    pointer-events: all;
+    position: absolute;
+    width: 100%;
+    flex-direction: column;
+    gap: 130px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .reach-me-container {
+    display: flex;
+    gap: 80px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+  }
   
 
 
 .introduction-text {
-    z-index: 2;
+  padding-left: 50px;
     font-size: 20px;
     color: #1F2833;
     font-weight: 50;
     pointer-events: all;
-    position: absolute;
-    top: 100px;
-    left: 50px;
     width: 80%;
     max-width: 867px;
     line-height: 64px;
@@ -317,7 +337,6 @@ body {
 
 
 .contact-button {
-  z-index: 2;
   font-family: "Rubik", Arial, sans-serif;
   font-size: 20px;
   color: #1F2833;
@@ -333,15 +352,10 @@ body {
   border: none;
   padding: 0px;
   margin: 0px;
-  position: absolute;
-  top: 440px;
-  left: 50%;
-  transform: translateX(-50%);
   text-decoration: none;
 }
 
 .reach-me-buttons-container {
-  z-index: 2;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -349,10 +363,6 @@ body {
   width: 80%;
   max-width: 480px;
   pointer-events: all;
-  position: absolute;
-  top: 590px;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .reach-me-button {
@@ -377,30 +387,6 @@ body {
 
 
 
-/* Media query for smaller screens */
-@media (max-width: 768px) {  /* You can adjust 768px to your desired breakpoint */
-  .contact-button {
-    top: 620px;
-  }
-
-  .reach-me-buttons-container {
-    top: 740px;
-  }
-}
-
-
-/* Media query for smaller screens */
-@media (max-width: 468px) {  /* You can adjust 768px to your desired breakpoint */
-  .contact-button {
-    top: 770px;
-  }
-
-  .reach-me-buttons-container {
-    top: 890px;
-  }
-}
-
-
 
 .scroll-down-text-container {
   z-index: 2;
@@ -411,7 +397,7 @@ body {
   align-items: center;
   position: absolute;
   left: 50px;
-  bottom: 0px;
+  top: 700px;
 }
 
 /* Media query for smaller screens */
@@ -431,25 +417,12 @@ body {
 }
 
 .about-me-section {
-  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 24px;
   pointer-events: all;
-  position: absolute;
-  top: 1300px;
-  left: 50%;
-  transform: translateX(-50%);
   width: 90%;
   max-width: 990px;
-}
-
-
-/* Media query for smaller screens */
-@media (max-width: 768px) {  /* You can adjust 768px to your desired breakpoint */
-  .about-me-section {
-    top: 1000px;
-  }
 }
 
 .about-me-section p {
@@ -483,7 +456,7 @@ body {
   font-weight: 50;
   pointer-events: none;
   position: absolute;
-  top: 8000px;
+  top: 9000px;
   left: 50%;
   width: 100%;
   transform: translate(-50%, -50%);
@@ -492,6 +465,22 @@ body {
   padding-bottom: 80px;
   opacity: 1;
   transition: opacity 2s ease; /* Duration of the fade effect */
+}
+
+.middle-section {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 700px;
+  pointer-events: all;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 1300px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  /* max-width: 990px; */
 }
 
 
@@ -563,19 +552,14 @@ body {
   
   ::-webkit-scrollbar-thumb:hover {
     /* Thumbs that get even cuter on hover */
-    background: #66FCF1; /* Color of the scrollbar thumb on hover */
+    background: #A4C0C5; /* Color of the scrollbar thumb on hover */
   }
 
 .designs-list {
   display: flex;
   flex-wrap: wrap;
-  z-index: 2;
   gap: 24px;
   pointer-events: all;
-  position: absolute;
-  top: 2300px;
-  left: 50%;
-  transform: translateX(-50%);
   width: 90%;
   max-width: 990px;
 }
@@ -592,23 +576,14 @@ body {
   .design-item {
     width: 140px;
   }
-
-  .designs-list {
-    top: 2600px;
-  }
 }
 
 
 .pick-it-up-section {
-  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 112px;
   pointer-events: all;
-  position: absolute;
-  top: 3800px;
-  left: 50%;
-  transform: translateX(-50%);
   width: 90%;
   max-width: 990px;
 }

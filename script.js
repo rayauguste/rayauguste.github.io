@@ -186,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const scrollY = window.scrollY;
 
     // Set the threshold for when the background should start darkening
-    const scrollThreshold = 5300; // Adjust this value as needed
+    const scrollThreshold = 6800; // Adjust this value as needed
 
     // Calculate the darkening factor based on scroll position
     const darkeningFactor = Math.min((scrollY - scrollThreshold) / 1000, 1);
@@ -265,7 +265,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const rotationY = -(mouseX / centerX) * maxRotation; // Rotation around the Y-axis
 
       // Apply the rotation to the image
-      this.style.transform = `perspective(1000px) rotateX(${rotationX}deg) rotateY(${rotationY}deg) translateX(-50%)`;
+      this.style.transform = `perspective(1000px) rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
     });
   });
 
@@ -273,8 +273,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Enable transition on mouse leave
     this.style.transition = "transform 0.1s ease";
     // Reset the transform on mouse leave
-    this.style.transform =
-      "perspective(1000px) rotateX(0deg) rotateY(0deg) translateX(-50%)";
+    this.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
   });
 });
 
@@ -300,7 +299,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const rotationY = -(mouseX / centerX) * maxRotation; // Rotation around the Y-axis
 
       // Apply the rotation to the image
-      this.style.transform = `perspective(1000px) rotateX(${rotationX}deg) rotateY(${rotationY}deg) translateX(-50%)`;
+      this.style.transform = `perspective(1000px) rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
     });
   });
 
@@ -308,8 +307,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Enable transition on mouse leave
     this.style.transition = "transform 0.1s ease";
     // Reset the transform on mouse leave
-    this.style.transform =
-      "perspective(1000px) rotateX(0deg) rotateY(0deg) translateX(-50%)";
+    this.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
   });
 });
 
