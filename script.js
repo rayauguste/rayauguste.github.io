@@ -165,7 +165,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Start scrambling while fading out
     scrambleText(textElement, newText, () => {
-      textElement.style.opacity = 1; // Fade in after scrambling
+      setTimeout(() => {
+        textElement.style.opacity = 1; // Fade in after scrambling with a delay
+      }, 2000); // 2 seconds delay before fade in
     });
 
     textElement.style.opacity = 0; // Fade out immediately
