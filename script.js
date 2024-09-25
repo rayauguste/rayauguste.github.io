@@ -74,62 +74,58 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Glitch text class
-  class TextScramble {
-    constructor(el) {
-      this.el = el;
-      this.chars = "!<>-_\\/[]{}—=+*^?#________";
-      this.update = this.update.bind(this);
+  const chars = "!<>-_\\/[]{}—=+*^?#________";
+
+  function randomChar() {
+    return chars[Math.floor(Math.random() * chars.length)];
+  }
+
+  function scrambleText(el, newText, callback) {
+    const oldText = el.innerText;
+    const length = Math.max(oldText.length, newText.length);
+    const queue = [];
+
+    for (let i = 0; i < length; i++) {
+      const from = oldText[i] || "";
+      const to = newText[i] || "";
+      const start = Math.floor(Math.random() * 100);
+      const end = start + Math.floor(Math.random() * 100) + 300;
+      queue.push({ from, to, start, end, char: null });
     }
 
-    setText(newText) {
-      const oldText = this.el.innerText;
-      const length = Math.max(oldText.length, newText.length);
-      const promise = new Promise((resolve) => (this.resolve = resolve));
-      this.queue = [];
-      for (let i = 0; i < length; i++) {
-        const from = oldText[i] || "";
-        const to = newText[i] || "";
-        const start = Math.floor(Math.random() * 100);
-        const end = start + Math.floor(Math.random() * 100) + 300; // add a bit more to the end
-        this.queue.push({ from, to, start, end });
-      }
-      cancelAnimationFrame(this.frameRequest);
-      this.frame = 0;
-      this.update();
-      return promise;
-    }
+    let frame = 0;
 
-    update() {
+    function update() {
       let output = "";
       let complete = 0;
-      for (let i = 0, n = this.queue.length; i < n; i++) {
-        let { from, to, start, end, char } = this.queue[i];
-        if (this.frame >= end) {
+
+      for (let i = 0; i < queue.length; i++) {
+        let { from, to, start, end, char } = queue[i];
+        if (frame >= end) {
           complete++;
           output += to;
-        } else if (this.frame >= start) {
+        } else if (frame >= start) {
           if (!char || Math.random() < 0.28) {
-            char = this.randomChar();
-            this.queue[i].char = char;
+            char = randomChar();
+            queue[i].char = char;
           }
           output += `<span class="dud">${char}</span>`;
         } else {
           output += from;
         }
       }
-      this.el.innerHTML = output;
-      if (complete === this.queue.length) {
-        this.resolve();
-      } else {
-        this.frameRequest = requestAnimationFrame(this.update);
-        this.frame++;
+
+      el.innerHTML = output;
+
+      if (complete < queue.length) {
+        requestAnimationFrame(update);
+        frame++;
+      } else if (callback) {
+        callback(); // Call the callback once scrambling is complete
       }
     }
 
-    randomChar() {
-      return this.chars[Math.floor(Math.random() * this.chars.length)];
-    }
+    update();
   }
 
   const phrases = [
@@ -162,29 +158,22 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   const textElement = document.querySelector(".background-blur-text-nothing");
-  const fx = new TextScramble(textElement); // Initialize the TextScramble once
 
   function updateText() {
     const randomIndex = Math.floor(Math.random() * phrases.length);
     const newText = phrases[randomIndex];
 
-    // Fade out
-    textElement.style.opacity = 0;
-
-    // Start the glitch effect after fade-out
-    fx.setText(newText).then(() => {
-      // Wait for a moment after glitch effect before fading in
-      setTimeout(() => {
-        textElement.style.opacity = 1; // Fade in after a delay
-      }, 2000); // Adjust this delay as needed (in milliseconds)
+    // Start scrambling while fading out
+    scrambleText(textElement, newText, () => {
+      textElement.style.opacity = 1; // Fade in after scrambling
     });
+
+    textElement.style.opacity = 0; // Fade out immediately
   }
 
-  // Update text every 6 seconds (6000 milliseconds)
+  // Update text every 8 seconds (8000 milliseconds)
   setInterval(updateText, 8000);
-
-  // Initial call to set the text immediately
-  updateText();
+  updateText(); // Initial call to set the text immediately
 });
 
 document.addEventListener("DOMContentLoaded", function () {
