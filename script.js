@@ -195,14 +195,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const scrollY = window.scrollY;
 
     // Set the threshold for when the background should start darkening
-    const scrollThreshold = 6000; // Adjust this value as needed
+    const scrollThreshold = 5300; // Adjust this value as needed
 
     // Calculate the darkening factor based on scroll position
-    const darkeningFactor = Math.min((scrollY - scrollThreshold) / 2000, 1);
+    const darkeningFactor = Math.min((scrollY - scrollThreshold) / 1000, 1);
 
     // Darken the background if above the threshold
     if (scrollY > scrollThreshold) {
-      const backgroundColorValue = 255 - darkeningFactor * 700; // Adjust for darker colors
+      const backgroundColorValue = 255 - darkeningFactor * 300; // Adjust for darker colors
       document.body.style.backgroundColor = `rgb(${backgroundColorValue}, ${backgroundColorValue}, ${backgroundColorValue})`;
 
       // Add 'white' class if background is sufficiently dark
@@ -412,7 +412,7 @@ let isDraggingTimer;
 let isDragging = false; // Track if the image is being dragged
 
 // Function to create and append an image to the body at a specified position
-function createImage(imageUrl, top = "0px", left = "0px", className = "") {
+function createImage(imageUrl, className = "") {
   // Create a new img element
   const imgElement = document.createElement("img");
 
@@ -424,27 +424,14 @@ function createImage(imageUrl, top = "0px", left = "0px", className = "") {
     imgElement.className = className;
   }
 
-  // Set the position of the image
-  imgElement.style.position = "absolute";
-  imgElement.style.top = top;
-  imgElement.style.left = left;
   imgElement.style.opacity = "1";
   imgElement.style.transition = "opacity 0.5s";
+  imgElement.draggable = false;
 
-  // Store the last known position as data attributes
-  imgElement.dataset.top = top;
-  imgElement.dataset.left = left;
-
-  // Prevent default drag behavior
-  imgElement.addEventListener("dragstart", (event) => {
-    event.preventDefault();
-  });
-
-  // Make the image draggable
-  makeDraggable(imgElement);
+  const designsList = document.querySelector(".designs-list");
 
   // Append the img element directly to the body
-  document.body.appendChild(imgElement);
+  designsList.appendChild(imgElement);
 
   const enlargedImage = document.querySelector(".enlarged-image");
 
@@ -463,94 +450,12 @@ function createImage(imageUrl, top = "0px", left = "0px", className = "") {
   });
 }
 
-// Function to make an element draggable
-function makeDraggable(element) {
-  let offsetX, offsetY;
-  const dragThreshold = 5; // Set a threshold for drag detection (in pixels)
-  let startX, startY;
-
-  function startDrag(event) {
-    const isTouchEvent = event.type === "touchstart";
-    const clientX = isTouchEvent ? event.touches[0].clientX : event.clientX;
-    const clientY = isTouchEvent ? event.touches[0].clientY : event.clientY;
-
-    // Store the initial touch or mouse position
-    startX = clientX;
-    startY = clientY;
-
-    // Calculate the offset relative to the element's position
-    offsetX = clientX - element.getBoundingClientRect().left;
-    offsetY = clientY - element.getBoundingClientRect().top;
-
-    // Function to handle dragging movement
-    function moveHandler(e) {
-      const isTouch = e.type === "touchmove";
-      const moveX = isTouch ? e.touches[0].clientX : e.clientX;
-      const moveY = isTouch ? e.touches[0].clientY : e.clientY;
-
-      const dx = moveX - startX; // Horizontal movement
-      const dy = moveY - startY; // Vertical movement
-
-      // Check if the drag distance exceeds the threshold and is more horizontal than vertical
-      if (
-        !isDragging &&
-        (Math.abs(dx) > dragThreshold || Math.abs(dy) > dragThreshold)
-      ) {
-        // If horizontal movement is greater than vertical movement, start dragging
-        if (Math.abs(dx) > Math.abs(dy)) {
-          clearTimeout(isDraggingTimer);
-          isDragging = true;
-          e.preventDefault(); // Prevent vertical scrolling
-        } else {
-          // Allow scrolling if vertical movement is greater
-          endDrag();
-          return;
-        }
-      }
-
-      if (isDragging) {
-        // Prevent scrolling during drag on touch devices
-        e.preventDefault();
-
-        // Update the element's position during drag
-        element.style.left = `${moveX - offsetX}px`;
-        element.style.top = `${moveY - offsetY + window.scrollY}px`;
-
-        // Update the data attributes for the new position
-        element.dataset.top = element.style.top;
-        element.dataset.left = element.style.left;
-      }
-    }
-
-    function endDrag() {
-      // Remove event listeners when dragging stops
-      document.removeEventListener("mousemove", moveHandler);
-      document.removeEventListener("mouseup", endDrag);
-      document.removeEventListener("touchmove", moveHandler);
-      document.removeEventListener("touchend", endDrag);
-      isDraggingTimer = setTimeout(() => {
-        isDragging = false; // Reset dragging state on mouse up
-      }, 50);
-    }
-
-    // Attach the move and up event listeners
-    document.addEventListener("mousemove", moveHandler);
-    document.addEventListener("mouseup", endDrag);
-    document.addEventListener("touchmove", moveHandler, { passive: false }); // Use passive: false to allow preventDefault
-    document.addEventListener("touchend", endDrag);
-  }
-
-  // Add event listeners for both mouse and touch events
-  element.addEventListener("mousedown", startDrag);
-  element.addEventListener("touchstart", startDrag);
-}
-
 // Function to change the image every 10 seconds
 function changeImage() {
   // Get all images
   const existingImages = document.querySelectorAll("img.design-item");
 
-  existingImages.forEach((img, index) => {
+  existingImages.forEach((img) => {
     // Fade out the image
     img.style.opacity = "0";
 
@@ -563,13 +468,11 @@ function changeImage() {
       // Update the src attribute of the image
       img.src = randomImageUrl;
 
-      // Retain the last position
-      img.style.top = img.dataset.top;
-      img.style.left = img.dataset.left;
-
-      // Fade in the image
-      img.style.opacity = "1";
-    }, 500 + index * 500); // Stagger each image change by 500ms for each index
+      // Wait for a second before making opacity 1
+      setTimeout(() => {
+        img.style.opacity = "1";
+      }, 500); // Wait 1 second before fading in
+    }, 500); // Wait 1 second before changing the image source
   });
 }
 
@@ -577,18 +480,10 @@ function changeImage() {
 setInterval(changeImage, 10000);
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Fixed Y positions for the images
-  const yPositions = ["2550px", "2770px", "2500px", "2700px"];
-
-  // Fixed X positions for the images
-  const xPositions = ["5px", "5px", "210px", "210px"];
-
   // Create initial images at specified Y and X positions
-  for (let i = 0; i < yPositions.length; i++) {
+  for (let i = 0; i < 20; i++) {
     createImage(
       imageUrls[Math.floor(Math.random() * imageUrls.length)],
-      yPositions[i], // Set Y position from the array
-      xPositions[i], // Set X position from the array
       "design-item"
     );
   }

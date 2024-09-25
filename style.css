@@ -346,7 +346,7 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 90%;
+  width: 80%;
   max-width: 480px;
   pointer-events: all;
   position: absolute;
@@ -444,6 +444,14 @@ body {
   max-width: 990px;
 }
 
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {  /* You can adjust 768px to your desired breakpoint */
+  .about-me-section {
+    top: 1000px;
+  }
+}
+
 .about-me-section p {
   font-size: 20px;
   color: #1F2833;
@@ -475,7 +483,7 @@ body {
   font-weight: 50;
   pointer-events: none;
   position: absolute;
-  top: 10000px;
+  top: 8000px;
   left: 50%;
   width: 100%;
   transform: translate(-50%, -50%);
@@ -558,13 +566,36 @@ body {
     background: #66FCF1; /* Color of the scrollbar thumb on hover */
   }
 
+.designs-list {
+  display: flex;
+  flex-wrap: wrap;
+  z-index: 2;
+  gap: 24px;
+  pointer-events: all;
+  position: absolute;
+  top: 2300px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 990px;
+}
+
 .design-item {
   width: 200px;
   height: auto;
-  position: absolute; /* Allows positioning with top and left */
-  cursor: move; /* Change cursor to indicate dragging */
-  z-index: 2;
+  cursor: zoom-in; /* Change cursor to indicate dragging */
   pointer-events: all;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 468px) {  /* You can adjust 768px to your desired breakpoint */
+  .design-item {
+    width: 140px;
+  }
+
+  .designs-list {
+    top: 2600px;
+  }
 }
 
 
