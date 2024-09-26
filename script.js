@@ -80,28 +80,27 @@ document.addEventListener("DOMContentLoaded", function () {
     return chars[Math.floor(Math.random() * chars.length)];
   }
 
-  function scrambleText(el, newText, callback) {
+  function scrambleText(el) {
     const oldText = el.innerText;
-    const length = Math.max(oldText.length, newText.length);
+    const length = oldText.length;
     const scrambleDuration = 1000; // total scrambling time
     const scrambleInterval = 50; // how often to change characters
 
     let intervalId = setInterval(() => {
       let output = "";
       for (let i = 0; i < length; i++) {
-        if (Math.random() < 0.28 || i >= newText.length) {
+        if (Math.random() < 0.28) {
           output += `<span class="dud">${randomChar()}</span>`;
         } else {
-          output += newText[i];
+          output += oldText[i];
         }
       }
       el.innerHTML = output;
     }, scrambleInterval);
 
+    // Stop scrambling after the scrambleDuration
     setTimeout(() => {
-      clearInterval(intervalId); // Stop scrambling after the duration
-      el.innerHTML = newText;
-      if (callback) callback(); // Trigger callback after scrambling
+      clearInterval(intervalId);
     }, scrambleDuration);
   }
 
@@ -140,14 +139,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const randomIndex = Math.floor(Math.random() * phrases.length);
     const newText = phrases[randomIndex];
 
-    // Start scrambling while fading out
-    scrambleText(textElement, newText, () => {
-      setTimeout(() => {
-        textElement.style.opacity = 1; // Fade in after scrambling with a delay
-      }, 2000); // 2 seconds delay before fade-in
-    });
+    // Start scrambling the current text
+    scrambleText(textElement);
 
+    // Set the new text after scrambling, and then fade in
+    setTimeout(() => {
+      textElement.innerText = newText; // Set the new text after scrambling
+    }, 1000); // Set the new text after the scramble duration (1 second)
+
+    // Fade out immediately, then fade in after setting the new text
+    textElement.style.transition = "opacity 1s";
     textElement.style.opacity = 0; // Fade out immediately
+
+    setTimeout(() => {
+      textElement.style.opacity = 1; // Fade in after 2 seconds
+    }, 2000); // Delay fade-in by 2 seconds to ensure text has changed
   }
 
   // Update text every 8 seconds (8000 milliseconds)
@@ -421,7 +427,7 @@ function changeImage() {
   // Get all images
   const existingImages = document.querySelectorAll("img.design-item");
 
-  existingImages.forEach((img) => {
+  existingImages.forEach((img, index) => {
     // Fade out the image
     img.style.opacity = "0";
 
@@ -437,7 +443,7 @@ function changeImage() {
       // Wait for a second before making opacity 1
       setTimeout(() => {
         img.style.opacity = "1";
-      }, 500); // Wait 1 second before fading in
+      }, 500 + index * 100); // Wait 1 second before fading in
     }, 500); // Wait 1 second before changing the image source
   });
 }
