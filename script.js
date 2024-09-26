@@ -83,49 +83,26 @@ document.addEventListener("DOMContentLoaded", function () {
   function scrambleText(el, newText, callback) {
     const oldText = el.innerText;
     const length = Math.max(oldText.length, newText.length);
-    const queue = [];
+    const scrambleDuration = 1000; // total scrambling time
+    const scrambleInterval = 50; // how often to change characters
 
-    for (let i = 0; i < length; i++) {
-      const from = oldText[i] || "";
-      const to = newText[i] || "";
-      const start = Math.floor(Math.random() * 100);
-      const end = start + Math.floor(Math.random() * 100) + 300;
-      queue.push({ from, to, start, end, char: null });
-    }
-
-    let frame = 0;
-
-    function update() {
+    let intervalId = setInterval(() => {
       let output = "";
-      let complete = 0;
-
-      for (let i = 0; i < queue.length; i++) {
-        let { from, to, start, end, char } = queue[i];
-        if (frame >= end) {
-          complete++;
-          output += to;
-        } else if (frame >= start) {
-          if (!char || Math.random() < 0.28) {
-            char = randomChar();
-            queue[i].char = char;
-          }
-          output += `<span class="dud">${char}</span>`;
+      for (let i = 0; i < length; i++) {
+        if (Math.random() < 0.28 || i >= newText.length) {
+          output += `<span class="dud">${randomChar()}</span>`;
         } else {
-          output += from;
+          output += newText[i];
         }
       }
-
       el.innerHTML = output;
+    }, scrambleInterval);
 
-      if (complete < queue.length) {
-        requestAnimationFrame(update);
-        frame++;
-      } else if (callback) {
-        callback(); // Call the callback once scrambling is complete
-      }
-    }
-
-    update();
+    setTimeout(() => {
+      clearInterval(intervalId); // Stop scrambling after the duration
+      el.innerHTML = newText;
+      if (callback) callback(); // Trigger callback after scrambling
+    }, scrambleDuration);
   }
 
   const phrases = [
@@ -167,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
     scrambleText(textElement, newText, () => {
       setTimeout(() => {
         textElement.style.opacity = 1; // Fade in after scrambling with a delay
-      }, 2000); // 2 seconds delay before fade in
+      }, 2000); // 2 seconds delay before fade-in
     });
 
     textElement.style.opacity = 0; // Fade out immediately
@@ -193,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Darken the background if above the threshold
     if (scrollY > scrollThreshold) {
-      const backgroundColorValue = 255 - darkeningFactor * 300; // Adjust for darker colors
+      const backgroundColorValue = 255 - darkeningFactor * 500; // Adjust for darker colors
       document.body.style.backgroundColor = `rgb(${backgroundColorValue}, ${backgroundColorValue}, ${backgroundColorValue})`;
 
       // Add 'white' class if background is sufficiently dark
