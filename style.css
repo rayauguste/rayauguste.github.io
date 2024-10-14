@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'CustomFont';
+  src: url('fonts/BetterPixels.ttf') format('truetype'); /* Path to your font */
+  font-weight: normal;
+  font-style: normal;
+}
+
 html {
     scroll-behavior: smooth;
   }
@@ -337,19 +344,12 @@ body {
 
 
 .contact-button {
-  font-family: "Rubik", Arial, sans-serif;
-  font-size: 20px;
-  color: #1F2833;
-  font-weight: 50;
   pointer-events: all;
   width: 223px;
   height: 67px;
   outline: none;
-  border: 2px solid transparent;
-  background: linear-gradient(#F6FDFF, #F6FDFF) padding-box,
-              linear-gradient(45deg, #1F2833, #1F283340) border-box;
-
   border: none;
+  background: none;
   padding: 0px;
   margin: 0px;
   text-decoration: none;
@@ -456,7 +456,7 @@ body {
   font-weight: 50;
   pointer-events: none;
   position: absolute;
-  top: 9000px;
+  top: 13000px;
   left: 50%;
   width: 100%;
   transform: translate(-50%, -50%);
@@ -555,6 +555,15 @@ body {
     background: #A4C0C5; /* Color of the scrollbar thumb on hover */
   }
 
+  .design-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+  }
+
+
 .designs-list {
   display: flex;
   flex-wrap: wrap;
@@ -562,10 +571,13 @@ body {
   pointer-events: all;
   width: 90%;
   max-width: 990px;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
 }
 
 .design-item {
-  width: 200px;
+  width: 400px;
   height: auto;
   cursor: zoom-in; /* Change cursor to indicate dragging */
   pointer-events: all;
@@ -674,19 +686,12 @@ body {
 }
 
 .visit-store-button {
-  font-family: "Rubik", Arial, sans-serif;
-  font-size: 20px;
-  color: #1F2833;
-  font-weight: 50;
   pointer-events: all;
   width: 275px;
   height: 67px;
   outline: none;
-  border: 2px solid transparent;
-  background: linear-gradient(#F6FDFF, #F6FDFF) padding-box,
-              linear-gradient(45deg, #1F2833, #1F283340) border-box;
-
   border: none;
+  background: none;
   padding: 0px;
   margin: 0px;
   text-decoration: none;
@@ -844,4 +849,105 @@ body {
     top: 110%; /* Move just below the viewport */
     opacity: 0.3; /* Fade out */
   }
+}
+
+
+
+.design-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Rubik", Arial, sans-serif;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  color: #1F2833;
+  cursor: pointer;
+  background-color: #00000000;
+}
+
+
+
+.halls-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  align-content: flex-end;
+  padding-top: 300px;
+  padding-bottom: 300px;
+  background-color: black;
+  font-family: 'CustomFont', sans-serif;
+}
+
+.halls-logo-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 100px;
+  width: 100%;
+}
+
+.halls-characters {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  max-width: 500px;
+  justify-content: space-between;
+}
+
+.halls-about-title {
+  font-size: 60px;
+  color: #ffffff;
+  font-weight: 100;
+  pointer-events: all;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  max-width: 1190px;
+  text-align: center;
+}
+
+.halls-about {
+  font-size: 40px;
+  color: #ffffff;
+  font-weight: 100;
+  pointer-events: all;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  max-width: 990px;
+  text-align: center;
+}
+
+.halls-about-title::selection {
+  background-color: #ffffff; /* Highlight background color */
+  color: #000000; /* Highlighted text color */
+}
+
+.halls-about::selection {
+  background-color: #ffffff; /* Highlight background color */
+  color: #000000; /* Highlighted text color */
+}
+
+
+.visit-game-store-button {
+  pointer-events: all;
+  width: 331px;
+  height: 79.01px;
+  outline: none;
+  border: none;
+  background: none;
+  padding: 0px;
+  margin: 0px;
+  text-decoration: none;
+}
+
+
+.halls-section img::selection {
+  background-color: #ffffff; /* Highlight background color */
+  color: #000000; /* Highlighted text color */
 }

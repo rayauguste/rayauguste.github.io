@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const scrollY = window.scrollY;
 
     // Set the threshold for when the background should start darkening
-    const scrollThreshold = 6800; // Adjust this value as needed
+    const scrollThreshold = 9800; // Adjust this value as needed
 
     // Calculate the darkening factor based on scroll position
     const darkeningFactor = Math.min((scrollY - scrollThreshold) / 1000, 1);
@@ -383,15 +383,14 @@ const imageUrls = [
 let isDraggingTimer;
 let isDragging = false; // Track if the image is being dragged
 
-// Function to create and append an image to the body at a specified position
-function createImage(imageUrl, className = "") {
-  // Create a new img element
-  const imgElement = document.createElement("img");
+let currentIndex = 0; // Track the current image index
+const imagesPerBatch = 4; // Number of images to change per batch
 
-  // Set the src attribute to the provided image URL
+// Function to create and append an image to the designs-list container
+function createImage(imageUrl, className = "") {
+  const imgElement = document.createElement("img");
   imgElement.src = imageUrl;
 
-  // Optionally add a class to the img element
   if (className) {
     imgElement.className = className;
   }
@@ -401,67 +400,73 @@ function createImage(imageUrl, className = "") {
   imgElement.draggable = false;
 
   const designsList = document.querySelector(".designs-list");
-
-  // Append the img element directly to the body
   designsList.appendChild(imgElement);
 
   const enlargedImage = document.querySelector(".enlarged-image");
-
   imgElement.addEventListener("click", function () {
-    if (!isDragging) {
-      // Only execute if not dragging
-      const imgSrc = imgElement.getAttribute("src");
-      if (imgSrc) {
-        // Check if enlargedImage exists before using it
-        if (enlargedImage) {
-          enlargedImage.setAttribute("src", imgSrc);
-          fadeInOverlay();
-        }
+    const imgSrc = imgElement.getAttribute("src");
+    if (imgSrc) {
+      if (enlargedImage) {
+        enlargedImage.setAttribute("src", imgSrc);
+        fadeInOverlay();
       }
     }
   });
 }
 
-// Function to change the image every 10 seconds
-function changeImage() {
-  // Get all images
-  const existingImages = document.querySelectorAll("img.design-item");
+// Function to show the next batch of 20 images with a fade transition
+function showImagesBatch(startIndex) {
+  const designsList = document.querySelector(".designs-list");
+  const existingImages = designsList.querySelectorAll("img");
 
-  existingImages.forEach((img, index) => {
+  existingImages.forEach((img, i) => {
+    // Calculate the new index for each image in the batch
+    const newIndex = (startIndex + i) % imageUrls.length;
+
     // Fade out the image
     img.style.opacity = "0";
 
     // After the fade-out transition, change the image source
     setTimeout(() => {
-      // Get a random image URL from the array
-      const randomImageUrl =
-        imageUrls[Math.floor(Math.random() * imageUrls.length)];
+      img.src = imageUrls[newIndex];
 
-      // Update the src attribute of the image
-      img.src = randomImageUrl;
-
-      // Wait for a second before making opacity 1
+      // Fade in the new image
       setTimeout(() => {
         img.style.opacity = "1";
-      }, 500 + index * 100); // Wait 1 second before fading in
-    }, 500); // Wait 1 second before changing the image source
+      }, 100); // Small delay for fade-in
+    }, 500); // Wait for the fade-out transition
   });
 }
 
-// Call changeImage every 10 seconds
-setInterval(changeImage, 10000);
+// Function to go to the previous batch of images
+function showPreviousBatch() {
+  currentIndex =
+    (currentIndex - imagesPerBatch + imageUrls.length) % imageUrls.length;
+  showImagesBatch(currentIndex);
+}
+
+// Function to go to the next batch of images
+function showNextBatch() {
+  currentIndex = (currentIndex + imagesPerBatch) % imageUrls.length;
+  showImagesBatch(currentIndex);
+}
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Create initial images at specified Y and X positions
-  for (let i = 0; i < 20; i++) {
-    createImage(
-      imageUrls[Math.floor(Math.random() * imageUrls.length)],
-      "design-item"
-    );
+  // Create initial 20 images
+  for (let i = 0; i < imagesPerBatch; i++) {
+    createImage(imageUrls[i], "design-item");
   }
 
-  // Change images every 20 seconds
-  setInterval(changeImage, 20000);
+  // Initial display of images
+  showImagesBatch(currentIndex);
+
+  // Set up previous and next buttons
+  document
+    .querySelector(".prev-button")
+    .addEventListener("click", showPreviousBatch);
+  document
+    .querySelector(".next-button")
+    .addEventListener("click", showNextBatch);
 });
 
 //Enlarge design image
@@ -675,3 +680,35 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }, 500); // Creates new lines every 500ms
 });
+
+// Define the frame sequence for each sprite
+const wardenFrames = [
+  "img/Warden/the_warden1.png",
+  "img/Warden/the_warden2.png",
+  "img/Warden/the_warden3.png",
+  "img/Warden/the_warden4.png",
+];
+
+const teacherFrames = [
+  "img/Teacher/teacheranim1.png",
+  "img/Teacher/teacheranim2.png",
+  "img/Teacher/teacheranim3.png",
+  "img/Teacher/teacheranim4.png",
+];
+
+let wardenIndex = 0;
+let teacherIndex = 0;
+
+// Function to update the frames
+function updateSpriteFrame() {
+  // Update Warden frame
+  document.getElementById("warden").src = wardenFrames[wardenIndex];
+  wardenIndex = (wardenIndex + 1) % wardenFrames.length; // Loop through frames
+
+  // Update Teacher frame
+  document.getElementById("teacher").src = teacherFrames[teacherIndex];
+  teacherIndex = (teacherIndex + 1) % teacherFrames.length; // Loop through frames
+}
+
+// Start the animation: Change frame every 200 milliseconds (adjust as needed)
+setInterval(updateSpriteFrame, 200);
