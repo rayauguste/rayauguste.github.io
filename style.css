@@ -876,8 +876,6 @@ body {
   align-items: center;
   gap: 100px;
   align-content: flex-end;
-  padding-top: 300px;
-  padding-bottom: 300px;
   background-color: black;
   font-family: 'CustomFont', sans-serif;
 }
@@ -950,4 +948,15 @@ body {
 .halls-section img::selection {
   background-color: #ffffff; /* Highlight background color */
   color: #000000; /* Highlighted text color */
+}
+
+.halls-transition {
+  width: 100%;
+  height: auto;
+}
+
+.halls-transition-two {
+  width: 100%;
+  height: auto;
+  transform: scale(-1);
 }
