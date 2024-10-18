@@ -960,3 +960,19 @@ body {
   height: auto;
   transform: scale(-1);
 }
+
+.my-resume-link {
+  font-size: 18px;
+  color: #1F2833;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: "Rubik", Arial, sans-serif;
+  line-height: 64px;
+  letter-spacing: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: -60px;
+}
