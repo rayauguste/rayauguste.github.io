@@ -570,11 +570,11 @@ body {
   gap: 24px;
   pointer-events: all;
   width: 90%;
-  max-width: 990px;
   align-items: center;
   justify-content: center;
   align-content: center;
 }
+
 
 .design-item {
   width: 400px;
@@ -864,6 +864,12 @@ body {
   color: #1F2833;
   cursor: pointer;
   background-color: #00000000;
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+.design-button:hover {
+  opacity: 0.5;
 }
 
 
