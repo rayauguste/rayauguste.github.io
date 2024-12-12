@@ -7,6 +7,8 @@
 
 html {
     scroll-behavior: smooth;
+    /* Normal cursor for the whole body */
+    cursor: url('cursors/EyeNormalSelect.png'), auto;
   }
 
 body {
@@ -21,6 +23,16 @@ body {
 ::selection {
   background-color: #A4C0C5; /* Highlight background color */
   color: #F6FDFF; /* Highlighted text color */
+}
+
+/* Text select cursor for text elements */
+p, li, ul, h1, h2, h3, h4, h5, h6, textarea {
+  cursor: url('cursors/EyeTextSelect.png'), text;
+}
+
+/* Link select cursor for anchor tags */
+a, button {
+  cursor: url('cursors/EyeLinkSelect.png'), pointer;
 }
 
 
@@ -862,7 +874,7 @@ body {
   outline: none;
   font-size: 20px;
   color: #1F2833;
-  cursor: pointer;
+  /* cursor: pointer; */
   background-color: #00000000;
   transition: opacity 0.5s ease;
   opacity: 1;
@@ -971,7 +983,7 @@ body {
   font-size: 18px;
   color: #1F2833;
   text-decoration: underline;
-  cursor: pointer;
+  /* cursor: pointer; */
   font-family: "Rubik", Arial, sans-serif;
   line-height: 64px;
   letter-spacing: 5px;
