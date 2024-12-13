@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const scrollY = window.scrollY;
 
     // Set the threshold for when the background should start darkening
-    const scrollThreshold = 9800; // Adjust this value as needed
+    const scrollThreshold = 8800; // Adjust this value as needed
 
     // Calculate the darkening factor based on scroll position
     const darkeningFactor = Math.min((scrollY - scrollThreshold) / 1000, 1);
@@ -579,7 +579,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Set a timeout to hide the popup if typing stops
     timeoutId = setTimeout(() => {
       hidePopup();
-    }, 1000); // Adjust the delay as needed (1 second in this case)
+    }, 2000); // Adjust the delay as needed (1 second in this case)
   });
 
   function showPopup(text) {
