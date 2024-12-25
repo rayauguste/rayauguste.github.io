@@ -163,35 +163,54 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
   const cursorTextElement = document.querySelector(".persons-text-cursor-text");
+  const darkTrigger = document.querySelector(".dark-trigger"); // The target div
+  const backgroundText = document.querySelector(
+    ".background-blur-text-nothing"
+  );
+  const popupText = document.getElementById("popupText");
+
+  if (!darkTrigger) {
+    console.error("Element with class 'dark-trigger' not found.");
+    return;
+  }
 
   document.addEventListener("scroll", function () {
-    // Get the current scroll position
+    const rect = darkTrigger.getBoundingClientRect();
     const scrollY = window.scrollY;
 
-    // Set the threshold for when the background should start darkening
-    const scrollThreshold = 8800; // Adjust this value as needed
+    // Check if user is below the .dark-trigger div
+    const isBelowDiv = rect.bottom <= 0;
 
-    // Calculate the darkening factor based on scroll position
-    const darkeningFactor = Math.min((scrollY - scrollThreshold) / 1000, 1);
+    if (isBelowDiv) {
+      // Calculate the darkening factor based on how far below the div the user has scrolled
+      const distanceBelow =
+        scrollY - (darkTrigger.offsetTop + darkTrigger.offsetHeight);
 
-    // Darken the background if above the threshold
-    if (scrollY > scrollThreshold) {
-      const backgroundColorValue = 255 - darkeningFactor * 500; // Adjust for darker colors
+      backgroundText.style.top =
+        darkTrigger.offsetTop + darkTrigger.offsetHeight + 5000 + "px";
+
+      // Adjust divisor to make darkening more gradual
+      const darkeningFactor = Math.min(distanceBelow / 3000, 1); // Gradually darken with a larger divisor
+
+      // Darken more aggressively for complete black at max
+      const backgroundColorValue = Math.max(0, 255 - darkeningFactor * 255); // Ensures complete black at full darkening
+
+      // Apply the calculated background color
       document.body.style.backgroundColor = `rgb(${backgroundColorValue}, ${backgroundColorValue}, ${backgroundColorValue})`;
 
-      // Add 'white' class if background is sufficiently dark
+      // Add or remove classes based on the darkening factor
       if (darkeningFactor > 0.5) {
         cursorTextElement.classList.add("white");
-        const popupText = document.getElementById("popupText");
         popupText.classList.add("dark-mode");
       } else {
         cursorTextElement.classList.remove("white");
-        const popupText = document.getElementById("popupText");
         popupText.classList.remove("dark-mode");
       }
     } else {
-      // Reset the background color when below the threshold
+      // Reset background and classes when above the .dark-trigger div
       document.body.style.backgroundColor = `rgb(246, 253, 255)`; // Original color
+      cursorTextElement.classList.remove("white");
+      popupText.classList.remove("dark-mode");
     }
   });
 });
@@ -384,7 +403,7 @@ let isDraggingTimer;
 let isDragging = false; // Track if the image is being dragged
 
 let currentIndex = 0; // Track the current image index
-const imagesPerBatch = 4; // Number of images to change per batch
+const imagesPerBatch = 6; // Number of images to change per batch
 
 // Function to create and append an image to the designs-list container
 function createImage(imageUrl, className = "") {
@@ -560,51 +579,78 @@ document.addEventListener("DOMContentLoaded", function () {
   let timeoutId;
   let currentText = ""; // Variable to store the current input text
   let isVisible = false; // Flag to track if the popup is currently visible
+  let isTypingDisabled = false; // Flag to track if typing is disabled
 
   // Listen for keydown events on the whole document
   document.addEventListener("keydown", (event) => {
-    // Clear the previous timeout
+    if (isTypingDisabled && event.key !== "Backspace") {
+      // Prevent any typing (except backspace) while popup is visible
+      event.preventDefault();
+      return;
+    }
+
+    // Clear the previous timeout to reset the fade-away timer
     clearTimeout(timeoutId);
 
     // Get the key that was pressed
     const key = event.key;
 
-    // Show the popup with the key pressed
-    if (key.length === 1) {
-      // Ensure it's a single character key
+    if (key === "Backspace") {
+      // If Backspace is pressed, change text to red and set popup message
+      currentText =
+        "Once spoken, words fade into the void... and never return...";
+      showPopup(currentText, true); // Pass true to indicate red text
+      isTypingDisabled = true; // Disable typing while the popup is visible
+    } else if (key.length === 1) {
+      // If it's a single character key (not Backspace)
       currentText += key; // Accumulate the text
-      showPopup(currentText);
+      showPopup(currentText, false); // No red text for regular typing
     }
 
     // Set a timeout to hide the popup if typing stops
     timeoutId = setTimeout(() => {
       hidePopup();
-    }, 2000); // Adjust the delay as needed (1 second in this case)
+    }, 2000); // Adjust the delay as needed (2 seconds in this case)
   });
 
-  function showPopup(text) {
+  function showPopup(text, isRed) {
     // Set the text content of the popup
     popupText.textContent = text;
 
-    // Check if the popup is currently visible
-    if (isVisible) {
-      // Get the current position of the popup
+    // Add or remove the red-text class based on the isRed flag
+    if (isRed) {
+      popupText.classList.add("red-text");
+    } else {
+      popupText.classList.remove("red-text");
+    }
+
+    // If not visible, randomly position it
+    if (!isVisible) {
+      repositionPopup();
+    }
+
+    // Continuously check if the popup is out of bounds and reposition it if necessary
+    const checkBoundsInterval = setInterval(() => {
       const popupRect = popupText.getBoundingClientRect();
 
-      // Check if the popup is off-screen
       if (
         popupRect.right < 0 || // Off the left
         popupRect.left > window.innerWidth || // Off the right
         popupRect.bottom < 0 || // Off the top
         popupRect.top > window.innerHeight // Off the bottom
       ) {
-        // If off-screen, reposition randomly
         repositionPopup();
       }
-    } else {
-      // If not visible, randomly position it
-      repositionPopup();
-    }
+    }, 100); // Check every 100ms
+
+    // Stop checking bounds once the popup is hidden
+    setTimeout(() => {
+      clearInterval(checkBoundsInterval);
+    }, 5000); // Stop checking after 5 seconds (adjust as needed)
+
+    // Show the popup with a fade-in effect
+    popupText.style.opacity = "1";
+    isVisible = true; // Set the flag to true when the popup is shown
   }
 
   function repositionPopup() {
@@ -612,10 +658,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const y = Math.random() * (window.innerHeight - 50); // 50 is the height of the popup
     popupText.style.left = `${x}px`;
     popupText.style.top = `${y + window.scrollY}px`; // Adjust for scroll
-
-    // Show the popup with a fade-in effect
-    popupText.style.opacity = "1";
-    isVisible = true; // Set the flag to true when the popup is shown
   }
 
   function hidePopup() {
@@ -626,11 +668,13 @@ document.addEventListener("DOMContentLoaded", function () {
     setTimeout(() => {
       currentText = ""; // Reset accumulated text
       popupText.textContent = ""; // Clear the popup text
+      popupText.classList.remove("red-text"); // Remove the red-text class
       isVisible = false; // Reset the visibility flag
+      isTypingDisabled = false; // Re-enable typing after the popup fades
     }, 500); // Wait for the fade-out transition (adjust time as needed)
   }
 
-  // space key shouldn't scroll down
+  // Prevent the space key from scrolling down
   document.addEventListener("keydown", function (event) {
     if (event.key === " ") {
       event.preventDefault(); // Prevent scrolling when space key is pressed
