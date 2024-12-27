@@ -39,33 +39,60 @@ document.addEventListener("DOMContentLoaded", function () {
     "Hey human!",
     "Greetings traveler",
     "Welcome back!",
-  ]; // Array of texts
+    "Hello, traveler",
+    "Greetings, observer",
+    "Are you here?",
+    "Welcome to nothingness",
+    "Is anyone there?",
+    "Lost in the static",
+    "Hello from the void",
+    "Welcome, echo",
+    "Are you real, human?",
+    "Greetings from beyond",
+    "Endless hello",
+    "Hello, wandering soul",
+    "Welcome to the void",
+    "Are you listening?",
+    "Entering the unknown",
+    "Greetings, lost one",
+    "Hello, fragment of reality",
+    "The void speaks: Hello",
+    "Is this real?",
+    "Unknown presence detected, hello",
+    "Greetings in silence",
+    "Echoing hello",
+    "Hello from nowhere",
+    "Unknown signals received",
+  ];
+
   let index = 0; // Start index
-  let textIndex = 0; // Index for the array of texts
 
   function typeAnimation() {
-    const currentText = texts[textIndex]; // Pick the current text from the array
+    const currentText = texts[Math.floor(Math.random() * texts.length)]; // Pick a random text from the array
 
-    if (index < currentText.length) {
-      textElement.innerHTML += currentText.charAt(index); // Add one character at a time
-      index++;
-      setTimeout(typeAnimation, 100); // Adjust speed (100ms delay between letters)
-    } else {
-      setTimeout(backspaceAnimation, 1000); // Wait 1s before starting the backspace
+    function typeLetter() {
+      if (index < currentText.length) {
+        textElement.innerHTML += currentText.charAt(index); // Add one character at a time
+        index++;
+        setTimeout(typeLetter, 100); // Adjust speed (100ms delay between letters)
+      } else {
+        setTimeout(backspaceAnimation, 1000); // Wait 1s before starting the backspace
+      }
     }
+
+    typeLetter();
   }
 
   function backspaceAnimation() {
-    const currentText = texts[textIndex];
+    const currentText = textElement.innerHTML;
 
     if (index > 0) {
       textElement.innerHTML = currentText.substring(0, index - 1); // Remove one character at a time
       index--;
       setTimeout(backspaceAnimation, 50); // Adjust speed (50ms delay between removing letters)
     } else {
-      // Move to the next text after backspacing
-      textIndex = (textIndex + 1) % texts.length; // Loop back to the start if we reach the end
-      setTimeout(typeAnimation, 500); // Start typing the next text after 0.5s
+      // After backspacing, start typing a new random text
+      setTimeout(typeAnimation, 500); // Start typing the next random text after 0.5s
     }
   }
 
@@ -131,6 +158,29 @@ document.addEventListener("DOMContentLoaded", function () {
     "fading light",
     "whispers of doubt",
     "darkened path",
+    "dreams fading",
+    "lost dreams",
+    "dreaming beyond limits",
+    "nightmare",
+    "sleeping in darkness",
+    "forgotten dreams",
+    "fading dreamscape",
+    "shadows of dreams",
+    "dreaming of the void",
+    "echoes of a dream",
+    "the dream fades",
+    "illusion of sleep",
+    "dreams unfulfilled",
+    "visions of nothingness",
+    "in a dreamless state",
+    "shattered illusions",
+    "waking nightmare",
+    "lost in a dream",
+    "sleep's embrace",
+    "forgotten reality",
+    "the dream is over",
+    "between wake and sleep",
+    "drifting in dreams",
   ];
 
   const textElement = document.querySelector(".background-blur-text-nothing");
@@ -174,6 +224,9 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
+  backgroundText.style.top =
+    darkTrigger.offsetTop + darkTrigger.offsetHeight + 9500 + "px";
+
   document.addEventListener("scroll", function () {
     const rect = darkTrigger.getBoundingClientRect();
     const scrollY = window.scrollY;
@@ -185,9 +238,6 @@ document.addEventListener("DOMContentLoaded", function () {
       // Calculate the darkening factor based on how far below the div the user has scrolled
       const distanceBelow =
         scrollY - (darkTrigger.offsetTop + darkTrigger.offsetHeight);
-
-      backgroundText.style.top =
-        darkTrigger.offsetTop + darkTrigger.offsetHeight + 5000 + "px";
 
       // Adjust divisor to make darkening more gradual
       const darkeningFactor = Math.min(distanceBelow / 3000, 1); // Gradually darken with a larger divisor
@@ -575,6 +625,80 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+  const contactButton = document.getElementById("contactButton");
+  const contactPopup = document.getElementById("contactPopup");
+  const contactForm = document.getElementById("contactForm");
+
+  // Show the contact form when the button is clicked
+  contactButton.addEventListener("click", function (event) {
+    event.stopPropagation(); // Prevent the document click event from triggering
+    contactPopup.classList.add("show"); // Add class to show the pop-up
+  });
+
+  // Close the pop-up when clicking anywhere outside the form
+  document.addEventListener("click", function (event) {
+    // If the click is outside the popup and the button, close the popup
+    if (
+      !contactPopup.contains(event.target) &&
+      event.target !== contactButton
+    ) {
+      contactPopup.classList.remove("show"); // Remove class to hide the pop-up
+    }
+  });
+
+  // Prevent the form from closing when clicking inside the form
+  contactForm.addEventListener("click", function (event) {
+    event.stopPropagation(); // Prevent closing the popup when clicking inside the form
+  });
+
+  // Add click event listener to the back button
+  const backButton = document.querySelector(".back-button");
+  backButton.addEventListener("click", function () {
+    contactPopup.classList.remove("show"); // Remove class to hide the pop-up
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  emailjs.init("kGiSTBT_I5CzJMG7V"); // Replace with your EmailJS user ID
+
+  document
+    .getElementById("contactForm")
+    .addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Collect form data
+      const fromName = document.getElementById("name").value;
+      const fromEmail = document.getElementById("email").value;
+      const subject = document.getElementById("subject").value;
+      const message = document.getElementById("message").value;
+
+      // Set template parameters
+      const templateParams = {
+        from_name: fromName,
+        from_email: fromEmail,
+        subject: subject,
+        message: message,
+      };
+
+      // Send the email
+      emailjs.send("service_viptynk", "template_swuqwe8", templateParams).then(
+        (response) => {
+          console.log(
+            "Email sent successfully!",
+            response.status,
+            response.text
+          );
+          alert("Message sent successfully!");
+        },
+        (error) => {
+          console.error("Failed to send email:", error);
+          alert("Failed to send message. Please try again.");
+        }
+      );
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
   createReviewItem({
     name: "akimbo_angelo",
     location: "Puerto Rico",
@@ -732,6 +856,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Listen for keydown events on the whole document
   document.addEventListener("keydown", (event) => {
+    if (
+      document.activeElement.tagName === "INPUT" ||
+      document.activeElement.tagName === "TEXTAREA" ||
+      document.activeElement.isContentEditable
+    ) {
+      return;
+    }
+
     if (isTypingDisabled && event.key !== "Backspace") {
       // Prevent any typing (except backspace) while popup is visible
       event.preventDefault();
@@ -825,6 +957,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Prevent the space key from scrolling down
   document.addEventListener("keydown", function (event) {
+    if (
+      document.activeElement.tagName === "INPUT" ||
+      document.activeElement.tagName === "TEXTAREA" ||
+      document.activeElement.isContentEditable
+    ) {
+      return;
+    }
+
     if (event.key === " ") {
       event.preventDefault(); // Prevent scrolling when space key is pressed
     }

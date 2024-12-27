@@ -39,6 +39,18 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init({
+          publicKey: "kGiSTBT_I5CzJMG7V",
+        });
+      })();
+    </script>
+
     <script src="script.js"></script>
     <link rel="shortcut icon" href="NewRayLogo.ico" />
     <!-- Google tag (gtag.js) -->
@@ -88,16 +100,13 @@
       </p>
 
       <div class="reach-me-container breathing-effect">
-        <a
-          href="mailto:raekwon322@gmail.com?subject=[Ray%20Auguste%20Portfolio]"
-          class="contact-button"
-        >
+        <button id="contactButton" class="contact-button">
           <img
             draggable="false"
             src="img/Icons/contact_me_button.svg"
             alt="Contact Button"
           />
-        </a>
+        </button>
 
         <a
           class="my-resume-link"
@@ -312,6 +321,49 @@
         alt="Enlarged Image"
       />
     </div>
+    <div class="contact-pop-up" id="contactPopup">
+      <div class="blurred-background"></div>
+      <form class="contact-form" id="contactForm">
+        <div class="contact-form-info">
+          <div class="form-row">
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Name"
+              required
+            />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email Address"
+              required
+            />
+          </div>
+          <div class="contact-info">
+            <input
+              type="text"
+              id="subject"
+              name="subject"
+              placeholder="Subject"
+              required
+            />
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Message"
+              required
+            ></textarea>
+          </div>
+        </div>
+        <div class="contact-buttons-list">
+          <button type="submit">Send</button>
+          <button type="button" class="back-button">Back</button>
+        </div>
+      </form>
+    </div>
+
     <div id="popupText" class="popup"></div>
     <div class="static"></div>
   </body>
