@@ -575,6 +575,155 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+  createReviewItem({
+    name: "akimbo_angelo",
+    location: "Puerto Rico",
+    flagSrc: "img/Icons/twemoji_flag-puerto-rico.svg",
+    rating: 5,
+    text: "Delivered the project on time, days before deadline and in working order. Everything works fabulously and adequately. Ray always maintained communication and kept me up to date with his progress. 10/10, would request his services again.",
+  });
+
+  createReviewItem({
+    name: "akimbo_angelo",
+    location: "Puerto Rico",
+    flagSrc: "img/Icons/twemoji_flag-puerto-rico.svg",
+    rating: 5,
+    text: "Asked Ray to do a rush order on this project, and Ray managed to deliver in record time with the specifications met exactly as they were listed. 10/10. Currently waiting for him to finish up another project I asked for. Looking forward to the results.",
+  });
+
+  createReviewItem({
+    name: "c2spectra_tech",
+    location: "United Kingdom",
+    flagSrc: "img/Icons/emojione-v1_flag-for-united-kingdom.svg",
+    rating: 5,
+    text: "Had many revisions due to unforeseen circumstances, Ray has been incredibly patient throughout and delivered work with exceptional quality.",
+  });
+
+  createReviewItem({
+    name: "c2spectra_tech",
+    location: "United Kingdom",
+    flagSrc: "img/Icons/emojione-v1_flag-for-united-kingdom.svg",
+    rating: 5,
+    text: "Loved working with Ray! Fantastic work, would recommend highly.",
+  });
+
+  createReviewItem({
+    name: "mmarcantonio21",
+    location: "mmarcantonio21",
+    flagSrc: "img/Icons/twemoji_flag-united-states.svg",
+    rating: 5,
+    text: "I recently worked with Ray, and the experience was fantastic from start to finish. Their work had incredible visual appeal, with designs that were both creative and perfectly aligned with my vision. Throughout the project, they demonstrated true professionalism, meeting all deadlines and maintaining meticulous attention to detail. They were cooperative, receptive to feedback, and communicated proactively, keeping me updated at every stage. The final result was polished, visually stunning, and exactly what I had hoped for—highly recommend!",
+  });
+
+  createReviewItem({
+    name: "c2spectra_tech",
+    location: "United Kingdom",
+    flagSrc: "img/Icons/emojione-v1_flag-for-united-kingdom.svg",
+    rating: 5,
+    text: "Ray has been fantastic throughout, and the quality of his work is spot-on! Would recommend him whole-heartedly.",
+  });
+
+  createReviewItem({
+    name: "fivemdev_",
+    location: "Canada",
+    flagSrc: "img/Icons/twemoji_flag-canada.svg",
+    rating: 5,
+    text: "Really good work for a very fair price. Will definitely be working with him again. Recommend to anybody who has an idea that they want to bring to life.",
+  });
+
+  createReviewItem({
+    name: "alexholden139",
+    location: "Bahamas",
+    flagSrc: "img/Icons/twemoji_flag-bahamas.svg",
+    rating: 5,
+    text: "Great Work Great Work Great Work Great Work Great Work Great Work Great Work Great Work Great Work Great Work Great Work Great Work Great Work Great Work Great Work Great Work Great Work Great Work Great Work Great Work",
+  });
+
+  function createReviewItem({
+    name = "Anonymous",
+    location = "Unknown",
+    flagSrc = "",
+    rating = 5,
+    text = "No review provided.",
+  }) {
+    // Parent container where reviews are added
+    const reviewsSection = document.querySelector(".reviews-section");
+
+    // Create review item
+    const reviewItem = document.createElement("div");
+    reviewItem.classList.add("review-item");
+
+    // Create background div for the blur effect
+    const blurredBackground = document.createElement("div");
+    blurredBackground.classList.add("blurred-background");
+
+    // Append blurred background to the review item
+    reviewItem.appendChild(blurredBackground);
+
+    // Header section
+    const header = document.createElement("div");
+    header.classList.add("review-item-header");
+
+    // Name and location section
+    const nameSection = document.createElement("div");
+    nameSection.classList.add("review-item-name-section");
+
+    const nameElement = document.createElement("h4");
+    nameElement.classList.add("review-item-name");
+    nameElement.textContent = name;
+
+    const locationElement = document.createElement("div");
+    locationElement.classList.add("review-item-location");
+
+    if (flagSrc) {
+      const flagImage = document.createElement("img");
+      flagImage.src = flagSrc;
+      flagImage.alt = "country";
+      flagImage.draggable = false;
+      locationElement.appendChild(flagImage);
+    }
+
+    const locationText = document.createElement("p");
+    locationText.textContent = location;
+    locationElement.appendChild(locationText);
+
+    nameSection.appendChild(nameElement);
+    nameSection.appendChild(locationElement);
+
+    // Rating section
+    const ratingSection = document.createElement("div");
+    ratingSection.classList.add("review-item-rating");
+
+    for (let i = 0; i < 5; i++) {
+      const star = document.createElement("img");
+      star.classList.add("review-star");
+      star.src = "img/Icons/Star.svg";
+      star.alt = "star";
+      star.draggable = false;
+      if (i >= rating) {
+        star.style.opacity = "0.3"; // Dim the stars for ratings less than 5
+      }
+      ratingSection.appendChild(star);
+    }
+
+    header.appendChild(nameSection);
+    header.appendChild(ratingSection);
+
+    // Review text
+    const reviewText = document.createElement("p");
+    reviewText.classList.add("review-item-text");
+    reviewText.textContent = text;
+
+    // Append all sections to review item
+    reviewItem.appendChild(header);
+    reviewItem.appendChild(reviewText);
+
+    // Append review item to reviews section
+    reviewsSection.appendChild(reviewItem);
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
   const popupText = document.getElementById("popupText");
   let timeoutId;
   let currentText = ""; // Variable to store the current input text
