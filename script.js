@@ -688,7 +688,9 @@ document.addEventListener("DOMContentLoaded", function () {
             response.status,
             response.text
           );
-          alert("Message sent successfully!");
+          alert(
+            "Your message has been sent successfully! We'll review it shortly. Thank you for reaching out."
+          );
         },
         (error) => {
           console.error("Failed to send email:", error);
