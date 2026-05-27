@@ -1272,16 +1272,10 @@ a, button {
   width: 100%;
 }
 
-.aviquill-logo .img-one {
-  width: 320px;
-  height: auto;
-  fill: #ff006e;
-  filter: drop-shadow(0px 0px 30px rgba(57, 187, 201, 0.12));
-  transition: transform 0.5s ease;
-}
-
-.aviquill-logo .img-one:hover {
-  transform: scale(1.03);
+.aviquill-icon {
+  color: #ff006e;
+  filter: drop-shadow(0px 0px 30px rgba(255, 0, 110, 0.2));
+  transition: transform 0.5s ease, color 0.5s ease;
 }
 
 .aviquill-about {
