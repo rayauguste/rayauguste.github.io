@@ -1250,3 +1250,209 @@ a, button {
   gap: 15px;
   margin-top: -60px;
 }
+
+
+/* =========================
+   AVIQUILL SECTION
+========================= */
+
+.aviquill-section {
+  display: flex;
+  flex-direction: column;
+  gap: 112px;
+  pointer-events: all;
+  width: 90%;
+  max-width: 990px;
+}
+
+.aviquill-logo {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.aviquill-logo .img-one {
+  width: 120px;
+  height: auto;
+  filter: drop-shadow(0px 0px 30px rgba(57, 187, 201, 0.15));
+}
+
+.aviquill-logo .img-two {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  border-radius: 24px;
+  box-shadow: 0px 20px 80px rgba(31, 40, 51, 0.12);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.aviquill-logo .img-two:hover {
+  transform: scale(1.01);
+  box-shadow: 0px 30px 100px rgba(31, 40, 51, 0.18);
+}
+
+.aviquill-about {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 46px;
+}
+
+.aviquill-about-header {
+  display: flex;
+  flex-direction: column;
+  gap: 27px;
+}
+
+.aviquill-about-header h1 {
+  font-size: 35px;
+  color: #39BBC9;
+  font-weight: 400;
+  pointer-events: all;
+  line-height: 52px;
+  letter-spacing: 5px;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+.aviquill-about-header h4 {
+  font-size: 24px;
+  color: #1F2833;
+  font-weight: 400;
+  pointer-events: all;
+  line-height: 43px;
+  letter-spacing: 5px;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  opacity: 0.8;
+}
+
+.aviquill-about p {
+  font-size: 20px;
+  color: #1F2833;
+  font-weight: 50;
+  pointer-events: all;
+  line-height: 43px;
+  letter-spacing: 5px;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+.aviquill-details {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 60px;
+  margin-top: -30px;
+}
+
+@media (max-width: 768px) {
+  .aviquill-details {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+
+.aviquill-details-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.aviquill-details-text h4 {
+  font-size: 24px;
+  color: #1F2833;
+  font-weight: 400;
+  pointer-events: all;
+  line-height: 43px;
+  letter-spacing: 5px;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+.aviquill-details-text ul {
+  font-size: 20px;
+  color: #1F2833;
+  font-weight: 400;
+  pointer-events: all;
+  line-height: 43px;
+  letter-spacing: 5px;
+  width: 100%;
+  margin: 0;
+  padding-left: 24px;
+}
+
+.aviquill-details-text li {
+  opacity: 0.5;
+  animation: aviquillWaveOpacity 3s ease-in-out infinite;
+}
+
+/* stagger animation */
+.aviquill-details-text li:nth-child(1) { animation-delay: 0s; }
+.aviquill-details-text li:nth-child(2) { animation-delay: 1.5s; }
+.aviquill-details-text li:nth-child(3) { animation-delay: 3s; }
+.aviquill-details-text li:nth-child(4) { animation-delay: 4.5s; }
+.aviquill-details-text li:nth-child(5) { animation-delay: 6s; }
+.aviquill-details-text li:nth-child(6) { animation-delay: 7.5s; }
+.aviquill-details-text li:nth-child(7) { animation-delay: 9s; }
+.aviquill-details-text li:nth-child(8) { animation-delay: 10.5s; }
+.aviquill-details-text li:nth-child(9) { animation-delay: 12s; }
+.aviquill-details-text li:nth-child(10) { animation-delay: 13.5s; }
+.aviquill-details-text li:nth-child(11) { animation-delay: 15s; }
+.aviquill-details-text li:nth-child(12) { animation-delay: 16.5s; }
+
+@keyframes aviquillWaveOpacity {
+  0%, 100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* =========================
+   OPTIONAL GLASS CARD STYLE
+========================= */
+
+.aviquill-section {
+  position: relative;
+  padding: 80px;
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0px 20px 80px rgba(31, 40, 51, 0.08),
+    inset 0px 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 768px) {
+  .aviquill-section {
+    padding: 40px 24px;
+    gap: 80px;
+  }
+
+  .aviquill-about-header h1 {
+    font-size: 28px;
+    line-height: 42px;
+  }
+
+  .aviquill-about-header h4 {
+    font-size: 18px;
+    line-height: 34px;
+  }
+
+  .aviquill-about p,
+  .aviquill-details-text ul {
+    font-size: 16px;
+    line-height: 34px;
+    letter-spacing: 3px;
+  }
+}
